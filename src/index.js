@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter } from 'react-router-dom';
 import './index.css';
-import { TipHat } from './TipHat';
+import { TipHat } from './components/TipHat';
 
 ReactDOM.render(
   <React.StrictMode>
