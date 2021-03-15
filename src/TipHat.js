@@ -1,7 +1,12 @@
 import React from 'react'
+import { ApplicationViews } from './components/ApplicationViews'
+import { NavBar } from './components/NavBar/NavBar'
 
 export const TipHat = props => {
-    return(
-        <h1>Hello from TipHat.js!</h1>
+    return (
+        <>
+            <NavBar />
+            <ApplicationViews />
+        </>
     )
 }
