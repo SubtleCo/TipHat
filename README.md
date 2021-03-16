@@ -2,6 +2,8 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+[Project Proposal](https://docs.google.com/document/d/1EtZOk1N7-cCZp2r7FOEaqC4dct6iXuSoPNPQ7CjbT4A)
+
 ## ERD
 
 [dbDiagram](https://dbdiagram.io/d/60466599fcdcb6230b2321cf)
