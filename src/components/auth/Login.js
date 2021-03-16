@@ -5,7 +5,7 @@ import "./Login.css"
 
 
 export const Login = () => {
-    const [loginUser, setLoginUser] = useState({ email: "" })
+    const [loginUser, setLoginUser] = useState({ email: "", password: ""})
     const [existDialog, setExistDialog] = useState(false)
 
     const history = useHistory()
@@ -29,8 +29,12 @@ export const Login = () => {
         existingUserCheck()
             .then(exists => {
                 if (exists) {
-                    sessionStorage.setItem(userStorageKey, exists.id)
-                    history.push("/")
+                    if (exists.password === loginUser.password) {
+                        sessionStorage.setItem(userStorageKey, exists.id)
+                        history.push("/")
+                    } else {
+                        window.alert(`You're a user, but that ain't your password. Is this really ${exists.firstName}?`)
+                    }
                 } else {
                     setExistDialog(true)
                 }
@@ -45,7 +49,7 @@ export const Login = () => {
             </dialog>
             <section>
                 <form className="form--login" onSubmit={handleLogin}>
-                    <h1>Nutshell</h1>
+                    <h1>Tip Hat</h1>
                     <h2>Please sign in</h2>
                     <fieldset>
                         <label htmlFor="inputEmail"> Email address </label>
@@ -55,6 +59,16 @@ export const Login = () => {
                             placeholder="Email address"
                             required autoFocus
                             value={loginUser.email}
+                            onChange={handleInputChange} />
+                    </fieldset>
+                    <fieldset>
+                        <label htmlFor="inputPassword"> Password </label>
+                        <input type="password"
+                            id="password"
+                            className="form-control"
+                            placeholder="Password"
+                            required autoFocus
+                            value={loginUser.password}
                             onChange={handleInputChange} />
                     </fieldset>
                     <fieldset>

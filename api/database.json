@@ -2,8 +2,19 @@
   "users": [
     {
       "email": "alex@alex.com",
-      "name": "Alex Martin",
+      "firstName": "Alex",
+      "lastName": "Martin",
+      "password": "qwerty",
+      "userTrackValue": 0.0104,
       "id": 1
+    },
+    {
+      "email": "Billy@ray.com",
+      "firstName": "bill",
+      "lastName": "bill",
+      "password": "qwerty",
+      "userTrackValue": 0.02,
+      "id": 2
     }
   ],
   "plans": [],
