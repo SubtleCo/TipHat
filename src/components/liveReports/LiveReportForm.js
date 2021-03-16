@@ -22,6 +22,8 @@ export const LiveReportForm = () => {
                 <fieldset>
                     <label htmlFor="period">Report Type:</label>
                     <select id="period">
+                        {/* //======================================================================// */}
+                        {/* Make these a .map from an array */}
                         <option>Artist</option>
                         <option>Album</option>
                     </select>
