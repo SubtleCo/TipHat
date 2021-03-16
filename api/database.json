@@ -1,0 +1,12 @@
+{
+  "users": [
+    {
+      "email": "alex@alex.com",
+      "name": "Alex Martin",
+      "id": 1
+    }
+  ],
+  "plans": [],
+  "artists": [],
+  "planArtists": []
+}

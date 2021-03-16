@@ -1,0 +1,33 @@
+const streamingPayoutsPerTrack = {
+    napster: 0.019,
+    tidal: 0.01284,
+    apple: 0.00783,
+    deezer: 0.0064,
+    spotify: 0.00437,
+    amazon: 0.00402,
+    pandora: 0.00133,
+    youtube: 0.00069
+}
+
+// assuming 15 listens per purchase
+const ownershipPayoutsPerTrack = {
+    majorLabel: 0.0104,
+    bandcamp: 0.0566, 
+    champion: 0.10
+}
+
+//==================================Label CD Rate====================================//
+// assuming an CD is $12 and holds 10 songs
+// $1.20 / song
+// Assuming the band gets 13%
+// 1.56 / cd, or 0.156 / song 
+// assumimg the average cd gets 15 spins, that's 
+// 0.0104 - 2021 Label Rate
+
+//==================================Bandcamp Rate====================================//
+// assuming a digital album is $10 and holds 10 songs
+// $1.00 / song
+// Assiming the band gets 85%
+// $0.85 / song
+// assuming 15 listens
+// $0.0566 - 2021 Bandcamp Rate
