@@ -4,6 +4,7 @@ import './NavBar.css'
 import hat from '../../images/hat.png'
 
 export const NavBar = () => {
+    const userId = parseInt(sessionStorage.getItem('app_user_id'))
 
     const logout = () => {
         sessionStorage.clear('app_user_id')
@@ -15,7 +16,9 @@ export const NavBar = () => {
                 <h1>Tip Hat</h1>
                 <nav id="navbar">
                     <Link to="/">Why Tip?</Link>
-                    <Link to="/" onClick={logout}>log out</Link>
+                    <Link to="/user/edit">(Account)</Link>
+                    <Link to="/" onClick={logout}>(log out)</Link>
+
                 </nav>
             </div>
         </div>

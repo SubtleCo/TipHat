@@ -1,15 +1,25 @@
-import React, { useState } from "react"
+import React, { useEffect, useState } from "react"
 import { useHistory } from "react-router-dom"
 import { authApi, userStorageKey } from "./authSettings"
 import "./Login.css"
 
 export const Register = () => {
 
-    const [registerUser, setRegisterUser] = useState({ firstName: "", lastName: "", email: "", password: "", trackValue: 0.0104 })
+    const [registerUser, setRegisterUser] = useState({ firstName: "", lastName: "", email: "", password: "", userTrackValue: 0.0104 })
     const [passwordConfirm, setPasswordConfirm] = useState("")
     const [conflictDialog, setConflictDialog] = useState(false)
+    const loggedInUserId = parseInt(sessionStorage.getItem('app_user_id'))
+    let text = {}
 
     const history = useHistory()
+
+    useEffect(() => {
+        if (loggedInUserId) {
+            return fetch(`${authApi.localApiBaseUrl}/${authApi.endpoint}/${loggedInUserId}`)
+                .then(res => res.json())
+                .then(setRegisterUser)
+        }
+    }, [])
 
     const handleInputChange = (event) => {
         const newUser = { ...registerUser }
@@ -24,9 +34,32 @@ export const Register = () => {
             .then(user => !!user.length)
     }
 
+    const editUser = () => {
+        return fetch(`${authApi.localApiBaseUrl}/${authApi.endpoint}/${loggedInUserId}`, {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                email: registerUser.email,
+                firstName: registerUser.firstName,
+                lastName: registerUser.lastName,
+                password: registerUser.password,
+                userTrackValue: parseFloat(registerUser.userTrackValue)
+            })
+        })
+            .then(history.push("/"))
+    }
+
     const handleRegister = (e) => {
         e.preventDefault()
-
+        if (loggedInUserId) {
+            if (registerUser.password === passwordConfirm) {
+                return editUser()
+            } else {
+                return window.alert('Passwords do not match')
+            }
+        }
         existingUserCheck()
             .then((userExists) => {
                 if (!userExists) {
@@ -41,7 +74,7 @@ export const Register = () => {
                                 firstName: registerUser.firstName,
                                 lastName: registerUser.lastName,
                                 password: registerUser.password,
-                                userTrackValue: parseFloat(registerUser.trackValue)
+                                userTrackValue: parseFloat(registerUser.userTrackValue)
                             })
                         })
                             .then(res => res.json())
@@ -62,6 +95,15 @@ export const Register = () => {
 
     }
 
+    if (loggedInUserId) {
+        text.greeting = "Changed your mind about something?"
+        text.detail = "No problem! You can change your name, email, password, or track value!"
+        text.button = "Edit Account"
+    } else {
+        text.greeting = "Howdy, stranger!"
+        text.detail = "Tell us about yourself"
+        text.button = "Create Account"
+    }
     return (
         <main style={{ textAlign: "center" }}>
 
@@ -71,8 +113,8 @@ export const Register = () => {
             </dialog>
 
             <form className="form--login" onSubmit={handleRegister}>
-                <h1 className="h3 mb-3 font-weight-normal">Howdy, stranger!</h1>
-                <h2 className="h3 mb-3 font-weight-normal">Tell us about yourself</h2>
+                <h1 className="h3 mb-3 font-weight-normal">{text.greeting}</h1>
+                <h4 className="h4 mb-3 font-weight-normal">{text.detail}</h4>
                 <fieldset>
                     <label htmlFor="firstName"> First Name </label>
                     <input type="text" name="firstName" id="firstName" className="form-control" placeholder="First name" required autoFocus value={registerUser.firstName} onChange={handleInputChange} />
@@ -94,13 +136,13 @@ export const Register = () => {
                     <input type="password" name="confirm" id="confirm" className="form-control" placeholder="confirm password" required onChange={e => setPasswordConfirm(e.target.value)} />
                 </fieldset>
                 <fieldset>
-                    <label htmlFor="trackValue"> Track Value: $</label>
-                    <input type="number" step="0.0001" name="trackValue" id="trackValue" className="form-control" defaultValue="0.0104" required onChange={handleInputChange} />
+                    <label htmlFor="userTrackValue"> Track Value: $</label>
+                    <input type="number" step="0.0001" name="userTrackValue" id="userTrackValue" className="form-control" value={registerUser.userTrackValue} required onChange={handleInputChange} />
                     <p><strong>What is this?</strong></p>
                     <p>You may set a default value per track for your reports. If you're not sure, leave it as the default value ($0.0104) for now, and we'll talk about it later. You'll be able to change this later as well. </p>
                 </fieldset>
                 <fieldset>
-                    <button type="submit"> Sign in </button>
+                    <button type="submit"> {text.button} </button>
                 </fieldset>
             </form>
         </main>
