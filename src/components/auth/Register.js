@@ -5,7 +5,7 @@ import "./Login.css"
 
 export const Register = () => {
 
-    const [registerUser, setRegisterUser] = useState({ firstName: "", lastName: "", email: "", password: "", userTrackValue: 0.0104 })
+    const [registerUser, setRegisterUser] = useState({ firstName: "", lastName: "", lastFmAccount: "", email: "", password: "", userTrackValue: 0.0104 })
     const [passwordConfirm, setPasswordConfirm] = useState("")
     const [conflictDialog, setConflictDialog] = useState(false)
     const loggedInUserId = parseInt(sessionStorage.getItem('app_user_id'))
@@ -44,6 +44,7 @@ export const Register = () => {
                 email: registerUser.email,
                 firstName: registerUser.firstName,
                 lastName: registerUser.lastName,
+                lastFmAccount: registerUser.lastFmAccount,
                 password: registerUser.password,
                 userTrackValue: parseFloat(registerUser.userTrackValue)
             })
@@ -73,6 +74,7 @@ export const Register = () => {
                                 email: registerUser.email,
                                 firstName: registerUser.firstName,
                                 lastName: registerUser.lastName,
+                                lastFmAccount: registerUser.lastFmAccount,
                                 password: registerUser.password,
                                 userTrackValue: parseFloat(registerUser.userTrackValue)
                             })
@@ -122,6 +124,10 @@ export const Register = () => {
                 <fieldset>
                     <label htmlFor="lastName"> Last Name </label>
                     <input type="text" name="lastName" id="lastName" className="form-control" placeholder="Last name" required value={registerUser.lastName} onChange={handleInputChange} />
+                </fieldset>
+                <fieldset>
+                    <label htmlFor="lastFmAccount"> <a href="http://last.fm">last.fm</a> Account </label>
+                    <input type="text" name="lastFmAccount" id="lastFmAccount" className="form-control" placeholder="Account Name" required value={registerUser.lastFmAccount} onChange={handleInputChange} />
                 </fieldset>
                 <fieldset>
                     <label htmlFor="inputEmail"> Email address </label>

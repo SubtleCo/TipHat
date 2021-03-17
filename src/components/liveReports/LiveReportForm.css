@@ -1,0 +1,15 @@
+.api__form__selects {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.api__form__selects > fieldset {
+    display: flex;
+    border: none;
+    height: 30px;
+}
+
+#apiSubmit{
+    height: 30px;
+}
