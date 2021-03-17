@@ -1,40 +1,42 @@
 import React, { useContext, useEffect, useState } from 'react'
+import { UserContext } from '../auth/UserProvider'
 import { LastFmContext } from '../lastFm/LastFmProvider'
 import './LiveReport.css'
+import { ReportTable } from './ReportTable'
 
 export const LiveReport = () => {
     const { liveReport } = useContext(LastFmContext)
-    const [report, setReport] = useState({})
-    const [reportTable, setReportTable] = useState("")
+    const { currentUser, getCurrentUser } = useContext(UserContext)
+    const [reportTable, setReportTable] = useState([])
+    const [plan, setPlan] = useState({
+        userId: 0,
+        timestamp: 0,
+        trackCount: 0,
+        limit: 0,
+        // this will change to periodId
+        period: 0,
+        name: "",
+        paid: false,
+        planTrackValue: 0
+    })
+    const [totalCount, setTotalCount] = useState(0)
 
     useEffect(() => {
-        setReport(liveReport)
+        if (Object.keys(liveReport).length) {
+            setReportTable(liveReport.topartists.artist)
+        }
     }, [liveReport])
-
+    
     useEffect(() => {
-        setReportTable(
-            <table>
-                <thread>
-                    <tr>
-                        <th>Artist</th>
-                        <th>Track Count</th>
-                        <th>% of listening time</th>
-                        <th>Estimated Real Revenue</th>
-                        <th>Suggested Donation</th>
-                    </tr>
-                </thread>
-            </table>
-        )
-    }, [report])
+        let trackCounts = reportTable.map(line => parseInt(line.playcount))
+        setTotalCount(trackCounts.reduce((a,b) => a + b, 0))
+    }, [reportTable])
 
-    if (report) {
-        report.type = Object.keys(liveReport)[0]
-        report.count = liveReport[report.type]['@attr'].perPage
+    if (reportTable.length) {
         return (
-            <>
-                <h2>Your top {report.count} {report.type.slice(3)} </h2>
-                {reportTable}
-            </>
+            <ReportTable reportTable={reportTable} totalCount={totalCount} trackValue={currentUser.userTrackValue}/>
         )
-    } else return ("")
+    } else {
+        return ("")
+    }
 }

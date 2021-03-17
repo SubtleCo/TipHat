@@ -7,7 +7,7 @@ import './LiveReportForm.css'
 export const LiveReportForm = () => {
     const [apiQuery, setApiQuery] = useState("")
     const [apiParams, setApiParams] = useState({
-        count: "20",
+        limit: "20",
         type: "",
         period: ""
     })
@@ -17,17 +17,19 @@ export const LiveReportForm = () => {
     useEffect(() => {
         getCurrentUser()
     }, [])
-    // API Key Format
-    // http://ws.audioscrobbler.com/2.0/?method=user.gettopartists&user={username}&api_key={key}&format=json
+    
+//========================================================================================================//
+// Here lies logic for chosing top albums or tracks instead of just artists. This could be a future feature.
 
-    const typeArray = [
-        'Select Report Type',
-        'artists',
-        'albums',
-        'tracks'
-    ]
+    // const typeArray = [
+    //     'Select Report Type',
+    //     'artists',
+    //     'albums',
+    //     'tracks'
+    // ]
 
-    const typeOptions = typeArray.map((type, i) => <option key={"type" + i} value={i}>{type}</option>)
+    // const typeOptions = typeArray.map((type, i) => <option key={"type" + i} value={i}>{type}</option>
+//========================================================================================================//
 
     const periodArray = [
         { unselected: 'Select A Listening Period' },
@@ -50,30 +52,28 @@ export const LiveReportForm = () => {
 
     const handleSubmit = e => {
         e.preventDefault()
-        const typeString = typeArray[parseInt(apiParams.type)]
+        // const typeString = typeArray[parseInt(apiParams.type)]
+        const typeString = 'artists'
         const periodString = Object.keys(periodArray[parseInt(apiParams.period)])[0]
-        getLiveReport(typeString, periodString, apiParams.count, currentUser.lastFmAccount)
+        getLiveReport(typeString, periodString, apiParams.limit, currentUser.lastFmAccount)
     }
 
-    useEffect(() => {
-        console.log('live report: ', liveReport)
-    },[liveReport])
 
     return (
         <form className="report__api__form" onSubmit={handleSubmit}>
             <h2>Generate a listening report</h2>
-            <h4>Using your last.fm username <strong>{currentUser.lastFmAccount}</strong></h4>
+            <p>Using your last.fm username <strong>{currentUser.lastFmAccount}</strong></p>
             <div className="api__form__selects">
                 <p className="api__form__p">I'd like to see my top</p>
                 <fieldset>
-                    <input id="count" type='number' min="5" max="50" value={apiParams.count} onChange={handleInputChange}></input>
+                    <input id="limit" type='number' min="5" max="50" value={apiParams.limit} onChange={handleInputChange}></input>
                 </fieldset>
-                <fieldset>
+                <p className="api__form__p">artists for</p>
+                {/* <fieldset>
                     <select id="type" onChange={handleInputChange}>
                         {typeOptions}
                     </select>
-                </fieldset>
-                <p className="api__form__p">for</p>
+                </fieldset> */}
                 <fieldset>
                     <select id="period" onChange={handleInputChange}>
                         {periodOptions}
