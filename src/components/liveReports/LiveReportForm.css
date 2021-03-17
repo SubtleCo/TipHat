@@ -1,0 +1,9 @@
+.api__form__selects {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.api__form__selects > fieldset {
+    display: flex;
+    border: none;
+}
