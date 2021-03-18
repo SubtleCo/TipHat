@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from 'react'
 import { UserContext } from '../auth/UserProvider'
 import { LastFmContext } from '../lastFm/LastFmProvider'
 import { ServiceContext } from '../services/ServiceProvider'
-import { SuggestionContext } from '../suggesions/SuggestionsProvider'
+import { SuggestionContext } from '../suggestions/SuggestionsProvider'
 import './LiveReport.css'
 import { ReportTable } from './ReportTable'
 

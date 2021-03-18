@@ -8,7 +8,7 @@ import { LiveReport } from './liveReports/LiveReport'
 import { LiveReportForm } from './liveReports/LiveReportForm'
 import { PeriodProvider } from './periods/PeriodProvider'
 import { ServiceProvider } from './services/ServiceProvider'
-import { SuggestionProvider } from './suggesions/SuggestionsProvider'
+import { SuggestionProvider } from './suggestions/SuggestionsProvider'
 
 export const ApplicationViews = () => {
     return (

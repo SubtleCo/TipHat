@@ -6,7 +6,7 @@ import { Login } from "./auth/Login"
 import { Register } from "./auth/Register"
 import { userStorageKey } from "./auth/authSettings"
 import { ServiceProvider } from './services/ServiceProvider'
-import { SuggestionProvider } from './suggesions/SuggestionsProvider'
+import { SuggestionProvider } from './suggestions/SuggestionsProvider'
 
 export const TipHat = props => {
     return (

@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from "react"
 import { useHistory } from "react-router-dom"
 import { ServiceContext } from "../services/ServiceProvider"
-import { SuggestionContext } from "../suggesions/SuggestionsProvider"
+import { SuggestionContext } from "../suggestions/SuggestionsProvider"
 import { authApi, userStorageKey } from "./authSettings"
 import "./Login.css"
 
