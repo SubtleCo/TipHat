@@ -9,7 +9,7 @@ import { ReportTable } from './ReportTable'
 
 export const LiveReport = () => {
     const { liveReport } = useContext(LastFmContext)
-    const { currentUser, getCurrentUser } = useContext(UserContext)
+    const { currentUser } = useContext(UserContext)
     const { services, getServices } = useContext(ServiceContext)
     const { suggestions, getSuggestions } = useContext(SuggestionContext)
     const { periods, getPeriods } = useContext(PeriodContext)
@@ -20,7 +20,6 @@ export const LiveReport = () => {
         userId: 0,
         timestamp: 0,
         trackCount: 0,
-        limit: 0,
         periodId: 0,
         name: "",
         paid: false,
@@ -52,6 +51,19 @@ export const LiveReport = () => {
         setLiveSuggestionId(parseInt(e.target.value))
     }
 
+    const handleSave = e => {
+        const newPlan = {...plan}
+        newPlan.userId = currentUser.Id
+        newPlan.timestamp = Date.now()
+        newPlan.trackCount = totalCount
+        newPlan.periodId = reportPeriod.id
+        newPlan.name = `Top ${reportTable.length} artists for ${reportPeriod.name}, ${new Date(newPlan.timestamp).getMonth()}/${new Date(newPlan.timestamp).getDate()}/${new Date(newPlan.timestamp).getFullYear()}`
+        newPlan.paid = e.target.id.includes("paid")
+        newPlan.planTrackValue = suggestions.find(s => s.id === liveSuggestionId).amount
+
+        console.log(newPlan)
+    }
+
 
     if (reportTable.length) {
         return (
@@ -67,6 +79,8 @@ export const LiveReport = () => {
                     totalCount={totalCount}
                     service={services.find(s => s.id === currentUser.serviceId)}
                     suggestion={suggestions.find(s => s.id === liveSuggestionId)} />
+                <button id="savePlan" onClick={handleSave}>Save Plan For Later</button>
+                <button id="savePlan--paid" onClick={handleSave}>Save Plan (paid)</button>
             </>
         )
     } else {
