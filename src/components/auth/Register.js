@@ -4,6 +4,7 @@ import { ServiceContext } from "../services/ServiceProvider"
 import { SuggestionContext } from "../suggestions/SuggestionsProvider"
 import { authApi, userStorageKey } from "./authSettings"
 import "./Login.css"
+import { UserContext } from "./UserProvider"
 
 export const Register = () => {
 

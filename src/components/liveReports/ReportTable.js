@@ -1,10 +1,9 @@
 import React from 'react'
 import './ReportTable.css'
 
-export const ReportTable = ({ reportTable, totalCount, trackValue, service, suggestion }) => {
+export const ReportTable = ({ reportTable, totalCount, service, suggestion }) => {
     return (
         <>
-            <h2>Your top artists </h2>
             <table className="reportTable">
                 <thead>
                     <tr>

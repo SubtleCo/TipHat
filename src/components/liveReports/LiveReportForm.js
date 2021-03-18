@@ -32,7 +32,7 @@ export const LiveReportForm = () => {
         e.preventDefault()
         const typeString = 'artists'
         const periodString = periods.find(p => p.id === apiParams.periodId).query
-        getLiveReport(typeString, periodString, apiParams.limit, currentUser.lastFmAccount)
+        getLiveReport(typeString, periodString, apiParams.limit, currentUser.lastFmAccount, apiParams.periodId)
     }
 
 

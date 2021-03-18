@@ -1,7 +1,14 @@
-import React from 'react'
+import React, { useContext, useEffect } from 'react'
+import { UserContext } from '../auth/UserProvider'
 import './Home.css'
 
 export const Home = () => {
+    const { getCurrentUser } = useContext(UserContext)
+
+    useEffect(() => {
+        getCurrentUser()
+    },[])
+
     return (
         <>
             <h2>Welcome to TipHat</h2>
