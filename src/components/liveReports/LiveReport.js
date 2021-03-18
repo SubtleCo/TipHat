@@ -1,12 +1,14 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { UserContext } from '../auth/UserProvider'
 import { LastFmContext } from '../lastFm/LastFmProvider'
+import { ServiceContext } from '../services/ServiceProvider'
 import './LiveReport.css'
 import { ReportTable } from './ReportTable'
 
 export const LiveReport = () => {
     const { liveReport } = useContext(LastFmContext)
     const { currentUser, getCurrentUser } = useContext(UserContext)
+    const { services, getServices } = useContext(ServiceContext)
     const [reportTable, setReportTable] = useState([])
     const [plan, setPlan] = useState({
         userId: 0,
@@ -22,19 +24,23 @@ export const LiveReport = () => {
     const [totalCount, setTotalCount] = useState(0)
 
     useEffect(() => {
+        getServices()
         if (Object.keys(liveReport).length) {
             setReportTable(liveReport.topartists.artist)
         }
     }, [liveReport])
-    
+
     useEffect(() => {
         let trackCounts = reportTable.map(line => parseInt(line.playcount))
-        setTotalCount(trackCounts.reduce((a,b) => a + b, 0))
+        setTotalCount(trackCounts.reduce((a, b) => a + b, 0))
     }, [reportTable])
 
     if (reportTable.length) {
         return (
-            <ReportTable reportTable={reportTable} totalCount={totalCount} trackValue={currentUser.userTrackValue}/>
+            <ReportTable reportTable={reportTable}
+                totalCount={totalCount}
+                trackValue={currentUser.userTrackValue}
+                service={services.find(s => s.id === currentUser.serviceId)} />
         )
     } else {
         return ("")

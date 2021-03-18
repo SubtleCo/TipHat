@@ -5,6 +5,7 @@ import { Route, Redirect } from "react-router-dom"
 import { Login } from "./auth/Login"
 import { Register } from "./auth/Register"
 import { userStorageKey } from "./auth/authSettings"
+import { ServiceProvider } from './services/ServiceProvider'
 
 export const TipHat = props => {
     return (
@@ -13,8 +14,8 @@ export const TipHat = props => {
                 if (sessionStorage.getItem(userStorageKey)) {
                     return (
                         <>
-                                      <NavBar />
-                                      <ApplicationViews />
+                            <NavBar />
+                            <ApplicationViews />
                         </>
                     )
                 } else {
@@ -25,9 +26,11 @@ export const TipHat = props => {
             <Route path="/login">
                 <Login />
             </Route>
-            <Route path="/register">
-                <Register />
-            </Route>
+            <ServiceProvider>
+                <Route path="/register">
+                    <Register />
+                </Route>
+            </ServiceProvider>
         </>
     )
 }
