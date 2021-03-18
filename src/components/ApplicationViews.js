@@ -1,5 +1,7 @@
 import React from 'react'
 import { Route } from 'react-router-dom'
+import { ArtistProvider } from './artists/ArtistProvider'
+import { PlanArtistProvider } from './artists/PlanArtistProvider'
 import { Register } from './auth/Register'
 import { UserProvider } from './auth/UserProvider'
 import { Home } from './home/Home'
@@ -30,10 +32,14 @@ export const ApplicationViews = () => {
                     <PeriodProvider>
                         <ServiceProvider>
                             <SuggestionProvider>
-                                <Route exact path="/reports/create">
-                                    <LiveReportForm />
-                                    <LiveReport />
-                                </Route>
+                                <ArtistProvider>
+                                    <PlanArtistProvider>
+                                        <Route exact path="/reports/create">
+                                            <LiveReportForm />
+                                            <LiveReport />
+                                        </Route>
+                                    </PlanArtistProvider>
+                                </ArtistProvider>
                             </SuggestionProvider>
                         </ServiceProvider>
                     </PeriodProvider>
