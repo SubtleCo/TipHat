@@ -20,6 +20,7 @@ export const PlanArtistProvider = props => {
             },
             body: JSON.stringify(planArtist)
         })
+            .then(getPlanArtists)
     }
 
     return (
