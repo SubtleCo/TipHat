@@ -6,6 +6,7 @@ import { Login } from "./auth/Login"
 import { Register } from "./auth/Register"
 import { userStorageKey } from "./auth/authSettings"
 import { ServiceProvider } from './services/ServiceProvider'
+import { SuggestionProvider } from './suggesions/SuggestionsProvider'
 
 export const TipHat = props => {
     return (
@@ -26,10 +27,13 @@ export const TipHat = props => {
             <Route path="/login">
                 <Login />
             </Route>
+
             <ServiceProvider>
-                <Route path="/register">
-                    <Register />
-                </Route>
+                <SuggestionProvider>
+                    <Route path="/register">
+                        <Register />
+                    </Route>
+                </SuggestionProvider>
             </ServiceProvider>
         </>
     )

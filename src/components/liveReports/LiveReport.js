@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from 'react'
 import { UserContext } from '../auth/UserProvider'
 import { LastFmContext } from '../lastFm/LastFmProvider'
 import { ServiceContext } from '../services/ServiceProvider'
+import { SuggestionContext } from '../suggesions/SuggestionsProvider'
 import './LiveReport.css'
 import { ReportTable } from './ReportTable'
 
@@ -9,6 +10,7 @@ export const LiveReport = () => {
     const { liveReport } = useContext(LastFmContext)
     const { currentUser, getCurrentUser } = useContext(UserContext)
     const { services, getServices } = useContext(ServiceContext)
+    const { suggestions, getSuggestions } = useContext(SuggestionContext)
     const [reportTable, setReportTable] = useState([])
     const [plan, setPlan] = useState({
         userId: 0,
@@ -25,6 +27,7 @@ export const LiveReport = () => {
 
     useEffect(() => {
         getServices()
+        getSuggestions()
         if (Object.keys(liveReport).length) {
             setReportTable(liveReport.topartists.artist)
         }
@@ -39,8 +42,8 @@ export const LiveReport = () => {
         return (
             <ReportTable reportTable={reportTable}
                 totalCount={totalCount}
-                trackValue={currentUser.userTrackValue}
-                service={services.find(s => s.id === currentUser.serviceId)} />
+                service={services.find(s => s.id === currentUser.serviceId)}
+                suggestion={suggestions.find(s => s.id === currentUser.suggestionId)} />
         )
     } else {
         return ("")
