@@ -105,18 +105,18 @@
       "lastName": "Martin",
       "lastFmAccount": "SubtleCo",
       "password": "qwerty",
-      "serviceId": 5,
-      "userTrackValue": 0.02,
+      "serviceId": 1,
+      "suggestionId": 3,
       "id": 1
     },
     {
-      "email": "wer@wer.com",
-      "firstName": "wer",
-      "lastName": "wer",
-      "lastFmAccount": "wer",
-      "password": "wer",
-      "serviceId": 3,
-      "userTrackValue": 0.0106,
+      "email": "test@test.com",
+      "firstName": "test",
+      "lastName": "tewst",
+      "lastFmAccount": "SubtleCo",
+      "password": "test",
+      "serviceId": 6,
+      "suggestionId": 1,
       "id": 2
     }
   ]

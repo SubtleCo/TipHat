@@ -1,22 +1,25 @@
 import React, { useContext, useEffect, useState } from "react"
 import { useHistory } from "react-router-dom"
 import { ServiceContext } from "../services/ServiceProvider"
+import { SuggestionContext } from "../suggestions/SuggestionsProvider"
 import { authApi, userStorageKey } from "./authSettings"
 import "./Login.css"
 
 export const Register = () => {
 
-    const [registerUser, setRegisterUser] = useState({ 
-        firstName: "", 
-        lastName: "", 
-        lastFmAccount: "", 
-        email: "", 
+    const [registerUser, setRegisterUser] = useState({
+        firstName: "",
+        lastName: "",
+        lastFmAccount: "",
+        email: "",
         password: "",
-        serviceId: 0, 
-        userTrackValue: 0.0104 })
+        serviceId: 0,
+        suggestionId: 0
+    })
     const [passwordConfirm, setPasswordConfirm] = useState("")
     const [conflictDialog, setConflictDialog] = useState(false)
     const { services, getServices } = useContext(ServiceContext)
+    const { suggestions, getSuggestions } = useContext(SuggestionContext)
     const loggedInUserId = parseInt(sessionStorage.getItem('app_user_id'))
     let text = {}
 
@@ -24,6 +27,7 @@ export const Register = () => {
 
     useEffect(() => {
         getServices()
+            .then(getSuggestions)
         if (loggedInUserId) {
             return fetch(`${authApi.localApiBaseUrl}/${authApi.endpoint}/${loggedInUserId}`)
                 .then(res => res.json())
@@ -33,7 +37,7 @@ export const Register = () => {
 
     const handleInputChange = (event) => {
         const newUser = { ...registerUser }
-        if (event.target.id.includes("Id")){
+        if (event.target.id.includes("Id")) {
             newUser[event.target.id] = parseInt(event.target.value)
         } else {
             newUser[event.target.id] = event.target.value
@@ -61,56 +65,65 @@ export const Register = () => {
                 lastFmAccount: registerUser.lastFmAccount,
                 password: registerUser.password,
                 serviceId: registerUser.serviceId,
-                userTrackValue: parseFloat(registerUser.userTrackValue)
+                suggestionId: registerUser.suggestionId
             })
         })
             .then(history.push("/"))
     }
 
     const handleRegister = (e) => {
-        e.preventDefault()
-        if (loggedInUserId) {
-            if (registerUser.password === passwordConfirm) {
-                return editUser()
-            } else {
-                return window.alert('Passwords do not match')
+        if (checkForSelects()) {
+            e.preventDefault()
+            if (loggedInUserId) {
+                if (registerUser.password === passwordConfirm) {
+                    return editUser()
+                } else {
+                    return window.alert('Passwords do not match')
+                }
             }
-        }
-        existingUserCheck()
-            .then((userExists) => {
-                if (!userExists) {
-                    if (registerUser.password === passwordConfirm) {
-                        fetch(`${authApi.localApiBaseUrl}/${authApi.endpoint}`, {
-                            method: "POST",
-                            headers: {
-                                "Content-Type": "application/json"
-                            },
-                            body: JSON.stringify({
-                                email: registerUser.email,
-                                firstName: registerUser.firstName,
-                                lastName: registerUser.lastName,
-                                lastFmAccount: registerUser.lastFmAccount,
-                                password: registerUser.password,
-                                serviceId: registerUser.serviceId,
-                                userTrackValue: parseFloat(registerUser.userTrackValue)
+            existingUserCheck()
+                .then((userExists) => {
+                    if (!userExists) {
+                        if (registerUser.password === passwordConfirm) {
+                            fetch(`${authApi.localApiBaseUrl}/${authApi.endpoint}`, {
+                                method: "POST",
+                                headers: {
+                                    "Content-Type": "application/json"
+                                },
+                                body: JSON.stringify({
+                                    email: registerUser.email,
+                                    firstName: registerUser.firstName,
+                                    lastName: registerUser.lastName,
+                                    lastFmAccount: registerUser.lastFmAccount,
+                                    password: registerUser.password,
+                                    serviceId: registerUser.serviceId,
+                                    suggestionId: registerUser.suggestionId
+                                })
                             })
-                        })
-                            .then(res => res.json())
-                            .then(createdUser => {
-                                if (createdUser.hasOwnProperty("id")) {
-                                    sessionStorage.setItem(userStorageKey, createdUser.id)
-                                    history.push("/")
-                                }
-                            })
-                    } else {
-                        window.alert('Passwords do not match')
+                                .then(res => res.json())
+                                .then(createdUser => {
+                                    if (createdUser.hasOwnProperty("id")) {
+                                        sessionStorage.setItem(userStorageKey, createdUser.id)
+                                        history.push("/")
+                                    }
+                                })
+                        } else {
+                            window.alert('Passwords do not match')
+                        }
                     }
-                }
-                else {
-                    setConflictDialog(true)
-                }
-            })
+                    else {
+                        setConflictDialog(true)
+                    }
+                })
+        } else {
+            window.alert('Please select a streaming service and how you would like to value music!')
+        }
 
+    }
+
+    const checkForSelects = () => {
+        if (registerUser.suggestionId === 0 || registerUser.serviceId === 0) return false
+        return true
     }
 
     if (loggedInUserId) {
@@ -158,18 +171,22 @@ export const Register = () => {
                     <input type="password" name="confirm" id="confirm" className="form-control" placeholder="confirm password" required onChange={e => setPasswordConfirm(e.target.value)} />
                 </fieldset>
                 <fieldset>
+                    <label htmlFor="serviceId">My streaming service is </label>
                     <select id="serviceId" value={registerUser.serviceId} onChange={handleInputChange}>
                         <option value="0">My Streaming Service</option>
                         {
-                            services.map(service => <option key={"service " + service.id} value={service.id}>{service.name}</option> )
+                            services.map(service => <option key={"service " + service.id} value={service.id}>{service.name}</option>)
                         }
                     </select>
                 </fieldset>
                 <fieldset>
-                    <label htmlFor="userTrackValue"> Track Value: $</label>
-                    <input type="number" step="0.0001" name="userTrackValue" id="userTrackValue" className="form-control" value={registerUser.userTrackValue} required onChange={handleInputChange} />
-                    <p><strong>What is this?</strong></p>
-                    <p>You may set a default value per track for your reports. If you're not sure, leave it as the default value ($0.0104) for now, and we'll talk about it later. You'll be able to change this later as well. </p>
+                    <label htmlFor="suggestionId">I'd like to value music like a </label>
+                    <select required id="suggestionId" value={registerUser.suggestionId} onChange={handleInputChange}>
+                        <option value="0">How I want to value music</option>
+                        {
+                            suggestions.map(suggestion => <option key={"suggestion " + suggestion.id} value={suggestion.id}>{suggestion.name}</option>)
+                        }
+                    </select>
                 </fieldset>
                 <fieldset>
                     <button type="submit"> {text.button} </button>
