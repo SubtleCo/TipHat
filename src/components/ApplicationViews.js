@@ -9,6 +9,7 @@ import { LastFmProvider } from './lastFm/LastFmProvider'
 import { LiveReport } from './liveReports/LiveReport'
 import { LiveReportForm } from './liveReports/LiveReportForm'
 import { PeriodProvider } from './periods/PeriodProvider'
+import { PlanProvider } from './plans/PlanProvider'
 import { ServiceProvider } from './services/ServiceProvider'
 import { SuggestionProvider } from './suggestions/SuggestionsProvider'
 
@@ -34,10 +35,12 @@ export const ApplicationViews = () => {
                             <SuggestionProvider>
                                 <ArtistProvider>
                                     <PlanArtistProvider>
-                                        <Route exact path="/reports/create">
-                                            <LiveReportForm />
-                                            <LiveReport />
-                                        </Route>
+                                        <PlanProvider>
+                                            <Route exact path="/reports/create">
+                                                <LiveReportForm />
+                                                <LiveReport />
+                                            </Route>
+                                        </PlanProvider>
                                     </PlanArtistProvider>
                                 </ArtistProvider>
                             </SuggestionProvider>
