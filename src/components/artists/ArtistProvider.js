@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { createContext, useState } from 'react'
 import { Settings } from '../../Settings'
 
 export const ArtistContext = createContext()
