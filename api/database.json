@@ -12,5 +12,28 @@
   ],
   "plans": [],
   "artists": [],
-  "planArtists": []
+  "planArtists": [],
+  "suggestions": [
+    {
+      "name": "CD Sale",
+      "amount": 0.0104,
+      "id": 1
+    },
+    {
+      "name": "LP Sale",
+      "amount": 0.0217,
+      "id": 2
+    },
+    {
+      "name": "Bandcamp Sale",
+      "amount": 0.0567,
+      "id": 3
+    },
+    {
+      "name": "Champion Of Music",
+      "amount": 0.075,
+      "id": 4
+    }
+    
+  ]
 }
