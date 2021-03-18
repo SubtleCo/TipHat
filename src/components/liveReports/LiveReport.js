@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from 'react'
 import { UserContext } from '../auth/UserProvider'
 import { LastFmContext } from '../lastFm/LastFmProvider'
 import { PeriodContext } from '../periods/PeriodProvider'
+import { PlanContext } from '../plans/PlanProvider'
 import { ServiceContext } from '../services/ServiceProvider'
 import { SuggestionContext } from '../suggestions/SuggestionsProvider'
 import './LiveReport.css'
@@ -12,10 +13,12 @@ export const LiveReport = () => {
     const { currentUser } = useContext(UserContext)
     const { services, getServices } = useContext(ServiceContext)
     const { suggestions, getSuggestions } = useContext(SuggestionContext)
+    const { plans, getPlans, addPlan } = useContext(PlanContext)
     const { periods, getPeriods } = useContext(PeriodContext)
     const [liveSuggestionId, setLiveSuggestionId] = useState(0)
     const [reportTable, setReportTable] = useState([])
     const [reportPeriod, setReportPeriod] = useState({})
+    const [totalCount, setTotalCount] = useState(0)
     const [plan, setPlan] = useState({
         userId: 0,
         timestamp: 0,
@@ -25,7 +28,6 @@ export const LiveReport = () => {
         paid: false,
         planTrackValue: 0
     })
-    const [totalCount, setTotalCount] = useState(0)
 
     useEffect(() => {
         getPeriods()
@@ -61,7 +63,11 @@ export const LiveReport = () => {
         newPlan.paid = e.target.id.includes("paid")
         newPlan.planTrackValue = suggestions.find(s => s.id === liveSuggestionId).amount
 
-        console.log(newPlan)
+        addPlan(newPlan)
+            .then(plan => {
+                const planId = plan.id
+                console.log(planId)
+            })
     }
 
 
