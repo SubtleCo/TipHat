@@ -1,60 +1,37 @@
 import React, { useContext, useEffect, useState } from 'react'
-import { useParams } from 'react-router'
 import { UserContext } from '../auth/UserProvider'
 import { LastFmContext, LastFmProvider } from '../lastFm/LastFmProvider'
+import { PeriodContext } from '../periods/PeriodProvider'
 import './LiveReportForm.css'
 
 export const LiveReportForm = () => {
+    const { periods, getPeriods } = useContext(PeriodContext)
     const [apiQuery, setApiQuery] = useState("")
     const [apiParams, setApiParams] = useState({
         limit: "20",
         type: "",
-        period: ""
+        periodId: 0
     })
     const { currentUser, getCurrentUser } = useContext(UserContext)
     const { liveReport, getLiveReport } = useContext(LastFmContext)
 
     useEffect(() => {
         getCurrentUser()
+            .then(getPeriods)
     }, [])
-    
-//========================================================================================================//
-// Here lies logic for chosing top albums or tracks instead of just artists. This could be a future feature.
-
-    // const typeArray = [
-    //     'Select Report Type',
-    //     'artists',
-    //     'albums',
-    //     'tracks'
-    // ]
-
-    // const typeOptions = typeArray.map((type, i) => <option key={"type" + i} value={i}>{type}</option>
-//========================================================================================================//
-
-    const periodArray = [
-        { unselected: 'Select A Listening Period' },
-        { 'overall': 'all time' },
-        { '7day': 'the last week' },
-        { '1month': 'the last month' },
-        { '3month': 'the last 3 months' },
-        { '6month': 'the last 6 months' },
-        { '12month': 'the last year' }
-    ]
-
-    const periodOptions = periodArray.map((period, i) => <option key={"period" + i} value={i}>{Object.values(period)[0]}</option>)
 
     const handleInputChange = e => {
-        const newParams = {...apiParams}
+        const newParams = { ...apiParams }
         let selectedValue = e.target.value
+        if (e.target.id.includes("Id")) selectedValue = parseInt(selectedValue)
         newParams[e.target.id] = selectedValue
         setApiParams(newParams)
     }
 
     const handleSubmit = e => {
         e.preventDefault()
-        // const typeString = typeArray[parseInt(apiParams.type)]
         const typeString = 'artists'
-        const periodString = Object.keys(periodArray[parseInt(apiParams.period)])[0]
+        const periodString = periods.find(p => p.id === apiParams.periodId).query
         getLiveReport(typeString, periodString, apiParams.limit, currentUser.lastFmAccount)
     }
 
@@ -69,14 +46,12 @@ export const LiveReportForm = () => {
                     <input id="limit" type='number' min="5" max="50" value={apiParams.limit} onChange={handleInputChange}></input>
                 </fieldset>
                 <p className="api__form__p">artists for</p>
-                {/* <fieldset>
-                    <select id="type" onChange={handleInputChange}>
-                        {typeOptions}
-                    </select>
-                </fieldset> */}
                 <fieldset>
-                    <select id="period" onChange={handleInputChange}>
-                        {periodOptions}
+                    <select id="periodId" onChange={handleInputChange}>
+                        <option value="0">Select a period</option>
+                        {
+                            periods.map(period => <option key={"period " + period.id} value={period.id} onChange={handleInputChange}>{period.name}</option>)
+                        }
                     </select>
                 </fieldset>
                 <input type="submit" className="button btn--go" id="apiSubmit" value="Please!"></input>

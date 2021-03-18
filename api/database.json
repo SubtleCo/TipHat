@@ -65,33 +65,33 @@
   ],
   "periods": [
     {
-      "name": "All Time",
-      "querty": "overall",
+      "name": "the last week",
+      "query": "7day",
       "id": 1
     },
     {
-      "name": "the last week",
-      "querty": "7day",
+      "name": "the last month",
+      "query": "1month",
       "id": 2
     },
     {
-      "name": "the last month",
-      "querty": "1month",
+      "name": "the last 3 months",
+      "query": "3month",
       "id": 3
     },
     {
-      "name": "the last 3 months",
-      "querty": "3month",
+      "name": "the last 6 months",
+      "query": "6month",
       "id": 4
     },
     {
-      "name": "the last 6 months",
-      "querty": "6month",
+      "name": "the last year",
+      "query": "12month",
       "id": 5
     },
     {
-      "name": "the last year",
-      "querty": "12month",
+      "name": "all time",
+      "query": "overall",
       "id": 6
     }
   ],

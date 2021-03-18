@@ -6,6 +6,7 @@ import { Home } from './home/Home'
 import { LastFmProvider } from './lastFm/LastFmProvider'
 import { LiveReport } from './liveReports/LiveReport'
 import { LiveReportForm } from './liveReports/LiveReportForm'
+import { PeriodProvider } from './periods/PeriodProvider'
 
 export const ApplicationViews = () => {
     return (
@@ -20,10 +21,12 @@ export const ApplicationViews = () => {
                 </Route>
 
                 <LastFmProvider>
-                    <Route exact path="/reports/create">
-                        <LiveReportForm />
-                        <LiveReport />
-                    </Route>
+                    <PeriodProvider>
+                        <Route exact path="/reports/create">
+                            <LiveReportForm />
+                            <LiveReport />
+                        </Route>
+                    </PeriodProvider>
                 </LastFmProvider>
 
             </UserProvider>
