@@ -181,7 +181,7 @@ export const Register = () => {
                     </select>
                 </fieldset>
                 <fieldset>
-                    <label htmlFor="suggestionId">I'd like to value music like a </label>
+                    <label htmlFor="suggestionId">I'd like to value music like </label>
                     <select required id="suggestionId" value={registerUser.suggestionId} onChange={handleInputChange}>
                         <option value="0">How I want to value music</option>
                         {

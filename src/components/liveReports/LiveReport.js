@@ -57,7 +57,7 @@ export const LiveReport = () => {
         return (
             <>
                 <h2>Your top {reportTable.length} artists for {reportPeriod.name}</h2>
-                <label htmlFor="suggestionSelect">Change the payout calculation to a </label>
+                <label htmlFor="suggestionSelect">Change the payout calculation to </label>
                 <select id="suggestionSelect" value={liveSuggestionId} onChange={handleLiveSuggestionChange} className="liveReport__trackValueSelect">
                     {
                         suggestions.map(s => <option key={"suggestion " + s.id} value={s.id}>{s.name}</option>)
