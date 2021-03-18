@@ -1,19 +1,29 @@
-import React, { useEffect, useState } from "react"
+import React, { useContext, useEffect, useState } from "react"
 import { useHistory } from "react-router-dom"
+import { ServiceContext } from "../services/ServiceProvider"
 import { authApi, userStorageKey } from "./authSettings"
 import "./Login.css"
 
 export const Register = () => {
 
-    const [registerUser, setRegisterUser] = useState({ firstName: "", lastName: "", lastFmAccount: "", email: "", password: "", userTrackValue: 0.0104 })
+    const [registerUser, setRegisterUser] = useState({ 
+        firstName: "", 
+        lastName: "", 
+        lastFmAccount: "", 
+        email: "", 
+        password: "",
+        serviceId: 0, 
+        userTrackValue: 0.0104 })
     const [passwordConfirm, setPasswordConfirm] = useState("")
     const [conflictDialog, setConflictDialog] = useState(false)
+    const { services, getServices } = useContext(ServiceContext)
     const loggedInUserId = parseInt(sessionStorage.getItem('app_user_id'))
     let text = {}
 
     const history = useHistory()
 
     useEffect(() => {
+        getServices()
         if (loggedInUserId) {
             return fetch(`${authApi.localApiBaseUrl}/${authApi.endpoint}/${loggedInUserId}`)
                 .then(res => res.json())
@@ -23,7 +33,11 @@ export const Register = () => {
 
     const handleInputChange = (event) => {
         const newUser = { ...registerUser }
-        newUser[event.target.id] = event.target.value
+        if (event.target.id.includes("Id")){
+            newUser[event.target.id] = parseInt(event.target.value)
+        } else {
+            newUser[event.target.id] = event.target.value
+        }
         setRegisterUser(newUser)
     }
 
@@ -46,6 +60,7 @@ export const Register = () => {
                 lastName: registerUser.lastName,
                 lastFmAccount: registerUser.lastFmAccount,
                 password: registerUser.password,
+                serviceId: registerUser.serviceId,
                 userTrackValue: parseFloat(registerUser.userTrackValue)
             })
         })
@@ -76,6 +91,7 @@ export const Register = () => {
                                 lastName: registerUser.lastName,
                                 lastFmAccount: registerUser.lastFmAccount,
                                 password: registerUser.password,
+                                serviceId: registerUser.serviceId,
                                 userTrackValue: parseFloat(registerUser.userTrackValue)
                             })
                         })
@@ -140,6 +156,14 @@ export const Register = () => {
                 <fieldset>
                     <label htmlFor="confirm"> Confirm Password </label>
                     <input type="password" name="confirm" id="confirm" className="form-control" placeholder="confirm password" required onChange={e => setPasswordConfirm(e.target.value)} />
+                </fieldset>
+                <fieldset>
+                    <select id="serviceId" value={registerUser.serviceId} onChange={handleInputChange}>
+                        <option value="0">My Streaming Service</option>
+                        {
+                            services.map(service => <option key={"service " + service.id} value={service.id}>{service.name}</option> )
+                        }
+                    </select>
                 </fieldset>
                 <fieldset>
                     <label htmlFor="userTrackValue"> Track Value: $</label>
