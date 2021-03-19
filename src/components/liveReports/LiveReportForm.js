@@ -6,7 +6,6 @@ import './LiveReportForm.css'
 
 export const LiveReportForm = () => {
     const { periods, getPeriods } = useContext(PeriodContext)
-    const [apiQuery, setApiQuery] = useState("")
     const [apiParams, setApiParams] = useState({
         limit: "20",
         type: "",

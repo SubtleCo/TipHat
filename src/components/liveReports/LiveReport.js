@@ -87,6 +87,8 @@ export const LiveReport = () => {
                     .then(() => {
                         reportTable.forEach(line => {
                             debugger
+                            ///==================================HOW TO FIX THIS====================================//
+                            // handle the planArtist add inside of the artistAdd loop by capturing the id of the object it returns!
                             const thisArtist = artists.find(a => a.name === line.name)
                             const planArtist = {
                                 planId: planId,
