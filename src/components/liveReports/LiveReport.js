@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from 'react'
 import { UserContext } from '../auth/UserProvider'
 import { LastFmContext } from '../lastFm/LastFmProvider'
 import { PeriodContext } from '../periods/PeriodProvider'
+import { PlanContext } from '../plans/PlanProvider'
 import { ServiceContext } from '../services/ServiceProvider'
 import { SuggestionContext } from '../suggestions/SuggestionsProvider'
 import './LiveReport.css'
@@ -9,24 +10,24 @@ import { ReportTable } from './ReportTable'
 
 export const LiveReport = () => {
     const { liveReport } = useContext(LastFmContext)
-    const { currentUser, getCurrentUser } = useContext(UserContext)
+    const { currentUser } = useContext(UserContext)
     const { services, getServices } = useContext(ServiceContext)
     const { suggestions, getSuggestions } = useContext(SuggestionContext)
+    const { plans, getPlans, addPlan } = useContext(PlanContext)
     const { periods, getPeriods } = useContext(PeriodContext)
     const [liveSuggestionId, setLiveSuggestionId] = useState(0)
     const [reportTable, setReportTable] = useState([])
     const [reportPeriod, setReportPeriod] = useState({})
+    const [totalCount, setTotalCount] = useState(0)
     const [plan, setPlan] = useState({
         userId: 0,
         timestamp: 0,
         trackCount: 0,
-        limit: 0,
         periodId: 0,
         name: "",
         paid: false,
-        planTrackValue: 0
+        suggestionId: 0
     })
-    const [totalCount, setTotalCount] = useState(0)
 
     useEffect(() => {
         getPeriods()
@@ -52,6 +53,19 @@ export const LiveReport = () => {
         setLiveSuggestionId(parseInt(e.target.value))
     }
 
+    const handleSave = e => {
+        const newPlan = {...plan}
+        newPlan.userId = currentUser.id
+        newPlan.timestamp = Date.now()
+        newPlan.trackCount = totalCount
+        newPlan.periodId = reportPeriod.id
+        newPlan.name = `Top ${reportTable.length} artists for ${reportPeriod.name}, ${new Date(newPlan.timestamp).getMonth()}/${new Date(newPlan.timestamp).getDate()}/${new Date(newPlan.timestamp).getFullYear()}`
+        newPlan.paid = e.target.id.includes("paid")
+        newPlan.suggestionId = liveSuggestionId
+
+        addPlan(newPlan)
+    }
+
 
     if (reportTable.length) {
         return (
@@ -67,6 +81,8 @@ export const LiveReport = () => {
                     totalCount={totalCount}
                     service={services.find(s => s.id === currentUser.serviceId)}
                     suggestion={suggestions.find(s => s.id === liveSuggestionId)} />
+                <button id="savePlan" onClick={handleSave}>Save Plan For Later</button>
+                <button id="savePlan--paid" onClick={handleSave}>Save Plan (paid)</button>
             </>
         )
     } else {
