@@ -26,7 +26,7 @@ export const LiveReport = () => {
         periodId: 0,
         name: "",
         paid: false,
-        planTrackValue: 0
+        suggestionId: 0
     })
 
     useEffect(() => {
@@ -55,19 +55,15 @@ export const LiveReport = () => {
 
     const handleSave = e => {
         const newPlan = {...plan}
-        newPlan.userId = currentUser.Id
+        newPlan.userId = currentUser.id
         newPlan.timestamp = Date.now()
         newPlan.trackCount = totalCount
         newPlan.periodId = reportPeriod.id
         newPlan.name = `Top ${reportTable.length} artists for ${reportPeriod.name}, ${new Date(newPlan.timestamp).getMonth()}/${new Date(newPlan.timestamp).getDate()}/${new Date(newPlan.timestamp).getFullYear()}`
         newPlan.paid = e.target.id.includes("paid")
-        newPlan.planTrackValue = suggestions.find(s => s.id === liveSuggestionId).amount
+        newPlan.suggestionId = liveSuggestionId
 
         addPlan(newPlan)
-            .then(plan => {
-                const planId = plan.id
-                console.log(planId)
-            })
     }
 
 
