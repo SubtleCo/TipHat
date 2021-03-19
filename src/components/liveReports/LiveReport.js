@@ -79,10 +79,10 @@ export const LiveReport = () => {
                 artistsToAdd.forEach(artist => {
                     promises.push(addArtist(artist))
                 })
-                console.log(`this report contains ${artistNameArray.length} artists, ${artistsToAdd.length} of which SHOULD be added.`)
+                // console.log(`this report contains ${artistNameArray.length} artists, ${artistsToAdd.length} of which SHOULD be added.`)
                 Promise.all(promises)
                     .then(() => {
-                        console.log(`all done, added ${promises.length} artists`)
+                        // console.log(`all done, added ${promises.length} artists`)
                         getArtists()
                     })
             })
