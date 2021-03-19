@@ -1,4 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react'
+import { useHistory } from 'react-router'
 import { ArtistContext } from '../artists/ArtistProvider'
 import { PlanArtistContext } from '../artists/PlanArtistProvider'
 import { UserContext } from '../auth/UserProvider'
@@ -24,6 +25,7 @@ export const LiveReport = () => {
     const [reportTable, setReportTable] = useState([])
     const [reportPeriod, setReportPeriod] = useState({})
     const [totalCount, setTotalCount] = useState(0)
+    const history = useHistory()
 
 
     useEffect(() => {
@@ -70,38 +72,48 @@ export const LiveReport = () => {
             .then(plan => plan.json())
             .then(plan => plan.id)
             .then(planId => {
-                const artistNameArray = reportTable.map(artist => artist.name)
-                const artistsToAdd = []
-                artistNameArray.forEach(artist => {
-                    if (!checkForArtist(artist)) {
-                        artistsToAdd.push(artist)
+                reportTable.forEach(artist => {
+                    if (!checkForArtist(artist.name)) {
+                        addArtist(artist.name)
+                            .then(dbArtist => {
+                                addPlanArtist({
+                                    artistId: dbArtist.id,
+                                    planId: planId,
+                                    trackCount: parseInt(artist.playcount)
+                                })
+                            })
+                    } else {
+                        const foundArtist = artists.find(a => a.name === artist.name)
+                        addPlanArtist({
+                            artistId: foundArtist.id,
+                            planId: planId,
+                            trackCount: parseInt(artist.playcount)
+                        })
                     }
                 })
-                const artistPromises = []
-                artistsToAdd.forEach(artist => {
-                    artistPromises.push(addArtist(artist))
-                })
-                // console.log(`this report contains ${artistNameArray.length} artists, ${artistsToAdd.length} of which SHOULD be added.`)
-                Promise.all(artistPromises)
-                    .then(getArtists)
-                    .then(() => {
-                        reportTable.forEach(line => {
-                            debugger
-                            ///==================================HOW TO FIX THIS====================================//
-                            // handle the planArtist add inside of the artistAdd loop by capturing the id of the object it returns!
-                            const thisArtist = artists.find(a => a.name === line.name)
-                            const planArtist = {
-                                planId: planId,
-                                artistId: thisArtist.id,
-                                trackCount: parseInt(line.playcount)
-                            }
-                            addPlanArtist(planArtist)
-                            console.log('Added PlanArtist')
-                        })
-                    })
-
+                history.push('/')
             })
+        // console.log(`this report contains ${artistNameArray.length} artists, ${artistsToAdd.length} of which SHOULD be added.`)
+        // Promise.all(artistPromises)
+        // .then(getArtists)
+        // .then(() => {
+        //     reportTable.forEach(line => {
+        //         debugger
+        //         ///==================================HOW TO FIX THIS====================================//
+        //         // handle the planArtist add inside of the artistAdd loop by capturing the id of the object it returns!
+        //         const thisArtist = artists.find(a => a.name === line.name)
+        //         const planArtist = {
+        //             planId: planId,
+        //             artistId: thisArtist.id,
+        //             trackCount: parseInt(line.playcount)
+        //         }
+        //         addPlanArtist(planArtist)
+        //         console.log('Added PlanArtist')
+        //     })
+        // })
+
     }
+
     if (reportTable.length) {
         return (
             <>

@@ -26,6 +26,7 @@ export const ArtistProvider = props => {
             },
             body: JSON.stringify({ name: artistName })
         })
+            .then(res => res.json())
     }
 
     return (

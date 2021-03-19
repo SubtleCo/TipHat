@@ -96,136 +96,13 @@
     }
   ],
   "plans": [
-    {
-      "userId": 1,
-      "timestamp": 1616183516809,
-      "trackCount": 278,
-      "periodId": 1,
-      "name": "Top 20 artists for the last week, 2/19/2021",
-      "paid": false,
-      "suggestionId": 3,
-      "id": 1
-    }
+   
   ],
   "artists": [
-    {
-      "name": "Chairlift",
-      "id": 1
-    },
-    {
-      "name": "Belle and Sebastian",
-      "id": 2
-    },
-    {
-      "name": "Joanna Newsom",
-      "id": 3
-    },
-    {
-      "name": "John Coltrane",
-      "id": 4
-    },
-    {
-      "name": "Jonny Greenwood",
-      "id": 5
-    },
-    {
-      "name": "Charly Bliss",
-      "id": 6
-    },
-    {
-      "name": "Big Thief",
-      "id": 7
-    },
-    {
-      "name": "Brittany Howard",
-      "id": 8
-    },
-    {
-      "name": "Andy Shauf",
-      "id": 9
-    },
-    {
-      "name": "Car Seat Headrest",
-      "id": 10
-    },
-    {
-      "name": "The National",
-      "id": 11
-    },
-    {
-      "name": "Radiohead",
-      "id": 12
-    },
-    {
-      "name": "St. Vincent",
-      "id": 13
-    },
-    {
-      "name": "Alvvays",
-      "id": 14
-    },
-    {
-      "name": "Christian Lee Hutson",
-      "id": 15
-    },
-    {
-      "name": "Yo La Tengo",
-      "id": 16
-    },
-    {
-      "name": "Caribou",
-      "id": 17
-    },
-    {
-      "name": "Grizzly Bear",
-      "id": 18
-    },
-    {
-      "name": "Adrianne Lenker",
-      "id": 19
-    },
-    {
-      "name": "Jay Som",
-      "id": 20
-    }
+    
   ],
   "planArtists": [
-    {
-      "planId": 2,
-      "artistId": 1,
-      "trackCount": "35",
-      "id": 1
-    },
-    {
-      "planId": 2,
-      "artistId": 2,
-      "trackCount": "24",
-      "id": 2
-    },
-    {
-      "planId": 2,
-      "artistId": 6,
-      "trackCount": "23",
-      "id": 3
-    },
-    {
-      "planId": 2,
-      "artistId": 3,
-      "trackCount": "23",
-      "id": 4
-    },
-    {
-      "planId": 2,
-      "artistId": 5,
-      "trackCount": "21",
-      "id": 5
-    },
-    {
-      "planId": 2,
-      "artistId": 4,
-      "trackCount": "19",
-      "id": 6
-    }
+   
   ],
   "users": [
     {
