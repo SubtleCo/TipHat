@@ -11,7 +11,7 @@ import { ReportTable } from './ReportTable'
 
 export const LiveReport = () => {
     const { liveReport } = useContext(LastFmContext)
-    const { currentUser } = useContext(UserContext)
+    const { currentUser, getCurrentUser } = useContext(UserContext)
     const { services, getServices } = useContext(ServiceContext)
     const { suggestions, getSuggestions } = useContext(SuggestionContext)
     const { plans, getPlans, addPlan } = useContext(PlanContext)
@@ -27,13 +27,17 @@ export const LiveReport = () => {
     useEffect(() => {
         getPeriods()
         getArtists()
-        setLiveSuggestionId(currentUser.suggestionId)
+        getCurrentUser()
+        getServices()
+        getSuggestions()
     }, [])
+
+    useEffect(() => {
+        setLiveSuggestionId(currentUser.suggestionId)
+    }, [currentUser])
 
 
     useEffect(() => {
-        getServices()
-        getSuggestions()
         if (Object.keys(liveReport).length) {
             setReportTable(liveReport.topartists.artist)
         }
@@ -50,6 +54,7 @@ export const LiveReport = () => {
     }
 
     const handleSave = e => {
+
         const newPlan = {}
         newPlan.userId = currentUser.id
         newPlan.timestamp = Date.now()
@@ -63,17 +68,25 @@ export const LiveReport = () => {
             .then(plan => plan.json())
             .then(plan => plan.id)
             .then(planId => {
-                // debugger
                 const artistNameArray = reportTable.map(artist => artist.name)
-                artistNameArray.forEach((aN, i) => {
-                    if (!checkForArtist(aN)) {
-                        addArtist(aN)
+                const artistsToAdd = []
+                artistNameArray.forEach(artist => {
+                    if (!checkForArtist(artist)) {
+                        artistsToAdd.push(artist)
                     }
+                })
+                const promises = []
+                artistsToAdd.forEach(artist => {
+                    promises.push(addArtist(artist))
+                })
+                console.log(`this report contains ${artistNameArray.length} artists, ${artistsToAdd.length} of which SHOULD be added.`)
+                Promise.all(promises)
+                    .then(() => {
+                        console.log(`all done, added ${promises.length} artists`)
+                        getArtists()
+                    })
             })
-        })
     }
-
-
     if (reportTable.length) {
         return (
             <>
@@ -96,3 +109,6 @@ export const LiveReport = () => {
         return ("")
     }
 }
+
+
+
