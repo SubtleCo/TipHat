@@ -95,8 +95,12 @@
       "id": 6
     }
   ],
-  "plans": [],
-  "artists": [],
+  "plans": [
+    
+  ],
+  "artists": [
+ 
+  ],
   "planArtists": [],
   "users": [
     {

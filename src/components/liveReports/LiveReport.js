@@ -1,4 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react'
+import { ArtistContext } from '../artists/ArtistProvider'
 import { UserContext } from '../auth/UserProvider'
 import { LastFmContext } from '../lastFm/LastFmProvider'
 import { PeriodContext } from '../periods/PeriodProvider'
@@ -10,34 +11,33 @@ import { ReportTable } from './ReportTable'
 
 export const LiveReport = () => {
     const { liveReport } = useContext(LastFmContext)
-    const { currentUser } = useContext(UserContext)
+    const { currentUser, getCurrentUser } = useContext(UserContext)
     const { services, getServices } = useContext(ServiceContext)
     const { suggestions, getSuggestions } = useContext(SuggestionContext)
     const { plans, getPlans, addPlan } = useContext(PlanContext)
     const { periods, getPeriods } = useContext(PeriodContext)
+    const { getArtists, checkForArtist, addArtist } = useContext(ArtistContext)
+
     const [liveSuggestionId, setLiveSuggestionId] = useState(0)
     const [reportTable, setReportTable] = useState([])
     const [reportPeriod, setReportPeriod] = useState({})
     const [totalCount, setTotalCount] = useState(0)
-    const [plan, setPlan] = useState({
-        userId: 0,
-        timestamp: 0,
-        trackCount: 0,
-        periodId: 0,
-        name: "",
-        paid: false,
-        suggestionId: 0
-    })
+
 
     useEffect(() => {
         getPeriods()
-        setLiveSuggestionId(currentUser.suggestionId)
+        getArtists()
+        getCurrentUser()
+        getServices()
+        getSuggestions()
     }, [])
+
+    useEffect(() => {
+        setLiveSuggestionId(currentUser.suggestionId)
+    }, [currentUser])
 
 
     useEffect(() => {
-        getServices()
-        getSuggestions()
         if (Object.keys(liveReport).length) {
             setReportTable(liveReport.topartists.artist)
         }
@@ -54,7 +54,8 @@ export const LiveReport = () => {
     }
 
     const handleSave = e => {
-        const newPlan = {...plan}
+
+        const newPlan = {}
         newPlan.userId = currentUser.id
         newPlan.timestamp = Date.now()
         newPlan.trackCount = totalCount
@@ -64,9 +65,28 @@ export const LiveReport = () => {
         newPlan.suggestionId = liveSuggestionId
 
         addPlan(newPlan)
+            .then(plan => plan.json())
+            .then(plan => plan.id)
+            .then(planId => {
+                const artistNameArray = reportTable.map(artist => artist.name)
+                const artistsToAdd = []
+                artistNameArray.forEach(artist => {
+                    if (!checkForArtist(artist)) {
+                        artistsToAdd.push(artist)
+                    }
+                })
+                const promises = []
+                artistsToAdd.forEach(artist => {
+                    promises.push(addArtist(artist))
+                })
+                // console.log(`this report contains ${artistNameArray.length} artists, ${artistsToAdd.length} of which SHOULD be added.`)
+                Promise.all(promises)
+                    .then(() => {
+                        // console.log(`all done, added ${promises.length} artists`)
+                        getArtists()
+                    })
+            })
     }
-
-
     if (reportTable.length) {
         return (
             <>
@@ -89,3 +109,6 @@ export const LiveReport = () => {
         return ("")
     }
 }
+
+
+

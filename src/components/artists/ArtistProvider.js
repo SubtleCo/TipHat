@@ -12,20 +12,25 @@ export const ArtistProvider = props => {
             .then(setArtists)
     }
 
-    const addArtist = artist => {
+    const checkForArtist = artistName => {
+        const foundArtist = artists.find(a => a.name === artistName)
+        if (foundArtist) return true
+        return false
+    }
+
+    const addArtist = artistName => {
         return fetch(`${Settings.localApi}/artists`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
             },
-            body: JSON.stringify(artist)
+            body: JSON.stringify({ name: artistName })
         })
-            .then(getArtists)
     }
 
     return (
         <ArtistContext.Provider value={{
-            artists, getArtists, addArtist
+            artists, getArtists, addArtist, checkForArtist
         }}>
             {props.children}
         </ArtistContext.Provider>
