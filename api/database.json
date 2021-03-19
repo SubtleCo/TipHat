@@ -96,12 +96,14 @@
     }
   ],
   "plans": [
-    
+   
   ],
   "artists": [
- 
+    
   ],
-  "planArtists": [],
+  "planArtists": [
+   
+  ],
   "users": [
     {
       "email": "alex@alex.com",
