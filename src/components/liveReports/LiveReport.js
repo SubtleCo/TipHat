@@ -1,5 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { ArtistContext } from '../artists/ArtistProvider'
+import { PlanArtistContext } from '../artists/PlanArtistProvider'
 import { UserContext } from '../auth/UserProvider'
 import { LastFmContext } from '../lastFm/LastFmProvider'
 import { PeriodContext } from '../periods/PeriodProvider'
@@ -14,9 +15,10 @@ export const LiveReport = () => {
     const { currentUser, getCurrentUser } = useContext(UserContext)
     const { services, getServices } = useContext(ServiceContext)
     const { suggestions, getSuggestions } = useContext(SuggestionContext)
-    const { plans, getPlans, addPlan } = useContext(PlanContext)
+    const { addPlan } = useContext(PlanContext)
     const { periods, getPeriods } = useContext(PeriodContext)
-    const { getArtists, checkForArtist, addArtist } = useContext(ArtistContext)
+    const { artists, getArtists, checkForArtist, addArtist } = useContext(ArtistContext)
+    const { addPlanArtist } = useContext(PlanArtistContext)
 
     const [liveSuggestionId, setLiveSuggestionId] = useState(0)
     const [reportTable, setReportTable] = useState([])
@@ -75,16 +77,27 @@ export const LiveReport = () => {
                         artistsToAdd.push(artist)
                     }
                 })
-                const promises = []
+                const artistPromises = []
                 artistsToAdd.forEach(artist => {
-                    promises.push(addArtist(artist))
+                    artistPromises.push(addArtist(artist))
                 })
                 // console.log(`this report contains ${artistNameArray.length} artists, ${artistsToAdd.length} of which SHOULD be added.`)
-                Promise.all(promises)
+                Promise.all(artistPromises)
+                    .then(getArtists)
                     .then(() => {
-                        // console.log(`all done, added ${promises.length} artists`)
-                        getArtists()
+                        reportTable.forEach(line => {
+                            debugger
+                            const thisArtist = artists.find(a => a.name === line.name)
+                            const planArtist = {
+                                planId: planId,
+                                artistId: thisArtist.id,
+                                trackCount: parseInt(line.playcount)
+                            }
+                            addPlanArtist(planArtist)
+                            console.log('Added PlanArtist')
+                        })
                     })
+
             })
     }
     if (reportTable.length) {
