@@ -1,4 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react'
+import { ArtistContext } from '../artists/ArtistProvider'
 import { UserContext } from '../auth/UserProvider'
 import { LastFmContext } from '../lastFm/LastFmProvider'
 import { PeriodContext } from '../periods/PeriodProvider'
@@ -15,22 +16,17 @@ export const LiveReport = () => {
     const { suggestions, getSuggestions } = useContext(SuggestionContext)
     const { plans, getPlans, addPlan } = useContext(PlanContext)
     const { periods, getPeriods } = useContext(PeriodContext)
+    const { getArtists, checkForArtist, addArtist } = useContext(ArtistContext)
+
     const [liveSuggestionId, setLiveSuggestionId] = useState(0)
     const [reportTable, setReportTable] = useState([])
     const [reportPeriod, setReportPeriod] = useState({})
     const [totalCount, setTotalCount] = useState(0)
-    const [plan, setPlan] = useState({
-        userId: 0,
-        timestamp: 0,
-        trackCount: 0,
-        periodId: 0,
-        name: "",
-        paid: false,
-        suggestionId: 0
-    })
+
 
     useEffect(() => {
         getPeriods()
+        getArtists()
         setLiveSuggestionId(currentUser.suggestionId)
     }, [])
 
@@ -54,7 +50,7 @@ export const LiveReport = () => {
     }
 
     const handleSave = e => {
-        const newPlan = {...plan}
+        const newPlan = {}
         newPlan.userId = currentUser.id
         newPlan.timestamp = Date.now()
         newPlan.trackCount = totalCount
@@ -64,6 +60,17 @@ export const LiveReport = () => {
         newPlan.suggestionId = liveSuggestionId
 
         addPlan(newPlan)
+            .then(plan => plan.json())
+            .then(plan => plan.id)
+            .then(planId => {
+                // debugger
+                const artistNameArray = reportTable.map(artist => artist.name)
+                artistNameArray.forEach((aN, i) => {
+                    if (!checkForArtist(aN)) {
+                        addArtist(aN)
+                    }
+            })
+        })
     }
 
 

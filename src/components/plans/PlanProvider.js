@@ -20,7 +20,6 @@ export const PlanProvider = props => {
             },
             body: JSON.stringify(plan)
         })
-            .then(getPlans)
     }
 
     return (
