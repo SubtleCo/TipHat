@@ -1,24 +1,20 @@
-import React, { createContext, useState } from 'react'
 import { Settings } from '../../Settings'
 
-export const ArtistContext = createContext()
+export let apiArtists = []
 
-export const ArtistProvider = props => {
-    const [artists, setArtists] = useState([])
-
-    const getArtists = () => {
+export const getArtists = () => {
         return fetch(`${Settings.localApi}/artists`)
             .then(res => res.json())
-            .then(setArtists)
+            .then(pRes => apiArtists = pRes)
     }
 
-    const checkForArtist = artistName => {
+export const checkForArtist = (artistName, artists) => {
         const foundArtist = artists.find(a => a.name === artistName)
         if (foundArtist) return true
         return false
     }
 
-    const addArtist = artistName => {
+export const addArtist = artistName => {
         return fetch(`${Settings.localApi}/artists`, {
             method: "POST",
             headers: {
@@ -28,12 +24,3 @@ export const ArtistProvider = props => {
         })
             .then(res => res.json())
     }
-
-    return (
-        <ArtistContext.Provider value={{
-            artists, getArtists, addArtist, checkForArtist
-        }}>
-            {props.children}
-        </ArtistContext.Provider>
-    )
-}

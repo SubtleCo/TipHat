@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { useHistory } from 'react-router'
-import { ArtistContext } from '../artists/ArtistProvider'
+import { apiArtists, getArtists, checkForArtist, addArtist } from '../artists/ArtistProvider'
 import { PlanArtistContext } from '../artists/PlanArtistProvider'
 import { UserContext } from '../auth/UserProvider'
 import { LastFmContext } from '../lastFm/LastFmProvider'
@@ -18,22 +18,26 @@ export const LiveReport = () => {
     const { suggestions, getSuggestions } = useContext(SuggestionContext)
     const { addPlan } = useContext(PlanContext)
     const { periods, getPeriods } = useContext(PeriodContext)
-    const { artists, getArtists, checkForArtist, addArtist } = useContext(ArtistContext)
     const { addPlanArtist } = useContext(PlanArtistContext)
 
     const [liveSuggestionId, setLiveSuggestionId] = useState(0)
     const [reportTable, setReportTable] = useState([])
     const [reportPeriod, setReportPeriod] = useState({})
     const [totalCount, setTotalCount] = useState(0)
+    const [isLoading, setIsLoading] = useState(true)
     const history = useHistory()
 
-
     useEffect(() => {
+        const dataLoad = [getArtists()]
         getPeriods()
-        getArtists()
         getCurrentUser()
         getServices()
         getSuggestions()
+        Promise.all(dataLoad)
+            .then(([apiArtists]) => {
+                setIsLoading(false)
+                console.log('everything loaded')
+            })
     }, [])
 
     useEffect(() => {
@@ -58,6 +62,7 @@ export const LiveReport = () => {
     }
 
     const handleSave = e => {
+        const artists = [...apiArtists]
 
         const newPlan = {}
         newPlan.userId = currentUser.id
@@ -73,7 +78,8 @@ export const LiveReport = () => {
             .then(plan => plan.id)
             .then(planId => {
                 reportTable.forEach(artist => {
-                    if (!checkForArtist(artist.name)) {
+                    debugger
+                    if (!checkForArtist(artist.name, artists)) {
                         addArtist(artist.name)
                             .then(dbArtist => {
                                 addPlanArtist({
@@ -93,25 +99,6 @@ export const LiveReport = () => {
                 })
                 history.push('/')
             })
-        // console.log(`this report contains ${artistNameArray.length} artists, ${artistsToAdd.length} of which SHOULD be added.`)
-        // Promise.all(artistPromises)
-        // .then(getArtists)
-        // .then(() => {
-        //     reportTable.forEach(line => {
-        //         debugger
-        //         ///==================================HOW TO FIX THIS====================================//
-        //         // handle the planArtist add inside of the artistAdd loop by capturing the id of the object it returns!
-        //         const thisArtist = artists.find(a => a.name === line.name)
-        //         const planArtist = {
-        //             planId: planId,
-        //             artistId: thisArtist.id,
-        //             trackCount: parseInt(line.playcount)
-        //         }
-        //         addPlanArtist(planArtist)
-        //         console.log('Added PlanArtist')
-        //     })
-        // })
-
     }
 
     if (reportTable.length) {
