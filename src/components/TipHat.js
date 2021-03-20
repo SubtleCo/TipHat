@@ -25,19 +25,19 @@ export const TipHat = props => {
                 }
             }} />
 
-            <Route path="/login">
-                <Login />
-            </Route>
+            <UserProvider>
+                <Route path="/login">
+                    <Login />
+                </Route>
 
-            <ServiceProvider>
-                <SuggestionProvider>
-                    <UserProvider>
+                <ServiceProvider>
+                    <SuggestionProvider>
                         <Route path="/register">
                             <Register />
                         </Route>
-                    </UserProvider>
-                </SuggestionProvider>
-            </ServiceProvider>
+                    </SuggestionProvider>
+                </ServiceProvider>
+            </UserProvider>
         </>
     )
 }

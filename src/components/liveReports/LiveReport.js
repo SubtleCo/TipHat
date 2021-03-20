@@ -13,7 +13,7 @@ import { ReportTable } from './ReportTable'
 
 export const LiveReport = () => {
     const { liveReport } = useContext(LastFmContext)
-    const { currentUser, getCurrentUser } = useContext(UserContext)
+    const { currentUser } = useContext(UserContext)
     const { services, getServices } = useContext(ServiceContext)
     const { suggestions, getSuggestions } = useContext(SuggestionContext)
     const { addPlan } = useContext(PlanContext)
@@ -40,7 +40,6 @@ export const LiveReport = () => {
     useEffect(() => {
         loadData()
         getPeriods()
-        getCurrentUser()
         getServices()
         getSuggestions()
     }, [])

@@ -4,14 +4,8 @@ import { authApi } from './authSettings'
 export const UserContext = createContext()
 
 export const UserProvider = props => {
-    const [users, setUsers] = useState([])
-    const [currentUser, setCurrentUser] = useState({})
 
-    const getUsers = () => {
-        return fetch(`${authApi.localApiBaseUrl}/users`)
-            .then(res => res.json())
-            .then(setUsers)
-    }
+    const [currentUser, setCurrentUser] = useState({})
 
     const getCurrentUser = () => {
         const id = parseInt(sessionStorage.getItem(`app_user_id`))
@@ -22,7 +16,7 @@ export const UserProvider = props => {
 
     return (
         <UserContext.Provider value={{
-            getUsers, currentUser, getCurrentUser
+            currentUser, getCurrentUser
         }}>
             {props.children}
         </UserContext.Provider>
