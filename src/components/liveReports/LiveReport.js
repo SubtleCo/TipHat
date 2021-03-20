@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { useHistory } from 'react-router'
 import { apiArtists, getArtists, checkForArtist, addArtist } from '../artists/ArtistProvider'
-import { PlanArtistContext } from '../artists/PlanArtistProvider'
+import { planArtists, addPlanArtist, getPlanArtists } from '../artists/PlanArtistProvider'
 import { UserContext } from '../auth/UserProvider'
 import { LastFmContext } from '../lastFm/LastFmProvider'
 import { PeriodContext } from '../periods/PeriodProvider'
@@ -18,7 +18,6 @@ export const LiveReport = () => {
     const { suggestions, getSuggestions } = useContext(SuggestionContext)
     const { addPlan } = useContext(PlanContext)
     const { periods, getPeriods } = useContext(PeriodContext)
-    const { addPlanArtist } = useContext(PlanArtistContext)
 
     const [liveSuggestionId, setLiveSuggestionId] = useState(0)
     const [reportTable, setReportTable] = useState([])
@@ -26,18 +25,24 @@ export const LiveReport = () => {
     const [totalCount, setTotalCount] = useState(0)
     const [isLoading, setIsLoading] = useState(true)
     const history = useHistory()
+    
+    const loadData = () => {
+        const promises = [
+            getArtists(),
+            getPlanArtists()
+        ]
+        Promise.all(promises)
+            .then(() => {
+                setIsLoading(false)
+            })
+    }
 
     useEffect(() => {
-        const dataLoad = [getArtists()]
+        loadData()
         getPeriods()
         getCurrentUser()
         getServices()
         getSuggestions()
-        Promise.all(dataLoad)
-            .then(([apiArtists]) => {
-                setIsLoading(false)
-                console.log('everything loaded')
-            })
     }, [])
 
     useEffect(() => {
@@ -78,7 +83,6 @@ export const LiveReport = () => {
             .then(plan => plan.id)
             .then(planId => {
                 reportTable.forEach(artist => {
-                    debugger
                     if (!checkForArtist(artist.name, artists)) {
                         addArtist(artist.name)
                             .then(dbArtist => {

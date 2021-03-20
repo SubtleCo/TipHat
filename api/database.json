@@ -115,6 +115,36 @@
       "paid": false,
       "suggestionId": 3,
       "id": 2
+    },
+    {
+      "userId": 1,
+      "timestamp": 1616270737571,
+      "trackCount": 76,
+      "periodId": 1,
+      "name": "Top 5 artists for the last week, 2/20/2021",
+      "paid": false,
+      "suggestionId": 3,
+      "id": 3
+    },
+    {
+      "userId": 1,
+      "timestamp": 1616271676393,
+      "trackCount": 126,
+      "periodId": 2,
+      "name": "Top 5 artists for the last month, 2/20/2021",
+      "paid": false,
+      "suggestionId": 3,
+      "id": 4
+    },
+    {
+      "userId": 1,
+      "timestamp": 1616271690828,
+      "trackCount": 367,
+      "periodId": 2,
+      "name": "Top 20 artists for the last month, 2/20/2021",
+      "paid": true,
+      "suggestionId": 3,
+      "id": 5
     }
   ],
   "artists": [
@@ -157,6 +187,46 @@
     {
       "name": "Grizzly Bear",
       "id": 10
+    },
+    {
+      "name": "Andy Shauf",
+      "id": 11
+    },
+    {
+      "name": "Charly Bliss",
+      "id": 12
+    },
+    {
+      "name": "Big Thief",
+      "id": 13
+    },
+    {
+      "name": "Yo La Tengo",
+      "id": 14
+    },
+    {
+      "name": "Jonny Greenwood",
+      "id": 15
+    },
+    {
+      "name": "Alvvays",
+      "id": 16
+    },
+    {
+      "name": "Caribou",
+      "id": 17
+    },
+    {
+      "name": "The Beach Boys",
+      "id": 18
+    },
+    {
+      "name": "Christian Lee Hutson",
+      "id": 19
+    },
+    {
+      "name": "Moses Sumney",
+      "id": 20
     }
   ],
   "planArtists": [
@@ -231,6 +301,186 @@
       "planId": 2,
       "trackCount": 23,
       "id": 12
+    },
+    {
+      "artistId": 1,
+      "planId": 3,
+      "trackCount": 16,
+      "id": 13
+    },
+    {
+      "artistId": 2,
+      "planId": 3,
+      "trackCount": 15,
+      "id": 14
+    },
+    {
+      "artistId": 3,
+      "planId": 3,
+      "trackCount": 15,
+      "id": 15
+    },
+    {
+      "artistId": 4,
+      "planId": 3,
+      "trackCount": 15,
+      "id": 16
+    },
+    {
+      "artistId": 5,
+      "planId": 3,
+      "trackCount": 15,
+      "id": 17
+    },
+    {
+      "artistId": 6,
+      "planId": 4,
+      "trackCount": 35,
+      "id": 18
+    },
+    {
+      "artistId": 7,
+      "planId": 4,
+      "trackCount": 24,
+      "id": 19
+    },
+    {
+      "artistId": 8,
+      "planId": 4,
+      "trackCount": 23,
+      "id": 20
+    },
+    {
+      "artistId": 9,
+      "planId": 4,
+      "trackCount": 23,
+      "id": 21
+    },
+    {
+      "artistId": 10,
+      "planId": 4,
+      "trackCount": 21,
+      "id": 22
+    },
+    {
+      "artistId": 6,
+      "planId": 5,
+      "trackCount": 35,
+      "id": 23
+    },
+    {
+      "artistId": 7,
+      "planId": 5,
+      "trackCount": 24,
+      "id": 24
+    },
+    {
+      "artistId": 8,
+      "planId": 5,
+      "trackCount": 23,
+      "id": 25
+    },
+    {
+      "artistId": 9,
+      "planId": 5,
+      "trackCount": 23,
+      "id": 26
+    },
+    {
+      "artistId": 10,
+      "planId": 5,
+      "trackCount": 21,
+      "id": 27
+    },
+    {
+      "artistId": 4,
+      "planId": 5,
+      "trackCount": 19,
+      "id": 28
+    },
+    {
+      "artistId": 2,
+      "planId": 5,
+      "trackCount": 19,
+      "id": 29
+    },
+    {
+      "artistId": 5,
+      "planId": 5,
+      "trackCount": 19,
+      "id": 30
+    },
+    {
+      "artistId": 1,
+      "planId": 5,
+      "trackCount": 18,
+      "id": 31
+    },
+    {
+      "artistId": 3,
+      "planId": 5,
+      "trackCount": 15,
+      "id": 32
+    },
+    {
+      "artistId": 11,
+      "planId": 5,
+      "trackCount": 18,
+      "id": 33
+    },
+    {
+      "artistId": 12,
+      "planId": 5,
+      "trackCount": 18,
+      "id": 34
+    },
+    {
+      "artistId": 13,
+      "planId": 5,
+      "trackCount": 17,
+      "id": 35
+    },
+    {
+      "artistId": 14,
+      "planId": 5,
+      "trackCount": 16,
+      "id": 36
+    },
+    {
+      "artistId": 15,
+      "planId": 5,
+      "trackCount": 17,
+      "id": 37
+    },
+    {
+      "artistId": 16,
+      "planId": 5,
+      "trackCount": 15,
+      "id": 38
+    },
+    {
+      "artistId": 17,
+      "planId": 5,
+      "trackCount": 13,
+      "id": 39
+    },
+    {
+      "artistId": 18,
+      "planId": 5,
+      "trackCount": 13,
+      "id": 40
+    },
+    {
+      "artistId": 19,
+      "planId": 5,
+      "trackCount": 12,
+      "id": 41
+    },
+    {
+      "artistId": 20,
+      "planId": 5,
+      "trackCount": 12,
+      "id": 42
     }
   ],
   "users": [

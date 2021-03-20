@@ -1,18 +1,14 @@
-import React, { createContext, useState } from 'react'
 import { Settings } from '../../Settings'
 
-export const PlanArtistContext = createContext()
+export let planArtists = []
 
-export const PlanArtistProvider = props => {
-    const [planArtists, setPlanArtists] = useState([])
-
-    const getPlanArtists = () => {
+export const getPlanArtists = () => {
         return fetch(`${Settings.localApi}/planArtists`)
             .then(res => res.json())
-            .then(setPlanArtists)
+            .then(pRes => planArtists = pRes)
     }
 
-    const addPlanArtist = planArtist => {
+export const addPlanArtist = planArtist => {
         return fetch(`${Settings.localApi}/planArtists`, {
             method: "POST",
             headers: {
@@ -20,14 +16,5 @@ export const PlanArtistProvider = props => {
             },
             body: JSON.stringify(planArtist)
         })
-            .then(getPlanArtists)
     }
 
-    return (
-        <PlanArtistContext.Provider value={{
-            planArtists, getPlanArtists, addPlanArtist
-        }}>
-            {props.children}
-        </PlanArtistContext.Provider>
-    )
-}
