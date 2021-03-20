@@ -96,13 +96,142 @@
     }
   ],
   "plans": [
-   
+    {
+      "userId": 1,
+      "timestamp": 1616269936771,
+      "trackCount": 76,
+      "periodId": 1,
+      "name": "Top 5 artists for the last week, 2/20/2021",
+      "paid": false,
+      "suggestionId": 3,
+      "id": 1
+    },
+    {
+      "userId": 1,
+      "timestamp": 1616269962970,
+      "trackCount": 164,
+      "periodId": 2,
+      "name": "Top 7 artists for the last month, 2/20/2021",
+      "paid": false,
+      "suggestionId": 3,
+      "id": 2
+    }
   ],
   "artists": [
-    
+    {
+      "name": "Chairlift",
+      "id": 1
+    },
+    {
+      "name": "Belle and Sebastian",
+      "id": 2
+    },
+    {
+      "name": "Brittany Howard",
+      "id": 3
+    },
+    {
+      "name": "Car Seat Headrest",
+      "id": 4
+    },
+    {
+      "name": "John Coltrane",
+      "id": 5
+    },
+    {
+      "name": "The National",
+      "id": 6
+    },
+    {
+      "name": "St. Vincent",
+      "id": 7
+    },
+    {
+      "name": "Joanna Newsom",
+      "id": 8
+    },
+    {
+      "name": "Radiohead",
+      "id": 9
+    },
+    {
+      "name": "Grizzly Bear",
+      "id": 10
+    }
   ],
   "planArtists": [
-   
+    {
+      "artistId": 1,
+      "planId": 1,
+      "trackCount": 16,
+      "id": 1
+    },
+    {
+      "artistId": 2,
+      "planId": 1,
+      "trackCount": 15,
+      "id": 2
+    },
+    {
+      "artistId": 3,
+      "planId": 1,
+      "trackCount": 15,
+      "id": 3
+    },
+    {
+      "artistId": 4,
+      "planId": 1,
+      "trackCount": 15,
+      "id": 4
+    },
+    {
+      "artistId": 5,
+      "planId": 1,
+      "trackCount": 15,
+      "id": 5
+    },
+    {
+      "artistId": 2,
+      "planId": 2,
+      "trackCount": 19,
+      "id": 6
+    },
+    {
+      "artistId": 4,
+      "planId": 2,
+      "trackCount": 19,
+      "id": 7
+    },
+    {
+      "artistId": 6,
+      "planId": 2,
+      "trackCount": 35,
+      "id": 8
+    },
+    {
+      "artistId": 7,
+      "planId": 2,
+      "trackCount": 24,
+      "id": 9
+    },
+    {
+      "artistId": 10,
+      "planId": 2,
+      "trackCount": 21,
+      "id": 10
+    },
+    {
+      "artistId": 8,
+      "planId": 2,
+      "trackCount": 23,
+      "id": 11
+    },
+    {
+      "artistId": 9,
+      "planId": 2,
+      "trackCount": 23,
+      "id": 12
+    }
   ],
   "users": [
     {

@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { useHistory } from 'react-router'
-import { getArtists, checkForArtist, addArtist } from '../artists/ArtistProvider'
+import { apiArtists, getArtists, checkForArtist, addArtist } from '../artists/ArtistProvider'
 import { PlanArtistContext } from '../artists/PlanArtistProvider'
 import { UserContext } from '../auth/UserProvider'
 import { LastFmContext } from '../lastFm/LastFmProvider'
@@ -27,16 +27,17 @@ export const LiveReport = () => {
     const [isLoading, setIsLoading] = useState(true)
     const history = useHistory()
 
-    let artists = []
-
-
     useEffect(() => {
-        artists = getArtists()
+        const dataLoad = [getArtists()]
         getPeriods()
         getCurrentUser()
         getServices()
         getSuggestions()
-        Promise.all([artists])
+        Promise.all(dataLoad)
+            .then(([apiArtists]) => {
+                setIsLoading(false)
+                console.log('everything loaded')
+            })
     }, [])
 
     useEffect(() => {
@@ -61,6 +62,7 @@ export const LiveReport = () => {
     }
 
     const handleSave = e => {
+        const artists = [...apiArtists]
 
         const newPlan = {}
         newPlan.userId = currentUser.id
@@ -76,7 +78,8 @@ export const LiveReport = () => {
             .then(plan => plan.id)
             .then(planId => {
                 reportTable.forEach(artist => {
-                    if (!checkForArtist(artist.name)) {
+                    debugger
+                    if (!checkForArtist(artist.name, artists)) {
                         addArtist(artist.name)
                             .then(dbArtist => {
                                 addPlanArtist({
