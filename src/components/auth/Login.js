@@ -1,12 +1,14 @@
-import React, { useState } from "react"
+import React, { useContext, useState } from "react"
 import { Link, useHistory } from "react-router-dom";
 import { authApi, userStorageKey } from "./authSettings"
 import "./Login.css"
+import { UserContext } from "./UserProvider";
 
 
 export const Login = () => {
     const [loginUser, setLoginUser] = useState({ email: "", password: ""})
     const [existDialog, setExistDialog] = useState(false)
+    const { getCurrentUser } = useContext(UserContext)
 
     const history = useHistory()
 
@@ -31,6 +33,7 @@ export const Login = () => {
                 if (exists) {
                     if (exists.password === loginUser.password) {
                         sessionStorage.setItem(userStorageKey, exists.id)
+                        getCurrentUser()
                         history.push("/")
                     } else {
                         window.alert(`You're a user, but that ain't your password. Is this really ${exists.firstName}?`)

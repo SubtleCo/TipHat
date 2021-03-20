@@ -12,7 +12,7 @@ export const LiveReportForm = () => {
         periodId: 0
     })
     const { currentUser, getCurrentUser } = useContext(UserContext)
-    const { liveReport, getLiveReport } = useContext(LastFmContext)
+    const { getLiveReport } = useContext(LastFmContext)
 
     useEffect(() => {
         getCurrentUser()

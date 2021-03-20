@@ -19,6 +19,7 @@ export const Register = () => {
     })
     const [passwordConfirm, setPasswordConfirm] = useState("")
     const [conflictDialog, setConflictDialog] = useState(false)
+    const { getCurrentUser } = useContext(UserContext)
     const { services, getServices } = useContext(ServiceContext)
     const { suggestions, getSuggestions } = useContext(SuggestionContext)
     const loggedInUserId = parseInt(sessionStorage.getItem('app_user_id'))
@@ -105,6 +106,7 @@ export const Register = () => {
                                 .then(createdUser => {
                                     if (createdUser.hasOwnProperty("id")) {
                                         sessionStorage.setItem(userStorageKey, createdUser.id)
+                                        getCurrentUser()
                                         history.push("/")
                                     }
                                 })

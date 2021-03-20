@@ -145,6 +145,16 @@
       "paid": true,
       "suggestionId": 3,
       "id": 5
+    },
+    {
+      "userId": 1,
+      "timestamp": 1616272740614,
+      "trackCount": 126,
+      "periodId": 2,
+      "name": "Top 5 artists for the last month, 2/20/2021",
+      "paid": false,
+      "suggestionId": 3,
+      "id": 6
     }
   ],
   "artists": [
@@ -481,6 +491,36 @@
       "planId": 5,
       "trackCount": 12,
       "id": 42
+    },
+    {
+      "artistId": 6,
+      "planId": 6,
+      "trackCount": 35,
+      "id": 43
+    },
+    {
+      "artistId": 7,
+      "planId": 6,
+      "trackCount": 24,
+      "id": 44
+    },
+    {
+      "artistId": 8,
+      "planId": 6,
+      "trackCount": 23,
+      "id": 45
+    },
+    {
+      "artistId": 9,
+      "planId": 6,
+      "trackCount": 23,
+      "id": 46
+    },
+    {
+      "artistId": 10,
+      "planId": 6,
+      "trackCount": 21,
+      "id": 47
     }
   ],
   "users": [
