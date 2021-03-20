@@ -24,6 +24,7 @@ export const LiveReport = () => {
     const [reportTable, setReportTable] = useState([])
     const [reportPeriod, setReportPeriod] = useState({})
     const [totalCount, setTotalCount] = useState(0)
+    const [isLoading, setIsLoading] = useState(true)
     const history = useHistory()
 
     let artists = []
