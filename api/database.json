@@ -98,73 +98,13 @@
   "plans": [
     {
       "userId": 1,
-      "timestamp": 1616269936771,
-      "trackCount": 76,
-      "periodId": 1,
-      "name": "Top 5 artists for the last week, 2/20/2021",
-      "paid": false,
-      "suggestionId": 3,
-      "id": 1
-    },
-    {
-      "userId": 1,
-      "timestamp": 1616269962970,
-      "trackCount": 164,
-      "periodId": 2,
-      "name": "Top 7 artists for the last month, 2/20/2021",
-      "paid": false,
-      "suggestionId": 3,
-      "id": 2
-    },
-    {
-      "userId": 1,
-      "timestamp": 1616270737571,
-      "trackCount": 76,
-      "periodId": 1,
-      "name": "Top 5 artists for the last week, 2/20/2021",
-      "paid": false,
-      "suggestionId": 3,
-      "id": 3
-    },
-    {
-      "userId": 1,
-      "timestamp": 1616271676393,
-      "trackCount": 126,
-      "periodId": 2,
-      "name": "Top 5 artists for the last month, 2/20/2021",
-      "paid": false,
-      "suggestionId": 3,
-      "id": 4
-    },
-    {
-      "userId": 1,
       "timestamp": 1616271690828,
       "trackCount": 367,
       "periodId": 2,
       "name": "Top 20 artists for the last month, 2/20/2021",
-      "paid": true,
+      "paid": false,
       "suggestionId": 3,
       "id": 5
-    },
-    {
-      "userId": 1,
-      "timestamp": 1616272740614,
-      "trackCount": 126,
-      "periodId": 2,
-      "name": "Top 5 artists for the last month, 2/20/2021",
-      "paid": false,
-      "suggestionId": 3,
-      "id": 6
-    },
-    {
-      "userId": 1,
-      "timestamp": 1616421563872,
-      "trackCount": 68,
-      "periodId": 1,
-      "name": "Top 5 artists for the last week, 2/22/2021",
-      "paid": false,
-      "suggestionId": 3,
-      "id": 7
     },
     {
       "userId": 1,
@@ -178,33 +118,13 @@
     },
     {
       "userId": 1,
-      "timestamp": 1616433668196,
-      "trackCount": 379,
-      "periodId": 2,
-      "name": "Top 20 artists for the last month, 2/22/2021",
-      "paid": false,
-      "suggestionId": 1,
-      "id": 9
-    },
-    {
-      "userId": 1,
       "timestamp": 1616433679807,
       "trackCount": 79,
       "periodId": 1,
       "name": "Top 5 artists for the last week, 2/22/2021",
-      "paid": true,
+      "paid": false,
       "suggestionId": 1,
       "id": 10
-    },
-    {
-      "userId": 1,
-      "timestamp": 1616437602414,
-      "trackCount": 79,
-      "periodId": 1,
-      "name": "Top 5 artists for the last week, 2/22/2021",
-      "paid": false,
-      "suggestionId": 3,
-      "id": 11
     }
   ],
   "artists": [
@@ -294,138 +214,6 @@
     }
   ],
   "planArtists": [
-    {
-      "artistId": 1,
-      "planId": 1,
-      "trackCount": 16,
-      "id": 1
-    },
-    {
-      "artistId": 2,
-      "planId": 1,
-      "trackCount": 15,
-      "id": 2
-    },
-    {
-      "artistId": 3,
-      "planId": 1,
-      "trackCount": 15,
-      "id": 3
-    },
-    {
-      "artistId": 4,
-      "planId": 1,
-      "trackCount": 15,
-      "id": 4
-    },
-    {
-      "artistId": 5,
-      "planId": 1,
-      "trackCount": 15,
-      "id": 5
-    },
-    {
-      "artistId": 2,
-      "planId": 2,
-      "trackCount": 19,
-      "id": 6
-    },
-    {
-      "artistId": 4,
-      "planId": 2,
-      "trackCount": 19,
-      "id": 7
-    },
-    {
-      "artistId": 6,
-      "planId": 2,
-      "trackCount": 35,
-      "id": 8
-    },
-    {
-      "artistId": 7,
-      "planId": 2,
-      "trackCount": 24,
-      "id": 9
-    },
-    {
-      "artistId": 10,
-      "planId": 2,
-      "trackCount": 21,
-      "id": 10
-    },
-    {
-      "artistId": 8,
-      "planId": 2,
-      "trackCount": 23,
-      "id": 11
-    },
-    {
-      "artistId": 9,
-      "planId": 2,
-      "trackCount": 23,
-      "id": 12
-    },
-    {
-      "artistId": 1,
-      "planId": 3,
-      "trackCount": 16,
-      "id": 13
-    },
-    {
-      "artistId": 2,
-      "planId": 3,
-      "trackCount": 15,
-      "id": 14
-    },
-    {
-      "artistId": 3,
-      "planId": 3,
-      "trackCount": 15,
-      "id": 15
-    },
-    {
-      "artistId": 4,
-      "planId": 3,
-      "trackCount": 15,
-      "id": 16
-    },
-    {
-      "artistId": 5,
-      "planId": 3,
-      "trackCount": 15,
-      "id": 17
-    },
-    {
-      "artistId": 6,
-      "planId": 4,
-      "trackCount": 35,
-      "id": 18
-    },
-    {
-      "artistId": 7,
-      "planId": 4,
-      "trackCount": 24,
-      "id": 19
-    },
-    {
-      "artistId": 8,
-      "planId": 4,
-      "trackCount": 23,
-      "id": 20
-    },
-    {
-      "artistId": 9,
-      "planId": 4,
-      "trackCount": 23,
-      "id": 21
-    },
-    {
-      "artistId": 10,
-      "planId": 4,
-      "trackCount": 21,
-      "id": 22
-    },
     {
       "artistId": 6,
       "planId": 5,
@@ -547,66 +335,6 @@
       "id": 42
     },
     {
-      "artistId": 6,
-      "planId": 6,
-      "trackCount": 35,
-      "id": 43
-    },
-    {
-      "artistId": 7,
-      "planId": 6,
-      "trackCount": 24,
-      "id": 44
-    },
-    {
-      "artistId": 8,
-      "planId": 6,
-      "trackCount": 23,
-      "id": 45
-    },
-    {
-      "artistId": 9,
-      "planId": 6,
-      "trackCount": 23,
-      "id": 46
-    },
-    {
-      "artistId": 10,
-      "planId": 6,
-      "trackCount": 21,
-      "id": 47
-    },
-    {
-      "artistId": 1,
-      "planId": 7,
-      "trackCount": 15,
-      "id": 48
-    },
-    {
-      "artistId": 2,
-      "planId": 7,
-      "trackCount": 13,
-      "id": 49
-    },
-    {
-      "artistId": 4,
-      "planId": 7,
-      "trackCount": 13,
-      "id": 50
-    },
-    {
-      "artistId": 12,
-      "planId": 7,
-      "trackCount": 14,
-      "id": 51
-    },
-    {
-      "artistId": 5,
-      "planId": 7,
-      "trackCount": 13,
-      "id": 52
-    },
-    {
       "artistId": 10,
       "planId": 8,
       "trackCount": 21,
@@ -667,126 +395,6 @@
       "id": 62
     },
     {
-      "artistId": 6,
-      "planId": 9,
-      "trackCount": 35,
-      "id": 63
-    },
-    {
-      "artistId": 2,
-      "planId": 9,
-      "trackCount": 19,
-      "id": 64
-    },
-    {
-      "artistId": 4,
-      "planId": 9,
-      "trackCount": 19,
-      "id": 65
-    },
-    {
-      "artistId": 8,
-      "planId": 9,
-      "trackCount": 23,
-      "id": 66
-    },
-    {
-      "artistId": 9,
-      "planId": 9,
-      "trackCount": 23,
-      "id": 67
-    },
-    {
-      "artistId": 10,
-      "planId": 9,
-      "trackCount": 21,
-      "id": 68
-    },
-    {
-      "artistId": 5,
-      "planId": 9,
-      "trackCount": 19,
-      "id": 69
-    },
-    {
-      "artistId": 11,
-      "planId": 9,
-      "trackCount": 18,
-      "id": 70
-    },
-    {
-      "artistId": 1,
-      "planId": 9,
-      "trackCount": 18,
-      "id": 71
-    },
-    {
-      "artistId": 12,
-      "planId": 9,
-      "trackCount": 18,
-      "id": 72
-    },
-    {
-      "artistId": 13,
-      "planId": 9,
-      "trackCount": 17,
-      "id": 73
-    },
-    {
-      "artistId": 15,
-      "planId": 9,
-      "trackCount": 17,
-      "id": 74
-    },
-    {
-      "artistId": 14,
-      "planId": 9,
-      "trackCount": 16,
-      "id": 75
-    },
-    {
-      "artistId": 16,
-      "planId": 9,
-      "trackCount": 15,
-      "id": 76
-    },
-    {
-      "artistId": 3,
-      "planId": 9,
-      "trackCount": 15,
-      "id": 77
-    },
-    {
-      "artistId": 17,
-      "planId": 9,
-      "trackCount": 13,
-      "id": 78
-    },
-    {
-      "artistId": 18,
-      "planId": 9,
-      "trackCount": 13,
-      "id": 79
-    },
-    {
-      "artistId": 19,
-      "planId": 9,
-      "trackCount": 12,
-      "id": 80
-    },
-    {
-      "artistId": 7,
-      "planId": 9,
-      "trackCount": 24,
-      "id": 81
-    },
-    {
-      "artistId": 21,
-      "planId": 9,
-      "trackCount": 24,
-      "id": 82
-    },
-    {
       "artistId": 21,
       "planId": 10,
       "trackCount": 24,
@@ -815,36 +423,6 @@
       "planId": 10,
       "trackCount": 14,
       "id": 87
-    },
-    {
-      "artistId": 21,
-      "planId": 11,
-      "trackCount": 24,
-      "id": 88
-    },
-    {
-      "artistId": 12,
-      "planId": 11,
-      "trackCount": 14,
-      "id": 89
-    },
-    {
-      "artistId": 1,
-      "planId": 11,
-      "trackCount": 15,
-      "id": 90
-    },
-    {
-      "artistId": 15,
-      "planId": 11,
-      "trackCount": 13,
-      "id": 91
-    },
-    {
-      "artistId": 18,
-      "planId": 11,
-      "trackCount": 13,
-      "id": 92
     }
   ],
   "users": [

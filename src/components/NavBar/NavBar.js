@@ -17,6 +17,7 @@ export const NavBar = () => {
                 <nav id="navbar">
                     <Link to="/">Why Tip?</Link>
                     <Link to="/reports/create">Generate A Report</Link>
+                    <Link to="/reports">Saved Reports</Link>
                     <Link to="/user/edit">(Account)</Link>
                     <Link to="/" onClick={logout}>(log out)</Link>
 
