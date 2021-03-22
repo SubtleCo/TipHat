@@ -43,7 +43,7 @@ export const ReportCard = ({ report }) => {
 
     return (
         <article className="savedReport">
-            <h4>{report.name} {paid ? " (paid)" : ""}</h4>
+            <h4>{report.name}</h4>
             {buttons}
         </article>
     )

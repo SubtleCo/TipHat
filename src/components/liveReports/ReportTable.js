@@ -91,7 +91,7 @@ export const ReportTable = ({ report }) => {
                         })
                     }
                 })
-                history.push('/')
+                history.push('/reports')
             })
     }
 

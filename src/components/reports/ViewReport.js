@@ -77,6 +77,7 @@ export const ViewReport = () => {
         editPlan(thisPlan.id, {
             suggestionId: displayPlan.suggestion.id
         })
+        history.push("/reports")
     }
 
     return ((!isLoading) &&
