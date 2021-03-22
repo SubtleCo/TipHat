@@ -123,8 +123,28 @@
       "periodId": 1,
       "name": "Top 5 artists for the last week, 2/22/2021",
       "paid": false,
-      "suggestionId": 1,
+      "suggestionId": 2,
       "id": 10
+    },
+    {
+      "userId": 1,
+      "timestamp": 1616451467681,
+      "trackCount": 163,
+      "periodId": 1,
+      "name": "Top 12 artists for the last week, 2/22/2021",
+      "paid": true,
+      "suggestionId": 3,
+      "id": 11
+    },
+    {
+      "userId": 1,
+      "timestamp": 1616451507371,
+      "trackCount": 189,
+      "periodId": 6,
+      "name": "Top 7 artists for all time, 2/22/2021",
+      "paid": true,
+      "suggestionId": 3,
+      "id": 12
     }
   ],
   "artists": [
@@ -211,6 +231,10 @@
     {
       "name": "Christopher Larkin",
       "id": 21
+    },
+    {
+      "name": "Beck",
+      "id": 22
     }
   ],
   "planArtists": [
@@ -423,6 +447,120 @@
       "planId": 10,
       "trackCount": 14,
       "id": 87
+    },
+    {
+      "artistId": 21,
+      "planId": 11,
+      "trackCount": 24,
+      "id": 88
+    },
+    {
+      "artistId": 1,
+      "planId": 11,
+      "trackCount": 15,
+      "id": 89
+    },
+    {
+      "artistId": 18,
+      "planId": 11,
+      "trackCount": 13,
+      "id": 90
+    },
+    {
+      "artistId": 12,
+      "planId": 11,
+      "trackCount": 14,
+      "id": 91
+    },
+    {
+      "artistId": 15,
+      "planId": 11,
+      "trackCount": 13,
+      "id": 92
+    },
+    {
+      "artistId": 14,
+      "planId": 11,
+      "trackCount": 13,
+      "id": 93
+    },
+    {
+      "artistId": 2,
+      "planId": 11,
+      "trackCount": 12,
+      "id": 94
+    },
+    {
+      "artistId": 4,
+      "planId": 11,
+      "trackCount": 12,
+      "id": 95
+    },
+    {
+      "artistId": 5,
+      "planId": 11,
+      "trackCount": 12,
+      "id": 96
+    },
+    {
+      "artistId": 3,
+      "planId": 11,
+      "trackCount": 11,
+      "id": 97
+    },
+    {
+      "artistId": 8,
+      "planId": 11,
+      "trackCount": 11,
+      "id": 98
+    },
+    {
+      "artistId": 22,
+      "planId": 11,
+      "trackCount": 13,
+      "id": 99
+    },
+    {
+      "artistId": 6,
+      "planId": 12,
+      "trackCount": 35,
+      "id": 100
+    },
+    {
+      "artistId": 2,
+      "planId": 12,
+      "trackCount": 31,
+      "id": 101
+    },
+    {
+      "artistId": 14,
+      "planId": 12,
+      "trackCount": 29,
+      "id": 102
+    },
+    {
+      "artistId": 21,
+      "planId": 12,
+      "trackCount": 24,
+      "id": 103
+    },
+    {
+      "artistId": 7,
+      "planId": 12,
+      "trackCount": 24,
+      "id": 104
+    },
+    {
+      "artistId": 8,
+      "planId": 12,
+      "trackCount": 23,
+      "id": 105
+    },
+    {
+      "artistId": 9,
+      "planId": 12,
+      "trackCount": 23,
+      "id": 106
     }
   ],
   "users": [

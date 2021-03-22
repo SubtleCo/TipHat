@@ -4,8 +4,10 @@ import { Register } from './auth/Register'
 import { Home } from './home/Home'
 import { LastFmProvider } from './lastFm/LastFmProvider'
 import { LiveReportForm } from './liveReports/LiveReportForm'
+import { ReportTable } from './liveReports/ReportTable'
 import { PlanProvider } from './plans/PlanProvider'
 import { ReportList } from './reports/ReportList'
+import { ViewReport } from './reports/ViewReport'
 
 export const ApplicationViews = () => {
     return (
@@ -29,6 +31,14 @@ export const ApplicationViews = () => {
 
                     <Route exact path="/reports">
                         <ReportList />
+                    </Route>
+
+                    <Route exact path="/reports/view/:planId(\d+)">
+                        <ViewReport />
+                    </Route>
+                    
+                    <Route exact path="/reports/edit/:planId(\d+)">
+                        <ViewReport />
                     </Route>
 
                 </PlanProvider>
