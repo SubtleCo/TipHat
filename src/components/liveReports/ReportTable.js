@@ -1,8 +1,67 @@
-import React from 'react'
+import React, { useContext, useState } from 'react'
+import { useHistory } from 'react-router'
+import { LastFmContext } from '../lastFm/LastFmProvider'
+import { ServiceContext } from '../services/ServiceProvider'
+import { SuggestionContext } from '../suggestions/SuggestionsProvider'
 import './ReportTable.css'
 
-export const ReportTable = ({ reportTable, totalCount, service, suggestion }) => {
+export const ReportTable = () => {
     const { addPlan } = useContext(PlanContext)
+    const { liveReport } = useContext(LastFmContext)
+    const { currentUser } = useContext(UserContext)
+
+    const { services, getServices } = useContext(ServiceContext)
+    const { suggestions, getSuggestions } = useContext(SuggestionContext)
+    const [service, setService] = useState({})
+    const [suggestion, setSuggestion] = useState({})
+    
+    const [liveSuggestionId, setLiveSuggestionId] = useState(0)
+    const [reportTable, setReportTable] = useState([])
+    const [reportPeriod, setReportPeriod] = useState({})
+    const [totalCount, setTotalCount] = useState(0)
+    const [isLoading, setIsLoading] = useState(true)
+
+    const history = useHistory()
+
+    const service = currentUser.serviceId
+
+    const loadData = () => {
+        const promises = [
+            getArtists(),
+            getPlanArtists(),
+            getServices(), getSuggestions()
+        ]
+        Promise.all(promises)
+            .then(() => {
+                setIsLoading(false)
+            })
+    }
+
+    useEffect(() => {
+        loadData()
+        setLiveSuggestionId(currentUser.suggestionId)
+    }, [])
+
+    useEffect(() =>{
+        if (services.length) setService(services.find(s => s.id ===currentUser.serviceId))
+        if (suggestions.length) setSuggestion(suggestions.find(s => s.id ===currentUser.suggestionId))
+    }, [services, suggestions])
+
+    useEffect(() => {
+        if (Object.keys(liveReport).length) {
+            setReportTable(liveReport.topartists.artist)
+        }
+        setReportPeriod(periods.find(p => p.id === liveReport.periodId))
+    }, [liveReport])
+
+    useEffect(() => {
+        let trackCounts = reportTable.map(line => parseInt(line.playcount))
+        setTotalCount(trackCounts.reduce((a, b) => a + b, 0))
+    }, [reportTable])
+
+    const handleLiveSuggestionChange = e => {
+        setLiveSuggestionId(parseInt(e.target.value))
+    }
 
     const handleSave = e => {
         const artists = [...apiArtists]
@@ -15,6 +74,8 @@ export const ReportTable = ({ reportTable, totalCount, service, suggestion }) =>
         newPlan.name = `Top ${reportTable.length} artists for ${reportPeriod.name}, ${new Date(newPlan.timestamp).getMonth()}/${new Date(newPlan.timestamp).getDate()}/${new Date(newPlan.timestamp).getFullYear()}`
         newPlan.paid = e.target.id.includes("paid")
         newPlan.suggestionId = liveSuggestionId
+
+
 
         addPlan(newPlan)
             .then(plan => plan.json())
@@ -43,7 +104,7 @@ export const ReportTable = ({ reportTable, totalCount, service, suggestion }) =>
             })
     }
 
-    return (
+    return (reportTable.length &&
         <>
             <h2>Your top {reportTable.length} artists for {reportPeriod.name}</h2>
             <label htmlFor="suggestionSelect">Change the payout calculation to </label>
