@@ -30,13 +30,10 @@ export const TipHat = props => {
                     <Login />
                 </Route>
 
-                <ServiceProvider>
-                    <SuggestionProvider>
-                        <Route path="/register">
-                            <Register />
-                        </Route>
-                    </SuggestionProvider>
-                </ServiceProvider>
+                <Route path="/register">
+                    <Register />
+                </Route>
+
             </UserProvider>
         </>
     )

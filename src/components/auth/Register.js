@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from "react"
 import { useHistory } from "react-router-dom"
-import { ServiceContext } from "../services/ServiceProvider"
-import { SuggestionContext } from "../suggestions/SuggestionsProvider"
+import { services, getServices } from "../services/ServiceProvider"
+import { suggestions, getSuggestions } from "../suggestions/SuggestionsProvider"
 import { authApi, userStorageKey } from "./authSettings"
 import "./Login.css"
 import { UserContext } from "./UserProvider"
@@ -20,8 +20,8 @@ export const Register = () => {
     const [passwordConfirm, setPasswordConfirm] = useState("")
     const [conflictDialog, setConflictDialog] = useState(false)
     const { getCurrentUser } = useContext(UserContext)
-    const { services, getServices } = useContext(ServiceContext)
-    const { suggestions, getSuggestions } = useContext(SuggestionContext)
+    // const { services, getServices } = useContext(ServiceContext)
+    // const { suggestions, getSuggestions } = useContext(SuggestionContext)
     const loggedInUserId = parseInt(sessionStorage.getItem('app_user_id'))
     let text = {}
 
@@ -30,11 +30,13 @@ export const Register = () => {
     useEffect(() => {
         getServices()
             .then(getSuggestions)
-        if (loggedInUserId) {
-            return fetch(`${authApi.localApiBaseUrl}/${authApi.endpoint}/${loggedInUserId}`)
-                .then(res => res.json())
-                .then(setRegisterUser)
-        }
+            .then(() => {
+                if (loggedInUserId) {
+                    return fetch(`${authApi.localApiBaseUrl}/${authApi.endpoint}/${loggedInUserId}`)
+                        .then(res => res.json())
+                        .then(setRegisterUser)
+                }
+            })
     }, [])
 
     const handleInputChange = (event) => {

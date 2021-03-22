@@ -1,22 +1,9 @@
-import React, { createContext, useState } from 'react'
-import { Settings } from '../../Settings'
+import { Settings } from "../../Settings"
 
-export const ServiceContext = createContext()
+export let services = []
 
-export const ServiceProvider = props => {
-    const [services, setServices] = useState([])
-
-    const getServices = () => {
+export const getServices = () => {
         return fetch(`${Settings.localApi}/services`)
             .then(res => res.json())
-            .then(setServices)
+            .then(pRes => services = pRes)
     }
-
-    return (
-        <ServiceContext.Provider value={{
-            services, getServices
-        }}>
-            {props.children}
-        </ServiceContext.Provider>
-    )
-}
