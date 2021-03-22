@@ -7,7 +7,7 @@ import { addPlanArtist, getPlanArtists } from '../artists/PlanArtistProvider'
 import './ReportTable.css'
 
 export const ReportTable = ({ report }) => {
-    const { addPlan, getPlans, plans } = useContext(PlanContext)
+    const { addPlan, getPlans } = useContext(PlanContext)
 
     const [suggestion, setSuggestion] = useState({})
     const [reportTable, setReportTable] = useState([])
@@ -99,7 +99,7 @@ export const ReportTable = ({ report }) => {
         <>
             <h2>Your top {reportTable.length} artists for {report.period.name}</h2>
             <label htmlFor="suggestionSelect">Change the payout calculation to </label>
-            <select id="suggestionSelect" value={suggestion.id} onChange={handleLiveSuggestionChange} className="report__trackValueSelect">
+            <select id="suggestionSelect" value={suggestion?.id} onChange={handleLiveSuggestionChange} className="report__trackValueSelect">
                 {
                     suggestions.map(s => <option key={"suggestion " + s.id} value={s.id}>{s.name}</option>)
                 }
@@ -111,7 +111,7 @@ export const ReportTable = ({ report }) => {
                         <th>Track Count</th>
                         <th>% of report</th>
                         <th>Estimated {report.service.name} Payout</th>
-                        <th>Estimated Potential Payout (as {suggestion.name})</th>
+                        <th>Estimated Potential Payout (as {suggestion?.name})</th>
                         <th>Suggested Donation</th>
                     </tr>
                 </thead>
