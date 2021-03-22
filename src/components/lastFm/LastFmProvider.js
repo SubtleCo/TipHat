@@ -5,13 +5,14 @@ export const LastFmContext = createContext()
 export const LastFmProvider = props => {
     const [liveReport, setLiveReport] = useState({})
 
-    const getLiveReport = (type, period, limit, userName, periodId) => {
-        return fetch(`http://ws.audioscrobbler.com/2.0/?method=user.gettop${type}&user=${userName}&period=${period}&limit=${limit}&api_key=${process.env.REACT_APP_LAST_FM_KEY}&format=json`)
+    const getLiveReport = (type, period, limit, user, periodObj, serviceObj) => {
+        return fetch(`http://ws.audioscrobbler.com/2.0/?method=user.gettop${type}&user=${user.lastFmAccount}&period=${period}&limit=${limit}&api_key=${process.env.REACT_APP_LAST_FM_KEY}&format=json`)
         .then(res => res.json())
         .then(report => {
             report.limit = limit
-            report.period = period
-            report.periodId = periodId
+            report.user = user
+            report.period = periodObj
+            report.service = serviceObj
             return report
         })
         .then(setLiveReport)
@@ -19,7 +20,7 @@ export const LastFmProvider = props => {
 
     return (
         <LastFmContext.Provider value={{
-            liveReport, getLiveReport
+            liveReport, getLiveReport, setLiveReport
         }}>
             {props.children}
         </LastFmContext.Provider>

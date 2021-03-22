@@ -175,6 +175,26 @@
       "paid": true,
       "suggestionId": 3,
       "id": 8
+    },
+    {
+      "userId": 1,
+      "timestamp": 1616433668196,
+      "trackCount": 379,
+      "periodId": 2,
+      "name": "Top 20 artists for the last month, 2/22/2021",
+      "paid": false,
+      "suggestionId": 1,
+      "id": 9
+    },
+    {
+      "userId": 1,
+      "timestamp": 1616433679807,
+      "trackCount": 79,
+      "periodId": 1,
+      "name": "Top 5 artists for the last week, 2/22/2021",
+      "paid": true,
+      "suggestionId": 1,
+      "id": 10
     }
   ],
   "artists": [
@@ -257,6 +277,10 @@
     {
       "name": "Moses Sumney",
       "id": 20
+    },
+    {
+      "name": "Christopher Larkin",
+      "id": 21
     }
   ],
   "planArtists": [
@@ -631,6 +655,156 @@
       "planId": 8,
       "trackCount": 23,
       "id": 62
+    },
+    {
+      "artistId": 6,
+      "planId": 9,
+      "trackCount": 35,
+      "id": 63
+    },
+    {
+      "artistId": 2,
+      "planId": 9,
+      "trackCount": 19,
+      "id": 64
+    },
+    {
+      "artistId": 4,
+      "planId": 9,
+      "trackCount": 19,
+      "id": 65
+    },
+    {
+      "artistId": 8,
+      "planId": 9,
+      "trackCount": 23,
+      "id": 66
+    },
+    {
+      "artistId": 9,
+      "planId": 9,
+      "trackCount": 23,
+      "id": 67
+    },
+    {
+      "artistId": 10,
+      "planId": 9,
+      "trackCount": 21,
+      "id": 68
+    },
+    {
+      "artistId": 5,
+      "planId": 9,
+      "trackCount": 19,
+      "id": 69
+    },
+    {
+      "artistId": 11,
+      "planId": 9,
+      "trackCount": 18,
+      "id": 70
+    },
+    {
+      "artistId": 1,
+      "planId": 9,
+      "trackCount": 18,
+      "id": 71
+    },
+    {
+      "artistId": 12,
+      "planId": 9,
+      "trackCount": 18,
+      "id": 72
+    },
+    {
+      "artistId": 13,
+      "planId": 9,
+      "trackCount": 17,
+      "id": 73
+    },
+    {
+      "artistId": 15,
+      "planId": 9,
+      "trackCount": 17,
+      "id": 74
+    },
+    {
+      "artistId": 14,
+      "planId": 9,
+      "trackCount": 16,
+      "id": 75
+    },
+    {
+      "artistId": 16,
+      "planId": 9,
+      "trackCount": 15,
+      "id": 76
+    },
+    {
+      "artistId": 3,
+      "planId": 9,
+      "trackCount": 15,
+      "id": 77
+    },
+    {
+      "artistId": 17,
+      "planId": 9,
+      "trackCount": 13,
+      "id": 78
+    },
+    {
+      "artistId": 18,
+      "planId": 9,
+      "trackCount": 13,
+      "id": 79
+    },
+    {
+      "artistId": 19,
+      "planId": 9,
+      "trackCount": 12,
+      "id": 80
+    },
+    {
+      "artistId": 7,
+      "planId": 9,
+      "trackCount": 24,
+      "id": 81
+    },
+    {
+      "artistId": 21,
+      "planId": 9,
+      "trackCount": 24,
+      "id": 82
+    },
+    {
+      "artistId": 21,
+      "planId": 10,
+      "trackCount": 24,
+      "id": 83
+    },
+    {
+      "artistId": 1,
+      "planId": 10,
+      "trackCount": 15,
+      "id": 84
+    },
+    {
+      "artistId": 15,
+      "planId": 10,
+      "trackCount": 13,
+      "id": 85
+    },
+    {
+      "artistId": 18,
+      "planId": 10,
+      "trackCount": 13,
+      "id": 86
+    },
+    {
+      "artistId": 12,
+      "planId": 10,
+      "trackCount": 14,
+      "id": 87
     }
   ],
   "users": [
@@ -641,7 +815,7 @@
       "lastFmAccount": "SubtleCo",
       "password": "qwerty",
       "serviceId": 3,
-      "suggestionId": 3,
+      "suggestionId": 2,
       "id": 1
     },
     {

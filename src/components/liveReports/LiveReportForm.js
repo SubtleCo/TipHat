@@ -1,8 +1,10 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { UserContext } from '../auth/UserProvider'
 import { LastFmContext, LastFmProvider } from '../lastFm/LastFmProvider'
+import { services, getServices } from '../services/ServiceProvider'
 import { periods, getPeriods } from '../periods/PeriodProvider'
 import './LiveReportForm.css'
+import { ReportTable } from './ReportTable'
 
 export const LiveReportForm = () => {
     const [isLoading, setIsLoading] = useState(true)
@@ -12,11 +14,12 @@ export const LiveReportForm = () => {
         periodId: 0
     })
     const { currentUser, getCurrentUser } = useContext(UserContext)
-    const { getLiveReport } = useContext(LastFmContext)
+    const { liveReport, getLiveReport, setLiveReport } = useContext(LastFmContext)
 
     const loadData = () => {
         const promises = [
-            getPeriods()
+            getPeriods(),
+            getServices()
         ]
         Promise.all(promises)
             .then(() => {
@@ -26,6 +29,10 @@ export const LiveReportForm = () => {
 
     useEffect(() => {
         loadData()
+        getCurrentUser()
+        return(() => {
+            setLiveReport({})
+        })
     }, [])
 
     const handleInputChange = e => {
@@ -39,31 +46,40 @@ export const LiveReportForm = () => {
     const handleSubmit = e => {
         e.preventDefault()
         const typeString = 'artists'
-        const periodString = periods.find(p => p.id === apiParams.periodId).query
-        getLiveReport(typeString, periodString, apiParams.limit, currentUser.lastFmAccount, apiParams.periodId)
+        const period = periods.find(p => p.id === apiParams.periodId)
+        const periodString = period.query
+        const service = services.find(s => s.id === currentUser.serviceId)
+        getLiveReport(typeString, periodString, apiParams.limit, currentUser, period, service)
     }
 
 
     return (
-        <form className="report__api__form" onSubmit={handleSubmit}>
-            <h2>Generate a listening report</h2>
-            <p>Using your last.fm username <strong>{currentUser.lastFmAccount}</strong></p>
-            <div className="api__form__selects">
-                <p className="api__form__p">I'd like to see my top</p>
-                <fieldset>
-                    <input id="limit" type='number' min="5" max="50" value={apiParams.limit} onChange={handleInputChange}></input>
-                </fieldset>
-                <p className="api__form__p">artists for</p>
-                <fieldset>
-                    <select id="periodId" onChange={handleInputChange}>
-                        <option value="0">Select a period</option>
-                        {
-                            periods.map(period => <option key={"period " + period.id} value={period.id} onChange={handleInputChange}>{period.name}</option>)
-                        }
-                    </select>
-                </fieldset>
-                <input type="submit" className="button btn--go" id="apiSubmit" value="Please!"></input>
-            </div>
-        </form>
+        <>
+            <form className="report__api__form" onSubmit={handleSubmit}>
+                <h2>Generate a listening report</h2>
+                <p>Using your last.fm username <strong>{currentUser.lastFmAccount}</strong></p>
+                <div className="api__form__selects">
+                    <p className="api__form__p">I'd like to see my top</p>
+                    <fieldset>
+                        <input id="limit" type='number' min="5" max="50" value={apiParams.limit} onChange={handleInputChange}></input>
+                    </fieldset>
+                    <p className="api__form__p">artists for</p>
+                    <fieldset>
+                        <select id="periodId" onChange={handleInputChange}>
+                            <option value="0">Select a period</option>
+                            {
+                                periods.map(period => <option key={"period " + period.id} value={period.id} onChange={handleInputChange}>{period.name}</option>)
+                            }
+                        </select>
+                    </fieldset>
+                    <input type="submit" className="button btn--go" id="apiSubmit" value="Please!"></input>
+                </div>
+            </form>
+            {Object.keys(liveReport).length > 0 &&
+                <ReportTable liveReport={liveReport}
+                    
+                    />
+            }
+        </>
     )
 }

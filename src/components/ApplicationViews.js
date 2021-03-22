@@ -21,25 +21,18 @@ export const ApplicationViews = () => {
                     <Home />
                 </Route>
 
-                <SuggestionProvider>
-                    <ServiceProvider>
-                        <Route exact path="/user/edit">
-                            <Register />
-                        </Route>
-                    </ServiceProvider>
-                </SuggestionProvider>
+
+                <Route exact path="/user/edit">
+                    <Register />
+                </Route>
+
 
                 <LastFmProvider>
-                    <ServiceProvider>
-                        <SuggestionProvider>
-                            <PlanProvider>
-                                <Route exact path="/reports/create">
-                                    <LiveReportForm />
-                                    <ReportTable />
-                                </Route>
-                            </PlanProvider>
-                        </SuggestionProvider>
-                    </ServiceProvider>
+                    <PlanProvider>
+                        <Route exact path="/reports/create">
+                            <LiveReportForm />
+                        </Route>
+                    </PlanProvider>
                 </LastFmProvider>
 
             </UserProvider>
