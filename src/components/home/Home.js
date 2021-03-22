@@ -1,9 +1,8 @@
-import React, { useContext, useEffect } from 'react'
-import { UserContext } from '../auth/UserProvider'
+import React, { useEffect } from 'react'
+import { getCurrentUser } from '../auth/UserProvider'
 import './Home.css'
 
 export const Home = () => {
-    const { getCurrentUser } = useContext(UserContext)
 
     useEffect(() => {
         getCurrentUser()

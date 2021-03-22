@@ -1,14 +1,14 @@
-import React, { useContext, useState } from "react"
+import React, { useState } from "react"
 import { Link, useHistory } from "react-router-dom";
 import { authApi, userStorageKey } from "./authSettings"
+import { getCurrentUser } from './UserProvider'
 import "./Login.css"
-import { UserContext } from "./UserProvider";
+
 
 
 export const Login = () => {
     const [loginUser, setLoginUser] = useState({ email: "", password: ""})
     const [existDialog, setExistDialog] = useState(false)
-    const { getCurrentUser } = useContext(UserContext)
 
     const history = useHistory()
 

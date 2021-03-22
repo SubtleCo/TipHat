@@ -1,10 +1,10 @@
-import React, { useContext, useEffect, useState } from "react"
+import React, { useEffect, useState } from "react"
 import { useHistory } from "react-router-dom"
 import { services, getServices } from "../services/ServiceProvider"
 import { suggestions, getSuggestions } from "../suggestions/SuggestionsProvider"
 import { authApi, userStorageKey } from "./authSettings"
 import "./Login.css"
-import { UserContext } from "./UserProvider"
+import { getCurrentUser } from "./UserProvider"
 
 export const Register = () => {
 
@@ -19,7 +19,6 @@ export const Register = () => {
     })
     const [passwordConfirm, setPasswordConfirm] = useState("")
     const [conflictDialog, setConflictDialog] = useState(false)
-    const { getCurrentUser } = useContext(UserContext)
     // const { services, getServices } = useContext(ServiceContext)
     // const { suggestions, getSuggestions } = useContext(SuggestionContext)
     const loggedInUserId = parseInt(sessionStorage.getItem('app_user_id'))

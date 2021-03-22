@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react'
-import { UserContext } from '../auth/UserProvider'
+import { currentUser, getCurrentUser } from '../auth/UserProvider'
 import { LastFmContext, LastFmProvider } from '../lastFm/LastFmProvider'
 import { services, getServices } from '../services/ServiceProvider'
 import { periods, getPeriods } from '../periods/PeriodProvider'
@@ -13,7 +13,6 @@ export const LiveReportForm = () => {
         type: "",
         periodId: 0
     })
-    const { currentUser, getCurrentUser } = useContext(UserContext)
     const { liveReport, getLiveReport, setLiveReport } = useContext(LastFmContext)
 
     const loadData = () => {
