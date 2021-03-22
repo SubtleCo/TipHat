@@ -5,9 +5,7 @@ import { Route, Redirect } from "react-router-dom"
 import { Login } from "./auth/Login"
 import { Register } from "./auth/Register"
 import { userStorageKey } from "./auth/authSettings"
-import { ServiceProvider } from './services/ServiceProvider'
-import { SuggestionProvider } from './suggestions/SuggestionsProvider'
-import { UserProvider } from './auth/UserProvider'
+
 
 export const TipHat = props => {
     return (
@@ -25,7 +23,6 @@ export const TipHat = props => {
                 }
             }} />
 
-            <UserProvider>
                 <Route path="/login">
                     <Login />
                 </Route>
@@ -34,7 +31,6 @@ export const TipHat = props => {
                     <Register />
                 </Route>
 
-            </UserProvider>
         </>
     )
 }
