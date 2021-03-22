@@ -1,14 +1,20 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useState, useEffect } from 'react'
 import { useHistory } from 'react-router'
+import { UserContext } from '../auth/UserProvider'
 import { LastFmContext } from '../lastFm/LastFmProvider'
+import { PeriodContext } from '../periods/PeriodProvider'
+import { PlanContext } from '../plans/PlanProvider'
 import { ServiceContext } from '../services/ServiceProvider'
 import { SuggestionContext } from '../suggestions/SuggestionsProvider'
+import { apiArtists, getArtists, checkForArtist, addArtist } from '../artists/ArtistProvider'
+import { getPlanArtists, addPlanArtist } from '../artists/PlanArtistProvider'
 import './ReportTable.css'
 
 export const ReportTable = () => {
     const { addPlan } = useContext(PlanContext)
     const { liveReport } = useContext(LastFmContext)
     const { currentUser } = useContext(UserContext)
+    const { periods, getPeriods } = useContext(PeriodContext)
 
     const { services, getServices } = useContext(ServiceContext)
     const { suggestions, getSuggestions } = useContext(SuggestionContext)
@@ -23,13 +29,13 @@ export const ReportTable = () => {
 
     const history = useHistory()
 
-    const service = currentUser.serviceId
-
     const loadData = () => {
         const promises = [
             getArtists(),
             getPlanArtists(),
-            getServices(), getSuggestions()
+            getServices(), 
+            getSuggestions(),
+            getPeriods()
         ]
         Promise.all(promises)
             .then(() => {
@@ -104,7 +110,7 @@ export const ReportTable = () => {
             })
     }
 
-    return (reportTable.length &&
+    return (Boolean(reportTable.length) &&
         <>
             <h2>Your top {reportTable.length} artists for {reportPeriod.name}</h2>
             <label htmlFor="suggestionSelect">Change the payout calculation to </label>
