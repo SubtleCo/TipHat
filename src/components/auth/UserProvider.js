@@ -1,25 +1,10 @@
-import React, { createContext, useState } from 'react'
 import { authApi } from './authSettings'
 
-export const UserContext = createContext()
+export let currentUser = {}
 
-export const UserProvider = props => {
-
-    const [currentUser, setCurrentUser] = useState({})
-
-    const getCurrentUser = () => {
+export const getCurrentUser = () => {
         const id = parseInt(sessionStorage.getItem(`app_user_id`))
         return fetch(`${authApi.localApiBaseUrl}/users/${id}`)
             .then(res => res.json())
-            .then(setCurrentUser)
+            .then(pRes => currentUser = pRes)
     }
-
-    return (
-        <UserContext.Provider value={{
-            currentUser, getCurrentUser
-        }}>
-            {props.children}
-        </UserContext.Provider>
-    )
-}
-

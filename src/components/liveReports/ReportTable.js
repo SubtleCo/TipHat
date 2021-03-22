@@ -1,10 +1,9 @@
 import React, { useContext, useState, useEffect } from 'react'
 import { useHistory } from 'react-router'
-import { UserContext } from '../auth/UserProvider'
 import { PlanContext } from '../plans/PlanProvider'
 import { suggestions, getSuggestions } from '../suggestions/SuggestionsProvider'
 import { apiArtists, getArtists, checkForArtist, addArtist } from '../artists/ArtistProvider'
-import { getPlanArtists, addPlanArtist } from '../artists/PlanArtistProvider'
+import { addPlanArtist } from '../artists/PlanArtistProvider'
 import './ReportTable.css'
 
 export const ReportTable = ({ liveReport }) => {
