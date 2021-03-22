@@ -2,19 +2,18 @@ import React, { useContext, useState, useEffect } from 'react'
 import { useHistory } from 'react-router'
 import { UserContext } from '../auth/UserProvider'
 import { LastFmContext } from '../lastFm/LastFmProvider'
-import { PeriodContext } from '../periods/PeriodProvider'
 import { PlanContext } from '../plans/PlanProvider'
 import { ServiceContext } from '../services/ServiceProvider'
 import { SuggestionContext } from '../suggestions/SuggestionsProvider'
 import { apiArtists, getArtists, checkForArtist, addArtist } from '../artists/ArtistProvider'
 import { getPlanArtists, addPlanArtist } from '../artists/PlanArtistProvider'
+import { periods, getPeriods } from '../periods/PeriodProvider'
 import './ReportTable.css'
 
 export const ReportTable = () => {
     const { addPlan } = useContext(PlanContext)
     const { liveReport } = useContext(LastFmContext)
     const { currentUser } = useContext(UserContext)
-    const { periods, getPeriods } = useContext(PeriodContext)
 
     const { services, getServices } = useContext(ServiceContext)
     const { suggestions, getSuggestions } = useContext(SuggestionContext)
@@ -32,10 +31,10 @@ export const ReportTable = () => {
     const loadData = () => {
         const promises = [
             getArtists(),
+            getPeriods(),
             getPlanArtists(),
             getServices(), 
-            getSuggestions(),
-            getPeriods()
+            getSuggestions()
         ]
         Promise.all(promises)
             .then(() => {

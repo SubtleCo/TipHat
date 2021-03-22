@@ -1,11 +1,11 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { UserContext } from '../auth/UserProvider'
 import { LastFmContext, LastFmProvider } from '../lastFm/LastFmProvider'
-import { PeriodContext } from '../periods/PeriodProvider'
+import { periods, getPeriods } from '../periods/PeriodProvider'
 import './LiveReportForm.css'
 
 export const LiveReportForm = () => {
-    const { periods, getPeriods } = useContext(PeriodContext)
+    const [isLoading, setIsLoading] = useState(true)
     const [apiParams, setApiParams] = useState({
         limit: "20",
         type: "",
@@ -14,9 +14,18 @@ export const LiveReportForm = () => {
     const { currentUser, getCurrentUser } = useContext(UserContext)
     const { getLiveReport } = useContext(LastFmContext)
 
+    const loadData = () => {
+        const promises = [
+            getPeriods()
+        ]
+        Promise.all(promises)
+            .then(() => {
+                setIsLoading(false)
+            })
+    }
+
     useEffect(() => {
-        getCurrentUser()
-            .then(getPeriods)
+        loadData()
     }, [])
 
     const handleInputChange = e => {

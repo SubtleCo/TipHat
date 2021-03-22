@@ -33,12 +33,10 @@ export const ApplicationViews = () => {
                     <ServiceProvider>
                         <SuggestionProvider>
                             <PlanProvider>
-                                <PeriodProvider>
-                                    <Route exact path="/reports/create">
-                                        <LiveReportForm />
-                                        <ReportTable />
-                                    </Route>
-                                </PeriodProvider>
+                                <Route exact path="/reports/create">
+                                    <LiveReportForm />
+                                    <ReportTable />
+                                </Route>
                             </PlanProvider>
                         </SuggestionProvider>
                     </ServiceProvider>
