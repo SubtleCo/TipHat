@@ -75,7 +75,7 @@ export const LiveReportForm = () => {
                 </div>
             </form>
             {Object.keys(liveReport).length > 0 &&
-                <ReportTable liveReport={liveReport}
+                <ReportTable report={liveReport}
                     
                     />
             }

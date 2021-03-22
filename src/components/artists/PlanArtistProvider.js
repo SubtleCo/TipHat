@@ -1,11 +1,11 @@
 import { Settings } from '../../Settings'
 
-export let planArtists = []
+export let apiPlanArtists = []
 
 export const getPlanArtists = () => {
         return fetch(`${Settings.localApi}/planArtists`)
             .then(res => res.json())
-            .then(pRes => planArtists = pRes)
+            .then(pRes => apiPlanArtists = pRes)
     }
 
 export const addPlanArtist = planArtist => {

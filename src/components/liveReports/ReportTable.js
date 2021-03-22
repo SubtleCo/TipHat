@@ -1,19 +1,21 @@
 import React, { useContext, useState, useEffect } from 'react'
-import { useHistory } from 'react-router'
+import { useHistory, useParams } from 'react-router'
 import { PlanContext } from '../plans/PlanProvider'
 import { suggestions, getSuggestions } from '../suggestions/SuggestionsProvider'
 import { apiArtists, getArtists, checkForArtist, addArtist } from '../artists/ArtistProvider'
-import { addPlanArtist } from '../artists/PlanArtistProvider'
+import { addPlanArtist, getPlanArtists } from '../artists/PlanArtistProvider'
 import './ReportTable.css'
 
-export const ReportTable = ({ liveReport }) => {
-    const { addPlan } = useContext(PlanContext)
+export const ReportTable = ({ report }) => {
+    const { addPlan, getPlans, plans } = useContext(PlanContext)
 
     const [suggestion, setSuggestion] = useState({})
     const [reportTable, setReportTable] = useState([])
     const [isLoading, setIsLoading] = useState(true)
 
+
     const history = useHistory()
+    const { planId } = useParams()
 
     const trackCounts = reportTable.map(line => parseInt(line.playcount))
     const totalCount = trackCounts.reduce((a, b) => a + b, 0)
@@ -31,15 +33,20 @@ export const ReportTable = ({ liveReport }) => {
 
     useEffect(() => {
         setIsLoading(true)
+        getPlans()
         loadData()
     }, [])
-    
-    useEffect(() => {
-        setReportTable(liveReport.topartists?.artist)
-    }, [liveReport])
 
     useEffect(() => {
-        setSuggestion(suggestions.find(s => s.id === liveReport.user.suggestionId))
+        setReportTable(report.topartists?.artist)
+    }, [report])
+
+    useEffect(() => {
+        if (planId) {
+            setSuggestion(suggestions.find(s => s.id === 4))
+        } else {
+            setSuggestion(suggestions.find(s => s.id === report.user.suggestionId))
+        }
     }, [isLoading])
 
     const handleLiveSuggestionChange = e => {
@@ -48,10 +55,10 @@ export const ReportTable = ({ liveReport }) => {
 
     const handleSave = e => {
         const artists = [...apiArtists]
-        const reportPeriod = liveReport.period
+        const reportPeriod = report.period
 
         const newPlan = {}
-        newPlan.userId = liveReport.user.id
+        newPlan.userId = report.user.id
         newPlan.timestamp = Date.now()
         newPlan.trackCount = totalCount
         newPlan.periodId = reportPeriod.id
@@ -90,9 +97,9 @@ export const ReportTable = ({ liveReport }) => {
 
     return (
         <>
-            <h2>Your top {reportTable.length} artists for {liveReport.period.name}</h2>
+            <h2>Your top {reportTable.length} artists for {report.period.name}</h2>
             <label htmlFor="suggestionSelect">Change the payout calculation to </label>
-            <select id="suggestionSelect" value={suggestion.id} onChange={handleLiveSuggestionChange} className="liveReport__trackValueSelect">
+            <select id="suggestionSelect" value={suggestion.id} onChange={handleLiveSuggestionChange} className="report__trackValueSelect">
                 {
                     suggestions.map(s => <option key={"suggestion " + s.id} value={s.id}>{s.name}</option>)
                 }
@@ -103,7 +110,7 @@ export const ReportTable = ({ liveReport }) => {
                         <th>Artist</th>
                         <th>Track Count</th>
                         <th>% of report</th>
-                        <th>Estimated {liveReport.service.name} Payout</th>
+                        <th>Estimated {report.service.name} Payout</th>
                         <th>Estimated Potential Payout (as {suggestion.name})</th>
                         <th>Suggested Donation</th>
                     </tr>
@@ -111,7 +118,7 @@ export const ReportTable = ({ liveReport }) => {
                 <tbody className="reportTable--body">
                     {
                         reportTable.map((line, i) => {
-                            const payout = (line.playcount * liveReport.service.amount).toFixed(2)
+                            const payout = (line.playcount * report.service.amount).toFixed(2)
                             const potential = (line.playcount * suggestion?.amount).toFixed(2)
                             return (
                                 <tr key={i}>
