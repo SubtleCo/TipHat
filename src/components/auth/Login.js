@@ -1,3 +1,5 @@
+// Login module
+
 import React, { useState } from "react"
 import { Link, useHistory } from "react-router-dom";
 import { authApi, userStorageKey } from "./authSettings"
@@ -11,14 +13,15 @@ export const Login = () => {
     const [existDialog, setExistDialog] = useState(false)
 
     const history = useHistory()
-
+    
+    // Keep track of user input
     const handleInputChange = (event) => {
         const newUser = { ...loginUser }
         newUser[event.target.id] = event.target.value
         setLoginUser(newUser)
     }
 
-
+    // Check if a user exitsts in the DB
     const existingUserCheck = () => {
         return fetch(`${authApi.localApiBaseUrl}/${authApi.endpoint}?email=${loginUser.email}`)
             .then(res => res.json())
@@ -31,6 +34,7 @@ export const Login = () => {
         existingUserCheck()
             .then(exists => {
                 if (exists) {
+                    // check to see if passwords match
                     if (exists.password === loginUser.password) {
                         sessionStorage.setItem(userStorageKey, exists.id)
                         getCurrentUser()

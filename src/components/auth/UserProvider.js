@@ -1,3 +1,5 @@
+// Pull the current user from the local API
+
 import { authApi } from './authSettings'
 
 export let currentUser = {}

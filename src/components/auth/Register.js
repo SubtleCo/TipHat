@@ -1,3 +1,5 @@
+// Registration module
+
 import React, { useEffect, useState } from "react"
 import { useHistory } from "react-router-dom"
 import { services, getServices } from "../services/ServiceProvider"
@@ -19,8 +21,6 @@ export const Register = () => {
     })
     const [passwordConfirm, setPasswordConfirm] = useState("")
     const [conflictDialog, setConflictDialog] = useState(false)
-    // const { services, getServices } = useContext(ServiceContext)
-    // const { suggestions, getSuggestions } = useContext(SuggestionContext)
     const loggedInUserId = parseInt(sessionStorage.getItem('app_user_id'))
     let text = {}
 
@@ -30,6 +30,7 @@ export const Register = () => {
         getServices()
             .then(getSuggestions)
             .then(() => {
+                // Check to see if a user is logged in (editing account) or not (adding account)
                 if (loggedInUserId) {
                     return fetch(`${authApi.localApiBaseUrl}/${authApi.endpoint}/${loggedInUserId}`)
                         .then(res => res.json())
@@ -38,6 +39,7 @@ export const Register = () => {
             })
     }, [])
 
+    // Keep track of user input
     const handleInputChange = (event) => {
         const newUser = { ...registerUser }
         if (event.target.id.includes("Id")) {
@@ -77,6 +79,7 @@ export const Register = () => {
     const handleRegister = (e) => {
         if (checkForSelects()) {
             e.preventDefault()
+            // If the user is logged in, check to see the passwords match, then edit the user
             if (loggedInUserId) {
                 if (registerUser.password === passwordConfirm) {
                     return editUser()
@@ -85,6 +88,7 @@ export const Register = () => {
                 }
             }
             existingUserCheck()
+            // if the new user has a unique email to the API, register a new user
                 .then((userExists) => {
                     if (!userExists) {
                         if (registerUser.password === passwordConfirm) {
@@ -125,11 +129,13 @@ export const Register = () => {
 
     }
 
+    // Make sure user has chosen something in the two selects
     const checkForSelects = () => {
         if (registerUser.suggestionId === 0 || registerUser.serviceId === 0) return false
         return true
     }
 
+    // Set display text based on if this is a create or an edit session
     if (loggedInUserId) {
         text.greeting = "Changed your mind about something?"
         text.detail = "No problem! You can change your name, email, password, or track value!"

@@ -1,3 +1,5 @@
+// Provides an array of listening periods, used in a select in LiveReportForm
+
 import { Settings } from "../../Settings"
 
 export let periods = []

@@ -1,3 +1,6 @@
+// This module gets all plans from the DB, filters them to the current user, sorts them in order of timestamp, and divides them into paid / unpaid plans.
+// Each plan is then afforded a "ReportCard"
+
 import React, { useContext, useEffect, useState } from 'react'
 import { currentUser, getCurrentUser } from '../auth/UserProvider'
 import { PlanContext } from '../plans/PlanProvider'
@@ -10,7 +13,6 @@ export const ReportList = props => {
     const [displayUnpaidPlans, setDisplayUnpaidPlans] = useState([])
 
     useEffect(() => {
-        console.log('hi!')
         getPlans()
         getCurrentUser()
     }, [])
@@ -25,14 +27,17 @@ export const ReportList = props => {
     }, [plans])
 
     return (
+        
         <section className="savedReports--container main__container">
             <h2>Your Saved Reports</h2>
+
             <section id="savedReports__unpaid">
                 <h3 className="savedReports__section--title">Unpaid Reports</h3>
                 {
                     displayUnpaidPlans.map(dP => <ReportCard key={dP.id} report={dP} />)
                 }
             </section>
+
             <section id="savedReports__paid">
                 <h3 className="savedReports__section--title">Paid Reports</h3>
                 {
