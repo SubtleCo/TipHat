@@ -101,7 +101,7 @@ export const ReportTable = ({ report }) => {
                         const foundArtist = artists.find(a => a.name === artist.name)
                         addPlanArtist({
                             artistId: foundArtist.id,
-                            planId: planId,
+                            planId: plan.id,
                             trackCount: parseInt(artist.playcount)
                         })
                     }

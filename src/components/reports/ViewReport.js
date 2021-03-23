@@ -47,7 +47,6 @@ export const ViewReport = () => {
         setThisPlan(plans.find(p => p.id === parseInt(planId)))
     }, [plans])
 
-    // These are all conditionals, as thisPlan isn't in place on first render - can this be refactored?
     useEffect(() => {
         // Grab the planartists from the API, which was called in loadData()
         const allPlanArtists = [...apiPlanArtists]
@@ -55,8 +54,10 @@ export const ViewReport = () => {
         const artists = [...apiArtists]
         // filter plan artist for this plan
         const planArtists = allPlanArtists.filter(pA => pA.planId === thisPlan?.id)
+        // sort in heirarchy of trackCount
         const sortedPlanArtists = planArtists.sort((a, b) => b.trackCount - a.trackCount)
-
+        
+        // These are all conditionals, as thisPlan isn't in place on first render - can this be refactored?
         setDisplayPlan({
             artistCount: planArtists.length,
             paid: thisPlan?.paid,
@@ -64,7 +65,7 @@ export const ViewReport = () => {
             period: periods.find(p => p.id === thisPlan?.periodId),
             suggestion: suggestions.find(s => s.id === thisPlan?.suggestionId),
             service: services.find(s => s.id === currentUser.serviceId),
-            reportTable: planArtists.map(pA => {
+            reportTable: sortedPlanArtists.map(pA => {
                 const artist = artists.find(a => a.id === pA.artistId)
                 return ({
                     name: artist.name,
@@ -75,6 +76,7 @@ export const ViewReport = () => {
 
     }, [thisPlan, isLoading])
 
+    // if plan is not paid, allows user to edit suggestion / track value
     const handleLiveSuggestionChange = e => {
         const newPlan = { ...displayPlan }
         newPlan.suggestion = suggestions.find(s => s.id === parseInt(e.target.value))
@@ -91,6 +93,8 @@ export const ViewReport = () => {
     return ((!isLoading) &&
         <section className="Report__View main__container">
             <h2>Your top {displayPlan?.artistCount} artists for {displayPlan.period?.name}</h2>
+
+            {/* if this plan is unpaid, allow user to edit suggestion / track value. */}
             {displayPlan?.paid ? <p>This Plan is Paid!</p> :
                 <>
                     <label htmlFor="suggestionSelect">Change the payout calculation to </label>
@@ -103,6 +107,7 @@ export const ViewReport = () => {
             }
 
             <table className="reportTable">
+
                 <thead>
                     <tr>
                         <th>Artist</th>
@@ -113,6 +118,7 @@ export const ViewReport = () => {
                         <th>Suggested Donation</th>
                     </tr>
                 </thead>
+                
                 <tbody className="reportTable--body">
                     {
                         displayPlan.reportTable.map((line, i) => {
@@ -132,6 +138,8 @@ export const ViewReport = () => {
                     }
                 </tbody>
             </table>
+
+            {/* if this plan is unpaid, allow the user to save the edited version to the local api. otherwise, this button simply reroutes to the reports page */}
             {displayPlan?.paid ? <button onClick={() => history.push("/reports")}>Back To Reports</button> : <button onClick={handleEdit}>Save Changes</button>}
         </section>
     )

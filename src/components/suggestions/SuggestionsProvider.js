@@ -1,3 +1,5 @@
+// provides data for suggestions from the local api
+
 import { Settings } from '../../Settings'
 
 export let suggestions = []
