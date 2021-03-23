@@ -70,15 +70,14 @@ export const ReportTable = ({ report }) => {
 
         addPlan(newPlan)
             .then(plan => plan.json())
-            .then(plan => plan.id)
-            .then(planId => {
+            .then(plan => {
                 reportTable.forEach(artist => {
                     if (!checkForArtist(artist.name, artists)) {
                         addArtist(artist.name)
                             .then(dbArtist => {
                                 addPlanArtist({
                                     artistId: dbArtist.id,
-                                    planId: planId,
+                                    planId: plan.id,
                                     trackCount: parseInt(artist.playcount)
                                 })
                             })
