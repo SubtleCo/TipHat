@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react'
 import { getCurrentUser } from '../auth/UserProvider'
 import './Home.css'
+import CDChart from '../../images/CDChart.png'
 
 export const Home = () => {
 
@@ -12,18 +13,38 @@ export const Home = () => {
         <>
             <h2>Welcome to TipHat</h2>
             <section className="home__container">
-                <article className="home__about">
-                    I'm baby hexagon cornhole kitsch palo santo bespoke heirloom. Umami chambray snackwave, gastropub fixie succulents franzen bitters yr tattooed live-edge master cleanse. Pork belly shaman cardigan vegan sustainable craft beer fixie wayfarers photo booth. Flannel hell of pickled shaman, brooklyn four loko sartorial austin. Asymmetrical polaroid normcore semiotics vexillologist, street art organic forage cray four loko woke post-ironic gentrify farm-to-table. Yr chillwave mumblecore, waistcoat raclette succulents cornhole woke etsy before they sold out bushwick keytar vape listicle.
-                </article>
-                <article className="home__about">
-                    Umami copper mug austin artisan celiac. Banh mi umami jianbing, edison bulb craft beer succulents roof party chicharrones copper mug fashion axe trust fund direct trade chillwave. Letterpress kale chips chambray mlkshk salvia mumblecore, quinoa street art edison bulb ennui pour-over mustache polaroid. Cronut readymade 8-bit, hell of polaroid drinking vinegar wayfarers kogi glossier fanny pack. Vaporware celiac blog VHS subway tile banh mi swag single-origin coffee disrupt pug craft beer. Kickstarter etsy actually pabst cornhole art party sartorial roof party organic godard man braid.
-                 </article>
-                <article className="home__about">
-                    Adaptogen offal small batch edison bulb slow-carb. Portland try-hard locavore truffaut affogato photo booth, post-ironic next level food truck tilde single-origin coffee taiyaki lomo. Sriracha taxidermy hell of crucifix. Ugh palo santo farm-to-table iceland prism poke listicle intelligentsia. Shoreditch bespoke distillery biodiesel keytar quinoa copper mug tousled irony 90's everyday carry try-hard coloring book.
-                </article>
-                <article className="home__about">
-                    IPhone keffiyeh cloud bread, bushwick snackwave kickstarter normcore tousled skateboard gentrify fixie banh mi forage readymade. Dreamcatcher raw denim truffaut pickled, four dollar toast af mustache pop-up pabst gentrify vape hexagon meditation hot chicken tumblr. Coloring book chicharrones four loko cold-pressed pitchfork fanny pack farm-to-table VHS 8-bit chillwave shoreditch chartreuse fixie edison bulb. Locavore DIY pickled cronut letterpress kombucha. Tousled kinfolk freegan viral taxidermy hell of letterpress iceland readymade selfies gentrify cronut next level.
-                </article>
+                <p className="home__about">
+                Music has always found its vital support in the hands of its patrons, and until quite recently, access has been limited to those with the financial means to support artists, writers, and creators of all types.
+                </p>
+                <p className="home__about">
+                The recent shift to a streaming based industry has several benefits for listeners - the ability to discover new music at a glance, unlimited access to catalogs previously unheard, and even the ability to bump the new Taylor Swift track the very second it gets released.
+                 </p>
+                <p className="home__about">
+                Living the life of a professional creator of music, however, has become less and less tenable since the rise of the major music label. In 2006, the average CD sale looked something like this:
+                </p>
+                <img src={CDChart} id="CDChart"></img>
+                <p className="home__about">
+                Most of us remember what happened next. The internet, Napster, Limewire, Bearshare, you name it. In the freedom of the internet, the public found a way to skirt the high prices of CDs by downloading mp3s to their local machine. Labels shuttered, contracts disintegrated, and we were bombarded with ads reminding us that we wouldn't steal a car, so don't steal music.
+                </p>
+                <p className="home__about">
+                The truth is, the state of the musical artist hasn't improved since then. You'll hear executives cry that it's never been an easier time to get your music out there, and that artists can develop a cult following just by being discovered on a popular playlist. 
+                </p>
+                <p className="home__about">
+                There's one fundamental problem with this mentality, however. Remember that chart above showing the measly 6.6% of a record sale afforded to an artist? We have to squeeze our streaming service in there now. We also have to account for the fact that less than half of the accounts of the major industry player Spotify are paid - most rely on advertising revenue. On average, Spotify pays about $0.00437 per stream to an artist that wrote their own song. That means that an artists would need 1,000 plays to get paid $4.37. Artists have been left to rely on relentless and brutal touring schedules (Big Thief, a hugely popular indie rock band from Brooklyn, spends 11 months out of the year on the road just to make ends meet).
+                </p>
+                <p className="home__about">
+                Enter COVID-19, a virus with no sensitivity to the already struggling artist.
+                </p>
+                <p className="home__about">
+                As a culture, we've forgotten the value of music. Through this app, I hope to encourage people to realize the implications of their behavior - and realize just how much they're actively paying their favorite acts.
+                </p>
+                <p className="home__about">
+                This app can take a last.fm listener's play history and roughly estimate the revenue they've personally generated for their top artists. The user is also able to choose a few financial comparisons to calculate a suggested purchase or donation to the artist based on their listening habits.
+                </p>
+                <p className="home__about">
+                Please support your favorite artists and buy their music. Otherwise, the independent artist will go one of two ways - assimilating into a commercially viable mainstream, or being forced to walk away from the industry. The future of music has always been in the hands of the patrons. Advertisers have preferences for style. It's up to us to support what we want to hear.
+                </p>
+
                 <button  className="button btn-go" id="getStarted">Get Started</button>
             </section>
         </>

@@ -12,3 +12,8 @@
     margin-right: 5%;
     align-self: flex-end;
 }
+
+#CDChart {
+    width: 50%;
+    margin: auto;
+}
