@@ -6,7 +6,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 ## ERD
 
-[dbDiagram](https://dbdiagram.io/d/60466599fcdcb6230b2321cf)
+[dbDiagram](https://dbdiagram.io/d/604f5824fcdcb6230b2437bc)
 
 ![ERD](./images/ERD.png)
 
