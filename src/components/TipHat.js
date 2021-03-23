@@ -5,6 +5,8 @@ import { Route, Redirect } from "react-router-dom"
 import { Login } from "./auth/Login"
 import { Register } from "./auth/Register"
 import { userStorageKey } from "./auth/authSettings"
+import { Footer } from './footer/Footer'
+import './TipHat.css'
 
 
 export const TipHat = props => {
@@ -16,6 +18,7 @@ export const TipHat = props => {
                         <>
                             <NavBar />
                             <ApplicationViews />
+                            <Footer />
                         </>
                     )
                 } else {

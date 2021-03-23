@@ -25,7 +25,7 @@ export const ReportList = props => {
     }, [plans])
 
     return (
-        <>
+        <section className="savedReports--container main__container">
             <h2>Your Saved Reports</h2>
             <section id="savedReports__unpaid">
                 <h3 className="savedReports__section--title">Unpaid Reports</h3>
@@ -40,6 +40,6 @@ export const ReportList = props => {
                 }
             </section>
 
-        </>
+        </section>
     )
 }

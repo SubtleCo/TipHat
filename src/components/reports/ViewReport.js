@@ -81,7 +81,7 @@ export const ViewReport = () => {
     }
 
     return ((!isLoading) &&
-        <>
+        <section className="Report__View main__container">
             <h2>Your top {displayPlan?.artistCount} artists for {displayPlan.period?.name}</h2>
             {displayPlan?.paid ? <p>This Plan is Paid!</p> :
                 <>
@@ -125,6 +125,6 @@ export const ViewReport = () => {
                 </tbody>
             </table>
             {displayPlan?.paid ? <button onClick={() => history.push("/reports")}>Back To Reports</button> : <button onClick={handleEdit}>Save Changes</button>}
-        </>
+        </section>
     )
 }
