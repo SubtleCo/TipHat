@@ -1,3 +1,5 @@
+// Live Report Form is responsible for building the query to the lastFm API, which it does on line 53.
+
 import React, { useContext, useEffect, useState } from 'react'
 import { currentUser, getCurrentUser } from '../auth/UserProvider'
 import { LastFmContext, LastFmProvider } from '../lastFm/LastFmProvider'
@@ -8,6 +10,7 @@ import { ReportTable } from './ReportTable'
 
 export const LiveReportForm = () => {
     const [isLoading, setIsLoading] = useState(true)
+    // Keep track of the query parameters a user will send to the API
     const [apiParams, setApiParams] = useState({
         limit: "20",
         type: "",
@@ -15,6 +18,7 @@ export const LiveReportForm = () => {
     })
     const { liveReport, getLiveReport, setLiveReport } = useContext(LastFmContext)
 
+    // Pull in necessary data to populate selects - these come in as promises
     const loadData = () => {
         const promises = [
             getPeriods(),
@@ -26,10 +30,11 @@ export const LiveReportForm = () => {
             })
     }
 
+    // clean up liveReport on dismount to eliminate cross-talk and keep the "create" page fresh every time
     useEffect(() => {
         loadData()
         getCurrentUser()
-        return(() => {
+        return (() => {
             setLiveReport({})
         })
     }, [])
@@ -42,6 +47,7 @@ export const LiveReportForm = () => {
         setApiParams(newParams)
     }
 
+    // Build the query with the properly formatted strings before calling last.fm for the live report
     const handleSubmit = e => {
         e.preventDefault()
         const typeString = 'artists'
@@ -76,8 +82,8 @@ export const LiveReportForm = () => {
             </form>
             {Object.keys(liveReport).length > 0 &&
                 <ReportTable report={liveReport}
-                    
-                    />
+
+                />
             }
         </>
     )

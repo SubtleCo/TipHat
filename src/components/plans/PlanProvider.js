@@ -1,3 +1,5 @@
+// provides logic for all local API calls related to plans
+
 import React, { createContext, useState } from 'react'
 import { Settings } from '../../Settings'
 

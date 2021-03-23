@@ -1,3 +1,5 @@
+// Footer module - persistant and fixed on all page views if user is logged in
+
 import React from 'react'
 import './Footer.css'
 

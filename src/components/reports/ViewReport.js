@@ -1,3 +1,7 @@
+// This module is responsible for displaying and editing saved reports. 
+// 'thisPlan' is set by finding the plan from the DB using the corresponing ID, found in the URL with useParams()
+// 'displayPlan' is a modified 'thisPlan' build specifically to feed the return statement, which displays the report to the DOM
+
 import React, { useContext, useEffect, useState } from 'react'
 import { apiArtists, getArtists } from '../artists/ArtistProvider'
 import { getPlanArtists, apiPlanArtists } from '../artists/PlanArtistProvider'
@@ -43,9 +47,13 @@ export const ViewReport = () => {
         setThisPlan(plans.find(p => p.id === parseInt(planId)))
     }, [plans])
 
+    // These are all conditionals, as thisPlan isn't in place on first render - can this be refactored?
     useEffect(() => {
+        // Grab the planartists from the API, which was called in loadData()
         const allPlanArtists = [...apiPlanArtists]
+        // same with artists
         const artists = [...apiArtists]
+        // filter plan artist for this plan
         const planArtists = allPlanArtists.filter(pA => pA.planId === thisPlan?.id)
         const sortedPlanArtists = planArtists.sort((a, b) => b.trackCount - a.trackCount)
 

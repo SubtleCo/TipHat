@@ -1,3 +1,5 @@
+// Data provider for Artists in the local API. 
+
 import { Settings } from '../../Settings'
 
 export let apiArtists = []

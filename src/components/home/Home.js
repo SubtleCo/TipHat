@@ -1,3 +1,5 @@
+// Home page - essay, charts, and a little about the app itself
+
 import React, { useEffect } from 'react'
 import { getCurrentUser } from '../auth/UserProvider'
 import './Home.css'

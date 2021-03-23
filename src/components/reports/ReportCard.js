@@ -1,3 +1,6 @@
+// This module represents a saved plan to the user with its title, whether or not the plan is paid, and buttons to affect the plan.
+// Called directly by ReportList
+
 import React, { useContext } from 'react'
 import { useHistory } from 'react-router'
 import { PlanContext } from '../plans/PlanProvider'
