@@ -54,7 +54,7 @@ export const LiveReportForm = () => {
 
     return (
         <>
-            <form className="report__api__form" onSubmit={handleSubmit}>
+            <form className="report__api__form main__container" onSubmit={handleSubmit}>
                 <h2>Generate a listening report</h2>
                 <p>Using your last.fm username <strong>{currentUser.lastFmAccount}</strong></p>
                 <div className="api__form__selects">

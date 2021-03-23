@@ -96,7 +96,7 @@ export const ReportTable = ({ report }) => {
     }
 
     return (
-        <>
+        <section className="reportTable--container main__container">
             <h2>Your top {reportTable.length} artists for {report.period.name}</h2>
             <label htmlFor="suggestionSelect">Change the payout calculation to </label>
             <select id="suggestionSelect" value={suggestion?.id} onChange={handleLiveSuggestionChange} className="report__trackValueSelect">
@@ -136,6 +136,6 @@ export const ReportTable = ({ report }) => {
             </table>
             <button id="savePlan" onClick={handleSave}>Save Plan For Later</button>
             <button id="savePlan--paid" onClick={handleSave}>Save Plan (paid)</button>
-        </>
+        </section>
     )
 }

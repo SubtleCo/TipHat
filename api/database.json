@@ -123,7 +123,7 @@
       "periodId": 1,
       "name": "Top 5 artists for the last week, 2/22/2021",
       "paid": false,
-      "suggestionId": 2,
+      "suggestionId": 3,
       "id": 10
     },
     {
@@ -145,6 +145,16 @@
       "paid": true,
       "suggestionId": 3,
       "id": 12
+    },
+    {
+      "userId": 1,
+      "timestamp": 1616510678386,
+      "trackCount": 79,
+      "periodId": 1,
+      "name": "Top 5 artists for the last week, 2/23/2021",
+      "paid": true,
+      "suggestionId": 3,
+      "id": 13
     }
   ],
   "artists": [
@@ -561,6 +571,36 @@
       "planId": 12,
       "trackCount": 23,
       "id": 106
+    },
+    {
+      "artistId": 21,
+      "planId": 13,
+      "trackCount": 24,
+      "id": 107
+    },
+    {
+      "artistId": 1,
+      "planId": 13,
+      "trackCount": 15,
+      "id": 108
+    },
+    {
+      "artistId": 12,
+      "planId": 13,
+      "trackCount": 14,
+      "id": 109
+    },
+    {
+      "artistId": 22,
+      "planId": 13,
+      "trackCount": 13,
+      "id": 110
+    },
+    {
+      "artistId": 15,
+      "planId": 13,
+      "trackCount": 13,
+      "id": 111
     }
   ],
   "users": [
