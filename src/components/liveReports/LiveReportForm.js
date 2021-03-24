@@ -50,11 +50,15 @@ export const LiveReportForm = () => {
     // Build the query with the properly formatted strings before calling last.fm for the live report
     const handleSubmit = e => {
         e.preventDefault()
-        const typeString = 'artists'
-        const period = periods.find(p => p.id === apiParams.periodId)
-        const periodString = period.query
-        const service = services.find(s => s.id === currentUser.serviceId)
-        getLiveReport(typeString, periodString, apiParams.limit, currentUser, period, service)
+        if (apiParams.periodId > 0) {
+            const typeString = 'artists'
+            const period = periods.find(p => p.id === apiParams.periodId)
+            const periodString = period.query
+            const service = services.find(s => s.id === currentUser.serviceId)
+            getLiveReport(typeString, periodString, apiParams.limit, currentUser, period, service)
+        } else {
+            window.alert("Please select a listening period")
+        }
     }
 
 
