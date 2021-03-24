@@ -7,6 +7,8 @@ import { Register } from "./auth/Register"
 import { userStorageKey } from "./auth/authSettings"
 import { Footer } from './footer/Footer'
 import './TipHat.css'
+import { ThemeProvider } from '@material-ui/core/styles'
+
 
 
 export const TipHat = props => {
@@ -16,9 +18,11 @@ export const TipHat = props => {
                 if (sessionStorage.getItem(userStorageKey)) {
                     return (
                         <>
-                            <NavBar />
-                            <ApplicationViews />
-                            <Footer />
+                            <ThemeProvider>
+                                <NavBar />
+                                <ApplicationViews />
+                                <Footer />
+                            </ThemeProvider>
                         </>
                     )
                 } else {
@@ -26,13 +30,13 @@ export const TipHat = props => {
                 }
             }} />
 
-                <Route path="/login">
-                    <Login />
-                </Route>
+            <Route path="/login">
+                <Login />
+            </Route>
 
-                <Route path="/register">
-                    <Register />
-                </Route>
+            <Route path="/register">
+                <Register />
+            </Route>
 
         </>
     )
