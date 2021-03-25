@@ -5,11 +5,12 @@ import './index.css';
 import { TipHat } from './components/TipHat';
 import 'fontsource-roboto'
 import { createMuiTheme, MuiThemeProvider } from '@material-ui/core';
-import { blueGrey } from '@material-ui/core/colors';
+import { blueGrey, red } from '@material-ui/core/colors';
 
 const theme = createMuiTheme({
   palette: {
-    primary: blueGrey
+    primary: blueGrey,
+    secondary: red
   }
 })
 
