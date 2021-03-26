@@ -7,6 +7,7 @@ import { services, getServices } from '../services/ServiceProvider'
 import { periods, getPeriods } from '../periods/PeriodProvider'
 import './LiveReportForm.css'
 import { ReportTable } from './ReportTable'
+import { Typography } from '@material-ui/core'
 
 export const LiveReportForm = () => {
     const [isLoading, setIsLoading] = useState(true)
@@ -65,8 +66,10 @@ export const LiveReportForm = () => {
     return (
         <>
             <form className="report__api__form main__container" onSubmit={handleSubmit}>
-                <h2>Generate a listening report</h2>
-                <p>Using your last.fm username <strong>{currentUser.lastFmAccount}</strong></p>
+                <Typography variant="h3" component="h2" >Generate A Listening Report</Typography>
+                <Typography variant="body1" component="p">
+                    Using your last.fm username <strong>{currentUser.lastFmAccount}</strong>
+                </Typography>
                 <div className="api__form__selects">
                     <p className="api__form__p">I'd like to see my top</p>
                     <fieldset>

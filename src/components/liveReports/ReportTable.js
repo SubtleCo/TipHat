@@ -8,7 +8,43 @@ import { apiArtists, getArtists, checkForArtist, addArtist } from '../artists/Ar
 import { addPlanArtist, getPlanArtists } from '../artists/PlanArtistProvider'
 import './ReportTable.css'
 
-export const ReportTable = ({ report }) => {
+import { makeStyles } from '@material-ui/core/styles'
+import Table from '@material-ui/core/Table'
+import TableBody from '@material-ui/core/TableBody'
+import TableCell from '@material-ui/core/TableCell'
+import TableContainer from '@material-ui/core/TableContainer'
+import TableHead from '@material-ui/core/TableHead'
+import TableRow from '@material-ui/core/TableRow'
+import Paper from '@material-ui/core/Paper'
+import { LinearProgress } from '@material-ui/core'
+
+const useStyles = makeStyles((theme) => ({
+    tableContainer: {
+        maxWidth: '90%',
+        margin: 'auto',
+        borderRadius: '10px'
+    },
+    table: {
+        minWidth: 650,
+    },
+    head: {
+        backgroundColor: theme.palette.common.black,
+        color: theme.palette.common.white,
+        fontWeight: 900,
+        fontSize: 18
+    },
+    body: {
+        fontSize: 14
+    },
+    tableRow: {
+        '&:nth-of-type(odd)': {
+            backgroundColor: theme.palette.action.hover
+        }
+    }
+}))
+
+
+export const ReportTable = ({ report, theme }) => {
     const { addPlan, getPlans } = useContext(PlanContext)
 
     // This represents the live position of the track value suggestion, which the user may change
@@ -18,12 +54,13 @@ export const ReportTable = ({ report }) => {
     // This helps ensure our API data is loaded before performing operations that require it
     const [isLoading, setIsLoading] = useState(true)
 
-
     const history = useHistory()
 
     // This set of variables provides the total number of tracks represented in a single report
     const trackCounts = reportTable.map(line => parseInt(line.playcount))
     const totalCount = trackCounts.reduce((a, b) => a + b, 0)
+
+    const classes = useStyles(theme)
 
     const loadData = () => {
         const promises = [
@@ -87,7 +124,7 @@ export const ReportTable = ({ report }) => {
                     // Check to see if the artist is in the database. if not, add it
                     if (!checkForArtist(artist.name, artists)) {
                         addArtist(artist.name)
-                        // Using a promise to capture the id of the new artist, to be used in planArtist
+                            // Using a promise to capture the id of the new artist, to be used in planArtist
                             .then(dbArtist => {
                                 addPlanArtist({
                                     artistId: dbArtist.id,
@@ -111,46 +148,45 @@ export const ReportTable = ({ report }) => {
     }
 
     return (
-        <section className="reportTable--container main__container">
-            <h2>Your top {reportTable.length} artists for {report.period.name}</h2>
-            <label htmlFor="suggestionSelect">Change the payout calculation to </label>
-            <select id="suggestionSelect" value={suggestion?.id} onChange={handleLiveSuggestionChange} className="report__trackValueSelect">
-                {
-                    suggestions.map(s => <option key={"suggestion " + s.id} value={s.id}>{s.name}</option>)
-                }
-            </select>
-            <table className="reportTable">
-                <thead>
-                    <tr>
-                        <th>Artist</th>
-                        <th>Track Count</th>
-                        <th>% of report</th>
-                        <th>Estimated {report.service.name} Payout</th>
-                        <th>Estimated Potential Payout (as {suggestion?.name})</th>
-                        <th>Suggested Donation</th>
-                    </tr>
-                </thead>
-                <tbody className="reportTable--body">
-                    {
-                        reportTable.map((line, i) => {
-                            const payout = (line.playcount * report.service.amount).toFixed(2)
-                            const potential = (line.playcount * suggestion?.amount).toFixed(2)
-                            return (
-                                <tr key={i}>
-                                    <td>{line.name}</td>
-                                    <td>{line.playcount}</td>
-                                    <td>{(line.playcount / totalCount * 100).toFixed(0)}%</td>
-                                    <td>${payout}</td>
-                                    <td>${potential}</td>
-                                    <td>${(potential - payout).toFixed(2)}</td>
-                                </tr>
-                            )
-                        })
-                    }
-                </tbody>
-            </table>
-            <button id="savePlan" onClick={handleSave}>Save Plan For Later</button>
-            <button id="savePlan--paid" onClick={handleSave}>Save Plan (paid)</button>
-        </section>
+        <TableContainer className={classes.tableContainer} component={Paper}>
+            <Table className={classes.table} aria-label="simple table">
+                <TableHead>
+                    <TableRow>
+                        <TableCell className={classes.head}>Artist</TableCell>
+                        <TableCell className={classes.head} align="right">Track Count</TableCell>
+                        <TableCell className={classes.head} align="right">Play Share</TableCell>
+                        <TableCell className={classes.head} align="right">Estimated {report.service.name} Revenue</TableCell>
+                        <TableCell className={classes.head} align="right">Potential Revenue (as {suggestion?.name})</TableCell>
+                        <TableCell className={classes.head} align="right">Suggestion</TableCell>
+                    </TableRow>
+                </TableHead>
+                <TableBody>
+                    {reportTable.map((row, i) => {
+                        const payout = (row.playcount * report.service.amount).toFixed(2)
+                        const potential = (row.playcount * suggestion?.amount).toFixed(2)
+                        const percent = (row.playcount / totalCount * 100).toFixed(0)
+                        return (
+                            < TableRow key={i} className={classes.tableRow}>
+                                <TableCell component="th" scope="row">{row.name}</TableCell>
+                                <TableCell align="center">{row.playcount}</TableCell>
+                                <TableCell align="center">{percent}%
+                                <LinearProgress variant="determinate" value={percent}></LinearProgress></TableCell>
+                                <TableCell align="center">${payout}</TableCell>
+                                <TableCell align="center">${potential}</TableCell>
+                                <TableCell align="center">${(potential - payout).toFixed(2)}</TableCell>
+                            </TableRow>
+                        )
+                    })}
+                    <TableRow>
+                        <TableCell className={classes.head}></TableCell>
+                        <TableCell className={classes.head} align="right">Track Count</TableCell>
+                        <TableCell className={classes.head} align="right"></TableCell>
+                        <TableCell className={classes.head} align="right">Estimated {report.service.name} Revenue</TableCell>
+                        <TableCell className={classes.head} align="right">Potential Revenue (as {suggestion?.name})</TableCell>
+                        <TableCell className={classes.head} align="right">Suggestion</TableCell>
+                    </TableRow>
+                </TableBody>
+            </Table>
+        </TableContainer >
     )
 }
