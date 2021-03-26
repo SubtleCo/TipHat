@@ -43,7 +43,7 @@ export const NavBar = (props) => {
                         <LibraryMusicIcon />
                     </IconButton>
                     <Typography variant="h5" color="inherit" className={classes.navItem} to="/" component={Link}>
-                        Why Tip?
+                        TipHat
                     </Typography>
                     <Typography variant="h5" color="inherit" className={classes.navItem} to="/reports/create" component={Link}>
                         Generate A Report

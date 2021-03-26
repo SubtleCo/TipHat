@@ -165,6 +165,16 @@
       "paid": false,
       "suggestionId": 3,
       "id": 15
+    },
+    {
+      "userId": 1,
+      "timestamp": 1616771709019,
+      "trackCount": 405,
+      "periodId": 2,
+      "name": "Top 20 artists for the last month, 2/26/2021",
+      "paid": false,
+      "suggestionId": 4,
+      "id": 16
     }
   ],
   "artists": [
@@ -685,6 +695,126 @@
       "planId": 15,
       "trackCount": 12,
       "id": 138
+    },
+    {
+      "artistId": 6,
+      "planId": 16,
+      "trackCount": 35,
+      "id": 139
+    },
+    {
+      "artistId": 21,
+      "planId": 16,
+      "trackCount": 24,
+      "id": 140
+    },
+    {
+      "artistId": 9,
+      "planId": 16,
+      "trackCount": 23,
+      "id": 141
+    },
+    {
+      "artistId": 10,
+      "planId": 16,
+      "trackCount": 21,
+      "id": 142
+    },
+    {
+      "artistId": 7,
+      "planId": 16,
+      "trackCount": 24,
+      "id": 143
+    },
+    {
+      "artistId": 8,
+      "planId": 16,
+      "trackCount": 23,
+      "id": 144
+    },
+    {
+      "artistId": 4,
+      "planId": 16,
+      "trackCount": 19,
+      "id": 145
+    },
+    {
+      "artistId": 5,
+      "planId": 16,
+      "trackCount": 19,
+      "id": 146
+    },
+    {
+      "artistId": 11,
+      "planId": 16,
+      "trackCount": 18,
+      "id": 147
+    },
+    {
+      "artistId": 1,
+      "planId": 16,
+      "trackCount": 18,
+      "id": 148
+    },
+    {
+      "artistId": 12,
+      "planId": 16,
+      "trackCount": 18,
+      "id": 149
+    },
+    {
+      "artistId": 13,
+      "planId": 16,
+      "trackCount": 17,
+      "id": 150
+    },
+    {
+      "artistId": 15,
+      "planId": 16,
+      "trackCount": 17,
+      "id": 151
+    },
+    {
+      "artistId": 16,
+      "planId": 16,
+      "trackCount": 15,
+      "id": 152
+    },
+    {
+      "artistId": 3,
+      "planId": 16,
+      "trackCount": 15,
+      "id": 153
+    },
+    {
+      "artistId": 2,
+      "planId": 16,
+      "trackCount": 31,
+      "id": 154
+    },
+    {
+      "artistId": 14,
+      "planId": 16,
+      "trackCount": 29,
+      "id": 155
+    },
+    {
+      "artistId": 22,
+      "planId": 16,
+      "trackCount": 13,
+      "id": 156
+    },
+    {
+      "artistId": 17,
+      "planId": 16,
+      "trackCount": 13,
+      "id": 157
+    },
+    {
+      "artistId": 18,
+      "planId": 16,
+      "trackCount": 13,
+      "id": 158
     }
   ],
   "users": [
