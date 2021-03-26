@@ -16,14 +16,13 @@ import TableContainer from '@material-ui/core/TableContainer'
 import TableHead from '@material-ui/core/TableHead'
 import TableRow from '@material-ui/core/TableRow'
 import Paper from '@material-ui/core/Paper'
-import { LinearProgress } from '@material-ui/core'
+import { Button, LinearProgress } from '@material-ui/core'
 
 const useStyles = makeStyles((theme) => ({
     tableContainer: {
         maxWidth: '90%',
         margin: 'auto',
-        borderRadius: '10px',
-        marginBottom: '5%'
+        borderRadius: '10px'
     },
     table: {
         minWidth: 650,
@@ -40,6 +39,28 @@ const useStyles = makeStyles((theme) => ({
     tableRow: {
         '&:nth-of-type(odd)': {
             backgroundColor: theme.palette.action.hover
+        }
+    },
+    tableButtons: {
+        marginBottom: 64,
+        display: 'flex',
+        justifyContent: 'flex-end',
+        maxWidth: '90%',
+        margin: 'auto',
+        padding: 10
+    },
+    tableButtonUnpaid: {
+        backgroundColor: theme.palette.success.light,
+        margin: theme.spacing(1),
+        '&:hover': {
+            backgroundColor: theme.palette.success.dark
+        }
+    },
+    tableButtonPaid: {
+        backgroundColor: theme.palette.success.main,
+        margin: theme.spacing(1),
+        '&:hover': {
+            backgroundColor: theme.palette.success.dark
         }
     }
 }))
@@ -149,49 +170,58 @@ export const ReportTable = (props) => {
             })
     }
 
-    const totalRevenue = reportTable.map(row => parseFloat(row.playcount * report.service.amount)).reduce((a,b) => a + b, 0).toFixed(2)
-    const totalPotential = reportTable.map(row => parseFloat(row.playcount * suggestion?.amount)).reduce((a,b) => a + b, 0).toFixed(2)
+    const totalRevenue = reportTable.map(row => parseFloat(row.playcount * report.service.amount)).reduce((a, b) => a + b, 0).toFixed(2)
+    const totalPotential = reportTable.map(row => parseFloat(row.playcount * suggestion?.amount)).reduce((a, b) => a + b, 0).toFixed(2)
 
     return (
-        <TableContainer className={classes.tableContainer} component={Paper}>
-            <Table className={classes.table} aria-label="simple table">
-                <TableHead>
-                    <TableRow>
-                        <TableCell className={classes.head}>Artist</TableCell>
-                        <TableCell className={classes.head} align="center">Play Share</TableCell>
-                        <TableCell className={classes.head} align="center">Track Count</TableCell>
-                        <TableCell className={classes.head} align="center">Estimated {report.service.name} Revenue</TableCell>
-                        <TableCell className={classes.head} align="center">Potential Revenue (as {suggestion?.name})</TableCell>
-                        <TableCell className={classes.head} align="center">Suggestion</TableCell>
-                    </TableRow>
-                </TableHead>
-                <TableBody>
-                    {reportTable.map((row, i) => {
-                        const payout = (row.playcount * report.service.amount).toFixed(2)
-                        const potential = (row.playcount * suggestion?.amount).toFixed(2)
-                        const percent = parseInt((row.playcount / totalCount * 100).toFixed(0))
-                        return (
-                            < TableRow key={i} className={classes.tableRow}>
-                                <TableCell component="th" scope="row">{row.name}</TableCell>
-                                <TableCell align="center">{percent}%
+        <>
+            <TableContainer className={classes.tableContainer} component={Paper}>
+                <Table className={classes.table} aria-label="simple table">
+                    <TableHead>
+                        <TableRow>
+                            <TableCell className={classes.head}>Artist</TableCell>
+                            <TableCell className={classes.head} align="center">Play Share</TableCell>
+                            <TableCell className={classes.head} align="center">Track Count</TableCell>
+                            <TableCell className={classes.head} align="center">Estimated {report.service.name} Revenue</TableCell>
+                            <TableCell className={classes.head} align="center">Potential Revenue (as {suggestion?.name})</TableCell>
+                            <TableCell className={classes.head} align="center">Suggestion</TableCell>
+                        </TableRow>
+                    </TableHead>
+                    <TableBody>
+                        {reportTable.map((row, i) => {
+                            const payout = (row.playcount * report.service.amount).toFixed(2)
+                            const potential = (row.playcount * suggestion?.amount).toFixed(2)
+                            const percent = parseInt((row.playcount / totalCount * 100).toFixed(0))
+                            return (
+                                < TableRow key={i} className={classes.tableRow}>
+                                    <TableCell component="th" scope="row">{row.name}</TableCell>
+                                    <TableCell align="center">{percent}%
                                 <LinearProgress variant="determinate" value={percent}></LinearProgress></TableCell>
-                                <TableCell align="center">{row.playcount}</TableCell>
-                                <TableCell align="center">${payout}</TableCell>
-                                <TableCell align="center">${potential}</TableCell>
-                                <TableCell align="center">${(potential - payout).toFixed(2)}</TableCell>
-                            </TableRow>
-                        )
-                    })}
-                    <TableRow>
-                        <TableCell className={classes.head}>Total Tracks:</TableCell>
-                        <TableCell className={classes.head} align="center">{totalCount}</TableCell>
-                        <TableCell className={classes.head} align="center"></TableCell>
-                        <TableCell className={classes.head} align="center">${totalRevenue}</TableCell>
-                        <TableCell className={classes.head} align="center">${totalPotential}</TableCell>
-                        <TableCell className={classes.head} align="center">${(totalPotential - totalRevenue).toFixed(2)}</TableCell>
-                    </TableRow>
-                </TableBody>
-            </Table>
-        </TableContainer >
+                                    <TableCell align="center">{row.playcount}</TableCell>
+                                    <TableCell align="center">${payout}</TableCell>
+                                    <TableCell align="center">${potential}</TableCell>
+                                    <TableCell align="center">${(potential - payout).toFixed(2)}</TableCell>
+                                </TableRow>
+                            )
+                        })}
+                        <TableRow>
+                            <TableCell className={classes.head}>Total Tracks:</TableCell>
+                            <TableCell className={classes.head} align="center">{totalCount}</TableCell>
+                            <TableCell className={classes.head} align="center"></TableCell>
+                            <TableCell className={classes.head} align="center">${totalRevenue}</TableCell>
+                            <TableCell className={classes.head} align="center">${totalPotential}</TableCell>
+                            <TableCell className={classes.head} align="center">${(totalPotential - totalRevenue).toFixed(2)}</TableCell>
+                        </TableRow>
+                    </TableBody>
+                </Table>
+            </TableContainer >
+            <div className={classes.tableButtons}>
+                <Button id="savePlan" className={classes.tableButtonUnpaid} variant="contained" onClick={handleSave}>Save Plan For Later</Button>
+                <Button id="savePlan--paid" className={classes.tableButtonPaid} variant="contained" onClick={handleSave}>Save Plan As Paid</Button>
+            </div>
+        </>
     )
 }
+
+{/* <button id="savePlan" onClick={handleSave}>Save Plan For Later</button> */ }
+{/* <button id="savePlan--paid" onClick={handleSave}>Save Plan (paid)</button> */ }
