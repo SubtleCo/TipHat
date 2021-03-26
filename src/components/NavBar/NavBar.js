@@ -19,6 +19,9 @@ const useStyles = makeStyles((theme) => ({
         textDecoration: 'none',
         padding: theme.spacing(1),
         flexGrow: 1
+    },
+    userButton: {
+
     }
 }))
 
@@ -36,7 +39,7 @@ export const NavBar = (props) => {
         <div className={classes.root}>
             <AppBar position="static" color="primary" className={classes.appbar}>
                 <Toolbar variant="dense">
-                    <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
+                    <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu" to="/" component={Link}>
                         <LibraryMusicIcon />
                     </IconButton>
                     <Typography variant="h5" color="inherit" className={classes.navItem} to="/" component={Link}>
@@ -51,7 +54,7 @@ export const NavBar = (props) => {
                     {/* <Typography variant="h5" color="inherit" className={classes.navItem} to="/user/edit" component={Link}>
                         Profile
                     </Typography> */}
-                    <Button color="secondary">{currentUser.firstName}</Button>
+                    <Button variant="contained" component={Link} to="/user/edit">{currentUser.firstName}</Button>
                 </Toolbar>
             </AppBar>
         </div>
