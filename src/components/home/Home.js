@@ -5,6 +5,7 @@ import { getCurrentUser } from '../auth/UserProvider'
 import './Home.css'
 import CDChart from '../../images/CDChart.png'
 import { useHistory } from 'react-router'
+import Paper from '@material-ui/core/Paper'
 
 export const Home = () => {
     const history = useHistory()
@@ -26,7 +27,9 @@ export const Home = () => {
                 <p className="home__about">
                     Living the life of a professional creator of music, however, has become less and less tenable since the rise of the major music label. In 2006, the average CD sale looked something like this:
                 </p>
-                <img src={CDChart} id="CDChart"></img>
+                <Paper className="chartContainer" component="img" src={CDChart}>
+                    {/* <img  id="CDChart" ></img> */}
+                </Paper>
                 <p className="home__about">
                     Most of us remember what happened next. The internet, Napster, Limewire, Bearshare, you name it. In the freedom of the internet, the public found a way to skirt the high prices of CDs by downloading mp3s to their local machine. Labels shuttered, contracts disintegrated, and we were bombarded with ads reminding us that we wouldn't steal a car, so don't steal music.
                 </p>

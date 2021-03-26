@@ -17,7 +17,7 @@ const theme = createMuiTheme({
 ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
-      <MuiThemeProvider theme = {theme}>
+      <MuiThemeProvider theme={theme}>
         <TipHat />
       </MuiThemeProvider>
     </BrowserRouter>

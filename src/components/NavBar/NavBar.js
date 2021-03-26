@@ -25,8 +25,8 @@ const useStyles = makeStyles((theme) => ({
     }
 }))
 
-export const NavBar = (props) => {
-    const classes = useStyles(props)
+export const NavBar = ({ theme }) => {
+    const classes = useStyles(theme)
     const logout = () => {
         sessionStorage.clear('app_user_id')
     }

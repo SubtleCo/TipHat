@@ -22,13 +22,14 @@ const useStyles = makeStyles((theme) => ({
     tableContainer: {
         maxWidth: '90%',
         margin: 'auto',
-        borderRadius: '10px'
+        borderRadius: '10px',
+        marginBottom: '5%'
     },
     table: {
         minWidth: 650,
     },
     head: {
-        backgroundColor: theme.palette.common.black,
+        backgroundColor: theme.palette.primary.main,
         color: theme.palette.common.white,
         fontWeight: 900,
         fontSize: 18
@@ -44,7 +45,8 @@ const useStyles = makeStyles((theme) => ({
 }))
 
 
-export const ReportTable = ({ report, theme }) => {
+export const ReportTable = (props) => {
+    const report = props.report
     const { addPlan, getPlans } = useContext(PlanContext)
 
     // This represents the live position of the track value suggestion, which the user may change
@@ -60,7 +62,7 @@ export const ReportTable = ({ report, theme }) => {
     const trackCounts = reportTable.map(line => parseInt(line.playcount))
     const totalCount = trackCounts.reduce((a, b) => a + b, 0)
 
-    const classes = useStyles(theme)
+    const classes = useStyles(props.theme)
 
     const loadData = () => {
         const promises = [
@@ -147,30 +149,33 @@ export const ReportTable = ({ report, theme }) => {
             })
     }
 
+    const totalRevenue = reportTable.map(row => parseFloat(row.playcount * report.service.amount)).reduce((a,b) => a + b, 0).toFixed(2)
+    const totalPotential = reportTable.map(row => parseFloat(row.playcount * suggestion?.amount)).reduce((a,b) => a + b, 0).toFixed(2)
+
     return (
         <TableContainer className={classes.tableContainer} component={Paper}>
             <Table className={classes.table} aria-label="simple table">
                 <TableHead>
                     <TableRow>
                         <TableCell className={classes.head}>Artist</TableCell>
-                        <TableCell className={classes.head} align="right">Track Count</TableCell>
-                        <TableCell className={classes.head} align="right">Play Share</TableCell>
-                        <TableCell className={classes.head} align="right">Estimated {report.service.name} Revenue</TableCell>
-                        <TableCell className={classes.head} align="right">Potential Revenue (as {suggestion?.name})</TableCell>
-                        <TableCell className={classes.head} align="right">Suggestion</TableCell>
+                        <TableCell className={classes.head} align="center">Play Share</TableCell>
+                        <TableCell className={classes.head} align="center">Track Count</TableCell>
+                        <TableCell className={classes.head} align="center">Estimated {report.service.name} Revenue</TableCell>
+                        <TableCell className={classes.head} align="center">Potential Revenue (as {suggestion?.name})</TableCell>
+                        <TableCell className={classes.head} align="center">Suggestion</TableCell>
                     </TableRow>
                 </TableHead>
                 <TableBody>
                     {reportTable.map((row, i) => {
                         const payout = (row.playcount * report.service.amount).toFixed(2)
                         const potential = (row.playcount * suggestion?.amount).toFixed(2)
-                        const percent = (row.playcount / totalCount * 100).toFixed(0)
+                        const percent = parseInt((row.playcount / totalCount * 100).toFixed(0))
                         return (
                             < TableRow key={i} className={classes.tableRow}>
                                 <TableCell component="th" scope="row">{row.name}</TableCell>
-                                <TableCell align="center">{row.playcount}</TableCell>
                                 <TableCell align="center">{percent}%
                                 <LinearProgress variant="determinate" value={percent}></LinearProgress></TableCell>
+                                <TableCell align="center">{row.playcount}</TableCell>
                                 <TableCell align="center">${payout}</TableCell>
                                 <TableCell align="center">${potential}</TableCell>
                                 <TableCell align="center">${(potential - payout).toFixed(2)}</TableCell>
@@ -178,12 +183,12 @@ export const ReportTable = ({ report, theme }) => {
                         )
                     })}
                     <TableRow>
-                        <TableCell className={classes.head}></TableCell>
-                        <TableCell className={classes.head} align="right">Track Count</TableCell>
-                        <TableCell className={classes.head} align="right"></TableCell>
-                        <TableCell className={classes.head} align="right">Estimated {report.service.name} Revenue</TableCell>
-                        <TableCell className={classes.head} align="right">Potential Revenue (as {suggestion?.name})</TableCell>
-                        <TableCell className={classes.head} align="right">Suggestion</TableCell>
+                        <TableCell className={classes.head}>Total Tracks:</TableCell>
+                        <TableCell className={classes.head} align="center">{totalCount}</TableCell>
+                        <TableCell className={classes.head} align="center"></TableCell>
+                        <TableCell className={classes.head} align="center">${totalRevenue}</TableCell>
+                        <TableCell className={classes.head} align="center">${totalPotential}</TableCell>
+                        <TableCell className={classes.head} align="center">${(totalPotential - totalRevenue).toFixed(2)}</TableCell>
                     </TableRow>
                 </TableBody>
             </Table>

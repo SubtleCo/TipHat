@@ -26,17 +26,17 @@ const useStyles = makeStyles(theme => ({
     }
 }))
 
-export const Footer = (props) => {
-    const classes = useStyles(props)
+export const Footer = ({ theme }) => {
+    const classes = useStyles(theme)
 
     return (
         <BottomNavigation
             showLabels
             className={classes.root}>
-            <BottomNavigationAction underline="inherit" className={classes.bottomLink} label="Alex Martin" icon={<GitHubIcon />} component={Link} href="https://github.com/SubtleCo" />
-            <BottomNavigationAction underline="inherit" className={classes.bottomLink} label="TipHat" icon={<GitHubIcon />} component={Link} href="https://github.com/SubtleCo/TipHat" />
-            <BottomNavigationAction underline="inherit" className={classes.bottomLink} label="last.fm" icon={<AlbumIcon />} component={Link} href="https://last.fm" />
-            <BottomNavigationAction underline="inherit" className={classes.bottomLink} label="Nashville Software School" icon={<SchoolIcon />} component={Link} href="https://nashvillesoftwareschool.com" />
+            <BottomNavigationAction className={classes.bottomLink} label="Alex Martin" icon={<GitHubIcon />} component={Link} href="https://github.com/SubtleCo" />
+            <BottomNavigationAction className={classes.bottomLink} label="TipHat" icon={<GitHubIcon />} component={Link} href="https://github.com/SubtleCo/TipHat" />
+            <BottomNavigationAction className={classes.bottomLink} label="last.fm" icon={<AlbumIcon />} component={Link} href="https://last.fm" />
+            <BottomNavigationAction className={classes.bottomLink} label="Nashville Software School" icon={<SchoolIcon />} component={Link} href="https://nashvillesoftwareschool.com" />
         </BottomNavigation>
     )
 }

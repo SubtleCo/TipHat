@@ -11,18 +11,16 @@ import { ThemeProvider } from '@material-ui/core/styles'
 
 
 
-export const TipHat = props => {
+export const TipHat = ({ theme }) => {
     return (
         <>
             <Route render={() => {
                 if (sessionStorage.getItem(userStorageKey)) {
                     return (
                         <>
-                            <ThemeProvider>
                                 <NavBar />
                                 <ApplicationViews />
                                 <Footer />
-                            </ThemeProvider>
                         </>
                     )
                 } else {
