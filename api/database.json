@@ -175,6 +175,16 @@
       "paid": false,
       "suggestionId": 4,
       "id": 16
+    },
+    {
+      "userId": 1,
+      "timestamp": 1616801817691,
+      "trackCount": 654,
+      "periodId": 2,
+      "name": "Top 20 artists for the last month, 2/26/2021",
+      "paid": true,
+      "suggestionId": 2,
+      "id": 18
     }
   ],
   "artists": [
@@ -297,6 +307,30 @@
     {
       "name": "Sebastien Guerive",
       "id": 30
+    },
+    {
+      "name": "Frank Sinatra",
+      "id": 31
+    },
+    {
+      "name": "The Fleetwoods",
+      "id": 32
+    },
+    {
+      "name": "Patsy Cline",
+      "id": 33
+    },
+    {
+      "name": "Roy Orbison",
+      "id": 34
+    },
+    {
+      "name": "Björk",
+      "id": 35
+    },
+    {
+      "name": "Sufjan Stevens",
+      "id": 36
     }
   ],
   "planArtists": [
@@ -815,6 +849,126 @@
       "planId": 16,
       "trackCount": 13,
       "id": 158
+    },
+    {
+      "artistId": 2,
+      "planId": 18,
+      "trackCount": 69,
+      "id": 159
+    },
+    {
+      "artistId": 8,
+      "planId": 18,
+      "trackCount": 37,
+      "id": 160
+    },
+    {
+      "artistId": 10,
+      "planId": 18,
+      "trackCount": 35,
+      "id": 161
+    },
+    {
+      "artistId": 1,
+      "planId": 18,
+      "trackCount": 34,
+      "id": 162
+    },
+    {
+      "artistId": 14,
+      "planId": 18,
+      "trackCount": 43,
+      "id": 163
+    },
+    {
+      "artistId": 6,
+      "planId": 18,
+      "trackCount": 42,
+      "id": 164
+    },
+    {
+      "artistId": 5,
+      "planId": 18,
+      "trackCount": 34,
+      "id": 165
+    },
+    {
+      "artistId": 12,
+      "planId": 18,
+      "trackCount": 32,
+      "id": 166
+    },
+    {
+      "artistId": 4,
+      "planId": 18,
+      "trackCount": 31,
+      "id": 167
+    },
+    {
+      "artistId": 11,
+      "planId": 18,
+      "trackCount": 30,
+      "id": 168
+    },
+    {
+      "artistId": 15,
+      "planId": 18,
+      "trackCount": 30,
+      "id": 169
+    },
+    {
+      "artistId": 3,
+      "planId": 18,
+      "trackCount": 28,
+      "id": 170
+    },
+    {
+      "artistId": 7,
+      "planId": 18,
+      "trackCount": 28,
+      "id": 171
+    },
+    {
+      "artistId": 13,
+      "planId": 18,
+      "trackCount": 27,
+      "id": 172
+    },
+    {
+      "artistId": 24,
+      "planId": 18,
+      "trackCount": 27,
+      "id": 173
+    },
+    {
+      "artistId": 22,
+      "planId": 18,
+      "trackCount": 25,
+      "id": 174
+    },
+    {
+      "artistId": 9,
+      "planId": 18,
+      "trackCount": 25,
+      "id": 175
+    },
+    {
+      "artistId": 16,
+      "planId": 18,
+      "trackCount": 24,
+      "id": 176
+    },
+    {
+      "artistId": 21,
+      "planId": 18,
+      "trackCount": 24,
+      "id": 177
+    },
+    {
+      "artistId": 36,
+      "planId": 18,
+      "trackCount": 29,
+      "id": 178
     }
   ],
   "users": [
