@@ -6,9 +6,23 @@ import './Home.css'
 import CDChart from '../../images/CDChart.png'
 import { useHistory } from 'react-router'
 import Paper from '@material-ui/core/Paper'
+import Button from '@material-ui/core/Button'
+import { makeStyles } from '@material-ui/core'
 
-export const Home = () => {
+const useStyles = makeStyles( theme => ({
+    getStartedButton: {
+        backgroundColor: theme.palette.primary.main,
+        color: theme.palette.common.white,
+        fontWeight: 900,
+        '&:hover': {
+            backgroundColor: theme.palette.primary.dark
+        }
+    }
+}))
+
+export const Home = ({ theme }) => {
     const history = useHistory()
+    const classes = useStyles(theme)
 
     useEffect(() => {
         getCurrentUser()
@@ -52,7 +66,7 @@ export const Home = () => {
                     Please support your favorite artists and buy their music. Otherwise, the independent artist will go one of two ways - assimilating into a commercially viable mainstream, or being forced to walk away from the industry. The future of music has always been in the hands of the patrons. Advertisers have preferences for style. It's up to us to support what we want to hear.
                 </p>
 
-                <button onClick={() => history.push("/reports/create")} className="button btn-go" id="getStarted">Get Started</button>
+                <Button className={classes.getStartedButton} variant="contained" onClick={() => history.push("/reports/create")} id="getStarted">Get Started</Button>
             </section>
         </>
     )
