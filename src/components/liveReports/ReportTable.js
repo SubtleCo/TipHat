@@ -175,6 +175,11 @@ export const ReportTable = (props) => {
 
     return (
         <>
+            <select id="suggestionSelect" value={displayPlan.suggestion?.id} onChange={handleLiveSuggestionChange} className="report__trackValueSelect">
+                {
+                    suggestions.map(s => <option key={"suggestion " + s.id} value={s.id}>{s.name}</option>)
+                }
+            </select>
             <TableContainer className={classes.tableContainer} component={Paper}>
                 <Table className={classes.table} aria-label="simple table">
                     <TableHead>
