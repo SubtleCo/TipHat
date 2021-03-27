@@ -7,9 +7,21 @@ import { services, getServices } from '../services/ServiceProvider'
 import { periods, getPeriods } from '../periods/PeriodProvider'
 import './LiveReportForm.css'
 import { ReportTable } from './ReportTable'
-import { Typography } from '@material-ui/core'
+import { makeStyles, Typography, Button } from '@material-ui/core'
 
-export const LiveReportForm = () => {
+const useStyles = makeStyles((theme) => ({
+    tableButton: {
+        backgroundColor: theme.palette.success.main,
+        margin: theme.spacing(1),
+        '&:hover': {
+            backgroundColor: theme.palette.success.dark
+        },
+        color: theme.palette.common.white,
+        fontWeight: 900
+    }
+}))
+
+export const LiveReportForm = ({ theme }) => {
     const [isLoading, setIsLoading] = useState(true)
     // Keep track of the query parameters a user will send to the API
     const [apiParams, setApiParams] = useState({
@@ -18,6 +30,7 @@ export const LiveReportForm = () => {
         periodId: 0
     })
     const { liveReport, getLiveReport, setLiveReport } = useContext(LastFmContext)
+    const classes = useStyles(theme)
 
     // Pull in necessary data to populate selects - these come in as promises
     const loadData = () => {
@@ -65,7 +78,7 @@ export const LiveReportForm = () => {
 
     return (
         <>
-            <form className="report__api__form main__container" onSubmit={handleSubmit}>
+            <form className="report__api__form">
                 <Typography variant="h3" component="h2" >Generate A Listening Report</Typography>
                 <Typography variant="body1" component="p">
                     Using your last.fm username <strong>{currentUser.lastFmAccount}</strong>
@@ -84,7 +97,7 @@ export const LiveReportForm = () => {
                             }
                         </select>
                     </fieldset>
-                    <input type="submit" className="button btn--go" id="apiSubmit" value="Please!"></input>
+                    <Button className={classes.tableButton} onClick={handleSubmit} id="apiSubmit">Please</Button>
                 </div>
             </form>
             {Object.keys(liveReport).length > 0 &&

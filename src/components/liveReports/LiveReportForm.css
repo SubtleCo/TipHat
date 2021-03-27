@@ -1,7 +1,15 @@
 .api__form__selects {
     display: flex;
-    justify-content: space-evenly;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    /* justify-content: space-around; */
     align-items: center;
+    border: 1px solid gray;
+    border-radius: 5px;
+    margin-top: 3%;
+    padding-left: 3%;
+    padding-right: 3%;
+    width: fit-content;
 }
 
 .api__form__selects > fieldset {
@@ -12,4 +20,8 @@
 
 #apiSubmit{
     height: 30px;
+}
+
+.report__api__form {
+    padding: 1% 5%;
 }

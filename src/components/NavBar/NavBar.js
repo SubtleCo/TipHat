@@ -26,6 +26,7 @@ const useStyles = makeStyles((theme) => ({
 }))
 
 export const NavBar = ({ theme }) => {
+    const [user, setUser] = useState({})
     const classes = useStyles(theme)
     const logout = () => {
         sessionStorage.clear('app_user_id')
@@ -33,6 +34,7 @@ export const NavBar = ({ theme }) => {
     
     useEffect(() => {
         getCurrentUser()
+            .then(setUser)
     }, [])
     
     return (
@@ -54,7 +56,7 @@ export const NavBar = ({ theme }) => {
                     {/* <Typography variant="h5" color="inherit" className={classes.navItem} to="/user/edit" component={Link}>
                         Profile
                     </Typography> */}
-                    <Button variant="contained" component={Link} to="/user/edit">{currentUser.firstName}</Button>
+                    <Button variant="contained" component={Link} to="/user/edit">{user.firstName}</Button>
                 </Toolbar>
             </AppBar>
         </div>

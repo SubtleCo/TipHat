@@ -16,7 +16,7 @@ import TableContainer from '@material-ui/core/TableContainer'
 import TableHead from '@material-ui/core/TableHead'
 import TableRow from '@material-ui/core/TableRow'
 import Paper from '@material-ui/core/Paper'
-import { Button, LinearProgress } from '@material-ui/core'
+import { Button, LinearProgress, Select, MenuItem } from '@material-ui/core'
 
 const useStyles = makeStyles((theme) => ({
     tableContainer: {
@@ -62,6 +62,13 @@ const useStyles = makeStyles((theme) => ({
         '&:hover': {
             backgroundColor: theme.palette.success.dark
         }
+    },
+    valueSelect: {
+        backgroundColor: theme.palette.common.white,
+        margin: "0px 5px",
+        paddingLeft: 5,
+        borderRadius: 5,
+        width: "190px"
     }
 }))
 
@@ -172,14 +179,15 @@ export const ReportTable = (props) => {
 
     const totalRevenue = reportTable.map(row => parseFloat(row.playcount * report.service.amount)).reduce((a, b) => a + b, 0).toFixed(2)
     const totalPotential = reportTable.map(row => parseFloat(row.playcount * suggestion?.amount)).reduce((a, b) => a + b, 0).toFixed(2)
+    const valueSelect = <Select className={classes.valueSelect} id="suggestionSelect" defaultValue={report.user.suggestionId} value={suggestion?.id} onChange={handleLiveSuggestionChange}>
+        {
+            suggestions.map(s => <MenuItem key={"suggestion " + s.id} value={s.id}>{s.name}</MenuItem>)
+        }
+    </Select>
 
     return (
         <>
-            <select id="suggestionSelect" value={suggestion?.id} onChange={handleLiveSuggestionChange} className="report__trackValueSelect">
-                {
-                    suggestions.map(s => <option key={"suggestion " + s.id} value={s.id}>{s.name}</option>)
-                }
-            </select>
+
             <TableContainer className={classes.tableContainer} component={Paper}>
                 <Table className={classes.table} aria-label="simple table">
                     <TableHead>
@@ -188,7 +196,7 @@ export const ReportTable = (props) => {
                             <TableCell className={classes.head} align="center">Play Share</TableCell>
                             <TableCell className={classes.head} align="center">Track Count</TableCell>
                             <TableCell className={classes.head} align="center">Estimated {report.service.name} Revenue</TableCell>
-                            <TableCell className={classes.head} align="center">Potential Revenue (as {suggestion?.name})</TableCell>
+                            <TableCell className={classes.head} align="center">Potential Revenue (as {valueSelect})</TableCell>
                             <TableCell className={classes.head} align="center">Suggestion</TableCell>
                         </TableRow>
                     </TableHead>
@@ -210,9 +218,9 @@ export const ReportTable = (props) => {
                             )
                         })}
                         <TableRow>
+                            <TableCell className={classes.head}></TableCell>
                             <TableCell className={classes.head}>Total Tracks:</TableCell>
                             <TableCell className={classes.head} align="center">{totalCount}</TableCell>
-                            <TableCell className={classes.head} align="center"></TableCell>
                             <TableCell className={classes.head} align="center">${totalRevenue}</TableCell>
                             <TableCell className={classes.head} align="center">${totalPotential}</TableCell>
                             <TableCell className={classes.head} align="center">${(totalPotential - totalRevenue).toFixed(2)}</TableCell>
