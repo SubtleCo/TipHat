@@ -175,7 +175,7 @@ export const ReportTable = (props) => {
 
     return (
         <>
-            <select id="suggestionSelect" value={displayPlan.suggestion?.id} onChange={handleLiveSuggestionChange} className="report__trackValueSelect">
+            <select id="suggestionSelect" value={suggestion?.id} onChange={handleLiveSuggestionChange} className="report__trackValueSelect">
                 {
                     suggestions.map(s => <option key={"suggestion " + s.id} value={s.id}>{s.name}</option>)
                 }
