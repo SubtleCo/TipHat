@@ -1,0 +1,102 @@
+{
+  "suggestions": [
+    {
+      "name": "a CD Sale",
+      "amount": 0.0104,
+      "id": 1
+    },
+    {
+      "name": "an LP Sale",
+      "amount": 0.0217,
+      "id": 2
+    },
+    {
+      "name": "a Bandcamp Sale",
+      "amount": 0.0567,
+      "id": 3
+    },
+    {
+      "name": "a Champion Of Music",
+      "amount": 0.075,
+      "id": 4
+    }
+  ],
+  "services": [
+    {
+      "name": "Napster",
+      "amount": 0.019,
+      "id": 1
+    },
+    {
+      "name": "Tidal",
+      "amount": 0.01284,
+      "id": 2
+    },
+    {
+      "name": "Apple Music",
+      "amount": 0.00783,
+      "id": 3
+    },
+    {
+      "name": "Deezer",
+      "amount": 0.0064,
+      "id": 4
+    },
+    {
+      "name": "Spotify",
+      "amount": 0.00437,
+      "id": 5
+    },
+    {
+      "name": "Amazon",
+      "amount": 0.00402,
+      "id": 6
+    },
+    {
+      "name": "Pandora",
+      "amount": 0.00133,
+      "id": 7
+    },
+    {
+      "name": "Youtube",
+      "amount": 0.00069,
+      "id": 8
+    }
+  ],
+  "periods": [
+    {
+      "name": "the last week",
+      "query": "7day",
+      "id": 1
+    },
+    {
+      "name": "the last month",
+      "query": "1month",
+      "id": 2
+    },
+    {
+      "name": "the last 3 months",
+      "query": "3month",
+      "id": 3
+    },
+    {
+      "name": "the last 6 months",
+      "query": "6month",
+      "id": 4
+    },
+    {
+      "name": "the last year",
+      "query": "12month",
+      "id": 5
+    },
+    {
+      "name": "all time",
+      "query": "overall",
+      "id": 6
+    }
+  ],
+  "plans": [],
+  "artists": [],
+  "planArtists": [],
+  "users": []
+}
