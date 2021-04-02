@@ -149,7 +149,7 @@ export const ReportTable = (props) => {
         newPlan.trackCount = totalCount
         newPlan.periodId = reportPeriod.id
         // As "reportTable" is an array of items derived from the API, and each line represents and artist, .length will provide a total count of artists
-        newPlan.name = `Top ${reportTable.length} artists for ${reportPeriod.name}, ${new Date(newPlan.timestamp).getMonth()}/${new Date(newPlan.timestamp).getDate()}/${new Date(newPlan.timestamp).getFullYear()}`
+        newPlan.name = `Top ${reportTable.length} artists for ${reportPeriod.name}, ${new Date(newPlan.timestamp).getMonth() + 1}/${new Date(newPlan.timestamp).getDate()}/${new Date(newPlan.timestamp).getFullYear()}`
         // There are two submit buttons - one with "paid" in the id and one without. These buttons will determine if a plan is paid or not.
         newPlan.paid = e.currentTarget.id.includes("paid")
         newPlan.suggestionId = suggestion.id
