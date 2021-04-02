@@ -7,7 +7,7 @@ import { services, getServices } from '../services/ServiceProvider'
 import { periods, getPeriods } from '../periods/PeriodProvider'
 import './LiveReportForm.css'
 import { ReportTable } from './ReportTable'
-import { makeStyles, Typography, Button } from '@material-ui/core'
+import { makeStyles, Typography, Button, Select, MenuItem, Input } from '@material-ui/core'
 
 const useStyles = makeStyles((theme) => ({
     tableButton: {
@@ -56,8 +56,8 @@ export const LiveReportForm = ({ theme }) => {
     const handleInputChange = e => {
         const newParams = { ...apiParams }
         let selectedValue = e.target.value
-        if (e.target.id.includes("Id")) selectedValue = parseInt(selectedValue)
-        newParams[e.target.id] = selectedValue
+        if (e.target.name.includes("Id")) selectedValue = parseInt(selectedValue)
+        newParams[e.target.name] = selectedValue
         setApiParams(newParams)
     }
 
@@ -86,16 +86,16 @@ export const LiveReportForm = ({ theme }) => {
                 <div className="api__form__selects">
                     <p className="api__form__p">I'd like to see my top</p>
                     <fieldset>
-                        <input id="limit" type='number' min="5" max="50" value={apiParams.limit} onChange={handleInputChange}></input>
+                        <Input name="limit" id="limit" type='number' min="5" max="50" value={apiParams.limit} onChange={handleInputChange}></Input>
                     </fieldset>
                     <p className="api__form__p">artists for</p>
                     <fieldset>
-                        <select id="periodId" onChange={handleInputChange}>
-                            <option value="0">Select a period</option>
+                        <Select id="periodId" name="periodId" defaultValue={0} onChange={handleInputChange}>
+                            <MenuItem value="0">Select a period</MenuItem>
                             {
-                                periods.map(period => <option key={"period " + period.id} value={period.id} onChange={handleInputChange}>{period.name}</option>)
+                                periods.map(period => <MenuItem key={"period " + period.id} value={period.id}>{period.name}</MenuItem>)
                             }
-                        </select>
+                        </Select>
                     </fieldset>
                     <Button className={classes.tableButton} onClick={handleSubmit} id="apiSubmit">Please</Button>
                 </div>

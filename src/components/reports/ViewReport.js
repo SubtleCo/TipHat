@@ -20,7 +20,7 @@ import TableContainer from '@material-ui/core/TableContainer'
 import TableHead from '@material-ui/core/TableHead'
 import TableRow from '@material-ui/core/TableRow'
 import Paper from '@material-ui/core/Paper'
-import { Button, LinearProgress } from '@material-ui/core'
+import { Button, LinearProgress, Select, MenuItem } from '@material-ui/core'
 
 const useStyles = makeStyles((theme) => ({
     tableContainer: {
@@ -59,6 +59,13 @@ const useStyles = makeStyles((theme) => ({
         '&:hover': {
             backgroundColor: theme.palette.primary.dark
         }
+    },
+    valueSelect: {
+        backgroundColor: theme.palette.common.white,
+        margin: "0px 5px",
+        paddingLeft: 5,
+        borderRadius: 5,
+        width: "190px"
     }
 }))
 
@@ -67,6 +74,7 @@ export const ViewReport = () => {
     const [thisPlan, setThisPlan] = useState({})
     const [displayPlan, setDisplayPlan] = useState({})
     const [isLoading, setIsLoading] = useState(true)
+    const [suggestionSelect, setSuggestionSelect] = useState("")
 
     const { planId } = useParams()
     const history = useHistory()
@@ -128,6 +136,19 @@ export const ViewReport = () => {
 
     }, [thisPlan, isLoading])
 
+    useEffect(() => {
+        if (displayPlan.paid === true) {
+            setSuggestionSelect(displayPlan.suggestion?.id && displayPlan.suggestion.name)
+        } else {
+            setSuggestionSelect(displayPlan.suggestion?.id &&
+                <Select className={classes.valueSelect} id="suggestionSelect" value={displayPlan.suggestion.id} onChange={handleLiveSuggestionChange}>
+                    {
+                        suggestions.map(s => <MenuItem key={"suggestion " + s.id} value={s.id}>{s.name}</MenuItem>)
+                    }
+                </Select>)
+        }
+    }, [displayPlan])
+
     // if plan is not paid, allows user to edit suggestion / track value
     const handleLiveSuggestionChange = e => {
         const newPlan = { ...displayPlan }
@@ -150,16 +171,7 @@ export const ViewReport = () => {
             <h2>Your top {displayPlan?.artistCount} artists for {displayPlan.period?.name}</h2>
 
             {/* if this plan is unpaid, allow user to edit suggestion / track value. */}
-            {displayPlan?.paid ? <p>This Plan is Paid!</p> :
-                <>
-                    <label htmlFor="suggestionSelect">Change the payout calculation to </label>
-                    <select id="suggestionSelect" value={displayPlan.suggestion?.id} onChange={handleLiveSuggestionChange} className="report__trackValueSelect">
-                        {
-                            suggestions.map(s => <option key={"suggestion " + s.id} value={s.id}>{s.name}</option>)
-                        }
-                    </select>
-                </>
-            }
+            {displayPlan?.paid ? <p>This Plan is Paid!</p> : ""}
 
             <TableContainer className={classes.tableContainer} component={Paper}>
                 <Table className={classes.table} aria-label="simple table">
@@ -169,7 +181,7 @@ export const ViewReport = () => {
                             <TableCell className={classes.head} align="center">Play Share</TableCell>
                             <TableCell className={classes.head} align="center">Track Count</TableCell>
                             <TableCell className={classes.head} align="center">Estimated {displayPlan.service?.name} Revenue</TableCell>
-                            <TableCell className={classes.head} align="center">Potential Revenue (as {displayPlan.suggestion?.name})</TableCell>
+                            <TableCell className={classes.head} align="center">Potential Revenue (as {suggestionSelect})</TableCell>
                             <TableCell className={classes.head} align="center">Suggestion</TableCell>
                         </TableRow>
                     </TableHead>
@@ -201,38 +213,6 @@ export const ViewReport = () => {
                     </TableBody>
                 </Table>
             </TableContainer >
-            {/* <table className="reportTable">
-
-                <thead>
-                    <tr>
-                        <th>Artist</th>
-                        <th>Track Count</th>
-                        <th>% of report</th>
-                        <th>Estimated {displayPlan.service?.name} Payout</th>
-                        <th>Estimated Potential Payout (as {displayPlan.suggestion?.name})</th>
-                        <th>Suggested Donation</th>
-                    </tr>
-                </thead>
-
-                <tbody className="reportTable--body">
-                    {
-                        displayPlan.reportTable.map((line, i) => {
-                            const payout = (line.playcount * displayPlan.service?.amount).toFixed(2)
-                            const potential = (line.playcount * displayPlan.suggestion.amount).toFixed(2)
-                            return (
-                                <tr key={i}>
-                                    <td>{line.name}</td>
-                                    <td>{line.playcount}</td>
-                                    <td>{(line.playcount / displayPlan.trackCount * 100).toFixed(0)}%</td>
-                                    <td>${payout}</td>
-                                    <td>${potential}</td>
-                                    <td>${(potential - payout).toFixed(2)}</td>
-                                </tr>
-                            )
-                        })
-                    }
-                </tbody>
-            </table> */}
 
             {/* if this plan is unpaid, allow the user to save the edited version to the local api. otherwise, this button simply reroutes to the reports page */}
             <div className={classes.tableButtons}>

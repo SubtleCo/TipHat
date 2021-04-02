@@ -83,6 +83,7 @@ export const ReportTable = (props) => {
     const [reportTable, setReportTable] = useState([])
     // This helps ensure our API data is loaded before performing operations that require it
     const [isLoading, setIsLoading] = useState(true)
+    const [suggestionSelect, setSuggestionSelect] = useState("")
 
     const history = useHistory()
 
@@ -120,6 +121,15 @@ export const ReportTable = (props) => {
         setSuggestion(suggestions.find(s => s.id === report.user.suggestionId))
     }, [isLoading])
 
+    useEffect(() => {
+        setSuggestionSelect(suggestion?.id &&
+                <Select className={classes.valueSelect} id="suggestionSelect" value={suggestion.id} onChange={handleLiveSuggestionChange}>
+                    {
+                        suggestions.map(s => <MenuItem key={"suggestion " + s.id} value={s.id}>{s.name}</MenuItem>)
+                    }
+                </Select>)
+    }, [suggestion])
+
     // This watches the suggestion select to change the state variable of suggestion if the user wants to recalculate the report with a different track value
     const handleLiveSuggestionChange = e => {
         setSuggestion(suggestions.find(s => s.id === parseInt(e.target.value)))
@@ -139,7 +149,7 @@ export const ReportTable = (props) => {
         newPlan.trackCount = totalCount
         newPlan.periodId = reportPeriod.id
         // As "reportTable" is an array of items derived from the API, and each line represents and artist, .length will provide a total count of artists
-        newPlan.name = `Top ${reportTable.length} artists for ${reportPeriod.name}, ${new Date(newPlan.timestamp).getMonth()}/${new Date(newPlan.timestamp).getDate()}/${new Date(newPlan.timestamp).getFullYear()}`
+        newPlan.name = `Top ${reportTable.length} artists for ${reportPeriod.name}, ${new Date(newPlan.timestamp).getMonth() + 1}/${new Date(newPlan.timestamp).getDate()}/${new Date(newPlan.timestamp).getFullYear()}`
         // There are two submit buttons - one with "paid" in the id and one without. These buttons will determine if a plan is paid or not.
         newPlan.paid = e.currentTarget.id.includes("paid")
         newPlan.suggestionId = suggestion.id
@@ -179,11 +189,6 @@ export const ReportTable = (props) => {
 
     const totalRevenue = reportTable.map(row => parseFloat(row.playcount * report.service.amount)).reduce((a, b) => a + b, 0).toFixed(2)
     const totalPotential = reportTable.map(row => parseFloat(row.playcount * suggestion?.amount)).reduce((a, b) => a + b, 0).toFixed(2)
-    const valueSelect = <Select className={classes.valueSelect} id="suggestionSelect" defaultValue={report.user.suggestionId} value={suggestion?.id} onChange={handleLiveSuggestionChange}>
-        {
-            suggestions.map(s => <MenuItem key={"suggestion " + s.id} value={s.id}>{s.name}</MenuItem>)
-        }
-    </Select>
 
     return (
         <>
@@ -196,7 +201,7 @@ export const ReportTable = (props) => {
                             <TableCell className={classes.head} align="center">Play Share</TableCell>
                             <TableCell className={classes.head} align="center">Track Count</TableCell>
                             <TableCell className={classes.head} align="center">Estimated {report.service.name} Revenue</TableCell>
-                            <TableCell className={classes.head} align="center">Potential Revenue (as {valueSelect})</TableCell>
+                            <TableCell className={classes.head} align="center">Potential Revenue (as {suggestionSelect})</TableCell>
                             <TableCell className={classes.head} align="center">Suggestion</TableCell>
                         </TableRow>
                     </TableHead>

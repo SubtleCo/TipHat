@@ -112,7 +112,7 @@
       "trackCount": 79,
       "periodId": 1,
       "name": "Top 5 artists for the last week, 2/22/2021",
-      "paid": false,
+      "paid": true,
       "suggestionId": 3,
       "id": 10
     },
@@ -143,7 +143,7 @@
       "periodId": 1,
       "name": "Top 5 artists for the last week, 2/23/2021",
       "paid": true,
-      "suggestionId": 3,
+      "suggestionId": 2,
       "id": 13
     },
     {
@@ -182,9 +182,39 @@
       "trackCount": 654,
       "periodId": 2,
       "name": "Top 20 artists for the last month, 2/26/2021",
-      "paid": true,
-      "suggestionId": 2,
+      "paid": false,
+      "suggestionId": 1,
       "id": 18
+    },
+    {
+      "userId": 1,
+      "timestamp": 1617383741539,
+      "trackCount": 326,
+      "periodId": 2,
+      "name": "Top 8 artists for the last month, 3/2/2021",
+      "paid": false,
+      "suggestionId": 3,
+      "id": 19
+    },
+    {
+      "userId": 1,
+      "timestamp": 1617385512376,
+      "trackCount": 529,
+      "periodId": 2,
+      "name": "Top 15 artists for the last month, 3/2/2021",
+      "paid": true,
+      "suggestionId": 1,
+      "id": 20
+    },
+    {
+      "userId": 1,
+      "timestamp": 1617385586294,
+      "trackCount": 29,
+      "periodId": 1,
+      "name": "Top 20 artists for the last week, 4/2/2021",
+      "paid": false,
+      "suggestionId": 1,
+      "id": 21
     }
   ],
   "artists": [
@@ -331,6 +361,34 @@
     {
       "name": "Sufjan Stevens",
       "id": 36
+    },
+    {
+      "name": "Can",
+      "id": 37
+    },
+    {
+      "name": "Fugazi",
+      "id": 38
+    },
+    {
+      "name": "George Harrison",
+      "id": 39
+    },
+    {
+      "name": "Arcade Fire",
+      "id": 40
+    },
+    {
+      "name": "Lianne La Havas",
+      "id": 41
+    },
+    {
+      "name": "Modest Mouse",
+      "id": 42
+    },
+    {
+      "name": "Regina Spektor",
+      "id": 43
     }
   ],
   "planArtists": [
@@ -969,6 +1027,264 @@
       "planId": 18,
       "trackCount": 29,
       "id": 178
+    },
+    {
+      "artistId": 2,
+      "planId": 19,
+      "trackCount": 69,
+      "id": 179
+    },
+    {
+      "artistId": 6,
+      "planId": 19,
+      "trackCount": 42,
+      "id": 180
+    },
+    {
+      "artistId": 14,
+      "planId": 19,
+      "trackCount": 43,
+      "id": 181
+    },
+    {
+      "artistId": 8,
+      "planId": 19,
+      "trackCount": 37,
+      "id": 182
+    },
+    {
+      "artistId": 10,
+      "planId": 19,
+      "trackCount": 35,
+      "id": 183
+    },
+    {
+      "artistId": 5,
+      "planId": 19,
+      "trackCount": 34,
+      "id": 184
+    },
+    {
+      "artistId": 12,
+      "planId": 19,
+      "trackCount": 32,
+      "id": 185
+    },
+    {
+      "artistId": 1,
+      "planId": 19,
+      "trackCount": 34,
+      "id": 186
+    },
+    {
+      "artistId": 2,
+      "planId": 20,
+      "trackCount": 69,
+      "id": 187
+    },
+    {
+      "artistId": 5,
+      "planId": 20,
+      "trackCount": 34,
+      "id": 188
+    },
+    {
+      "artistId": 14,
+      "planId": 20,
+      "trackCount": 43,
+      "id": 189
+    },
+    {
+      "artistId": 8,
+      "planId": 20,
+      "trackCount": 37,
+      "id": 190
+    },
+    {
+      "artistId": 10,
+      "planId": 20,
+      "trackCount": 35,
+      "id": 191
+    },
+    {
+      "artistId": 1,
+      "planId": 20,
+      "trackCount": 34,
+      "id": 192
+    },
+    {
+      "artistId": 12,
+      "planId": 20,
+      "trackCount": 32,
+      "id": 193
+    },
+    {
+      "artistId": 4,
+      "planId": 20,
+      "trackCount": 31,
+      "id": 194
+    },
+    {
+      "artistId": 36,
+      "planId": 20,
+      "trackCount": 29,
+      "id": 195
+    },
+    {
+      "artistId": 3,
+      "planId": 20,
+      "trackCount": 28,
+      "id": 196
+    },
+    {
+      "artistId": 6,
+      "planId": 20,
+      "trackCount": 42,
+      "id": 197
+    },
+    {
+      "artistId": 15,
+      "planId": 20,
+      "trackCount": 30,
+      "id": 198
+    },
+    {
+      "artistId": 11,
+      "planId": 20,
+      "trackCount": 30,
+      "id": 199
+    },
+    {
+      "artistId": 13,
+      "planId": 20,
+      "trackCount": 27,
+      "id": 200
+    },
+    {
+      "artistId": 7,
+      "planId": 20,
+      "trackCount": 28,
+      "id": 201
+    },
+    {
+      "artistId": 20,
+      "planId": 21,
+      "trackCount": 4,
+      "id": 202
+    },
+    {
+      "artistId": 8,
+      "planId": 21,
+      "trackCount": 2,
+      "id": 203
+    },
+    {
+      "artistId": 7,
+      "planId": 21,
+      "trackCount": 3,
+      "id": 204
+    },
+    {
+      "artistId": 6,
+      "planId": 21,
+      "trackCount": 3,
+      "id": 205
+    },
+    {
+      "artistId": 19,
+      "planId": 21,
+      "trackCount": 1,
+      "id": 206
+    },
+    {
+      "artistId": 35,
+      "planId": 21,
+      "trackCount": 2,
+      "id": 207
+    },
+    {
+      "artistId": 3,
+      "planId": 21,
+      "trackCount": 1,
+      "id": 208
+    },
+    {
+      "artistId": 10,
+      "planId": 21,
+      "trackCount": 1,
+      "id": 209
+    },
+    {
+      "artistId": 11,
+      "planId": 21,
+      "trackCount": 1,
+      "id": 210
+    },
+    {
+      "artistId": 9,
+      "planId": 21,
+      "trackCount": 1,
+      "id": 211
+    },
+    {
+      "artistId": 23,
+      "planId": 21,
+      "trackCount": 1,
+      "id": 212
+    },
+    {
+      "artistId": 5,
+      "planId": 21,
+      "trackCount": 1,
+      "id": 213
+    },
+    {
+      "artistId": 36,
+      "planId": 21,
+      "trackCount": 1,
+      "id": 214
+    },
+    {
+      "artistId": 39,
+      "planId": 21,
+      "trackCount": 1,
+      "id": 215
+    },
+    {
+      "artistId": 37,
+      "planId": 21,
+      "trackCount": 1,
+      "id": 216
+    },
+    {
+      "artistId": 40,
+      "planId": 21,
+      "trackCount": 1,
+      "id": 217
+    },
+    {
+      "artistId": 42,
+      "planId": 21,
+      "trackCount": 1,
+      "id": 218
+    },
+    {
+      "artistId": 41,
+      "planId": 21,
+      "trackCount": 1,
+      "id": 219
+    },
+    {
+      "artistId": 38,
+      "planId": 21,
+      "trackCount": 1,
+      "id": 220
+    },
+    {
+      "artistId": 43,
+      "planId": 21,
+      "trackCount": 1,
+      "id": 221
     }
   ],
   "users": [
@@ -979,7 +1295,7 @@
       "lastFmAccount": "SubtleCo",
       "password": "qwerty",
       "serviceId": 3,
-      "suggestionId": 2,
+      "suggestionId": 1,
       "id": 1
     },
     {
