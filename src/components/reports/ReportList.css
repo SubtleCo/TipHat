@@ -1,16 +1,5 @@
-#savedReports__unpaid {
-    background-color: cornsilk;
-}
-#savedReports__paid {
-    background-color: rgb(119, 221, 119);
-}
-
 .savedReport{
     display: flex;
     align-items: center;
     justify-content: space-between;
-}
-
-.savedReports__section--title {
-    text-align: center;
 }

@@ -112,7 +112,7 @@
       "trackCount": 79,
       "periodId": 1,
       "name": "Top 5 artists for the last week, 2/22/2021",
-      "paid": false,
+      "paid": true,
       "suggestionId": 3,
       "id": 10
     },
@@ -143,7 +143,7 @@
       "periodId": 1,
       "name": "Top 5 artists for the last week, 2/23/2021",
       "paid": true,
-      "suggestionId": 3,
+      "suggestionId": 2,
       "id": 13
     },
     {
@@ -172,7 +172,7 @@
       "trackCount": 405,
       "periodId": 2,
       "name": "Top 20 artists for the last month, 2/26/2021",
-      "paid": true,
+      "paid": false,
       "suggestionId": 4,
       "id": 16
     },
@@ -183,8 +183,18 @@
       "periodId": 2,
       "name": "Top 20 artists for the last month, 2/26/2021",
       "paid": false,
-      "suggestionId": 2,
+      "suggestionId": 1,
       "id": 18
+    },
+    {
+      "userId": 1,
+      "timestamp": 1617383741539,
+      "trackCount": 326,
+      "periodId": 2,
+      "name": "Top 8 artists for the last month, 3/2/2021",
+      "paid": false,
+      "suggestionId": 3,
+      "id": 19
     }
   ],
   "artists": [
@@ -969,6 +979,54 @@
       "planId": 18,
       "trackCount": 29,
       "id": 178
+    },
+    {
+      "artistId": 2,
+      "planId": 19,
+      "trackCount": 69,
+      "id": 179
+    },
+    {
+      "artistId": 6,
+      "planId": 19,
+      "trackCount": 42,
+      "id": 180
+    },
+    {
+      "artistId": 14,
+      "planId": 19,
+      "trackCount": 43,
+      "id": 181
+    },
+    {
+      "artistId": 8,
+      "planId": 19,
+      "trackCount": 37,
+      "id": 182
+    },
+    {
+      "artistId": 10,
+      "planId": 19,
+      "trackCount": 35,
+      "id": 183
+    },
+    {
+      "artistId": 5,
+      "planId": 19,
+      "trackCount": 34,
+      "id": 184
+    },
+    {
+      "artistId": 12,
+      "planId": 19,
+      "trackCount": 32,
+      "id": 185
+    },
+    {
+      "artistId": 1,
+      "planId": 19,
+      "trackCount": 34,
+      "id": 186
     }
   ],
   "users": [
