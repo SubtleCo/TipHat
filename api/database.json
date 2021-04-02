@@ -208,13 +208,13 @@
     },
     {
       "userId": 1,
-      "timestamp": 1617385586294,
-      "trackCount": 29,
-      "periodId": 1,
-      "name": "Top 20 artists for the last week, 4/2/2021",
+      "timestamp": 1617386121524,
+      "trackCount": 387,
+      "periodId": 2,
+      "name": "Top 10 artists for the last month, 4/2/2021",
       "paid": false,
-      "suggestionId": 1,
-      "id": 21
+      "suggestionId": 3,
+      "id": 22
     }
   ],
   "artists": [
@@ -1167,124 +1167,64 @@
       "id": 201
     },
     {
-      "artistId": 20,
-      "planId": 21,
-      "trackCount": 4,
-      "id": 202
-    },
-    {
-      "artistId": 8,
-      "planId": 21,
-      "trackCount": 2,
-      "id": 203
-    },
-    {
-      "artistId": 7,
-      "planId": 21,
-      "trackCount": 3,
-      "id": 204
+      "artistId": 2,
+      "planId": 22,
+      "trackCount": 69,
+      "id": 222
     },
     {
       "artistId": 6,
-      "planId": 21,
-      "trackCount": 3,
-      "id": 205
+      "planId": 22,
+      "trackCount": 42,
+      "id": 223
     },
     {
-      "artistId": 19,
-      "planId": 21,
-      "trackCount": 1,
-      "id": 206
+      "artistId": 8,
+      "planId": 22,
+      "trackCount": 37,
+      "id": 224
     },
     {
-      "artistId": 35,
-      "planId": 21,
-      "trackCount": 2,
-      "id": 207
-    },
-    {
-      "artistId": 3,
-      "planId": 21,
-      "trackCount": 1,
-      "id": 208
+      "artistId": 14,
+      "planId": 22,
+      "trackCount": 43,
+      "id": 225
     },
     {
       "artistId": 10,
-      "planId": 21,
-      "trackCount": 1,
-      "id": 209
+      "planId": 22,
+      "trackCount": 35,
+      "id": 226
     },
     {
-      "artistId": 11,
-      "planId": 21,
-      "trackCount": 1,
-      "id": 210
-    },
-    {
-      "artistId": 9,
-      "planId": 21,
-      "trackCount": 1,
-      "id": 211
-    },
-    {
-      "artistId": 23,
-      "planId": 21,
-      "trackCount": 1,
-      "id": 212
+      "artistId": 1,
+      "planId": 22,
+      "trackCount": 34,
+      "id": 227
     },
     {
       "artistId": 5,
-      "planId": 21,
-      "trackCount": 1,
-      "id": 213
+      "planId": 22,
+      "trackCount": 34,
+      "id": 228
     },
     {
-      "artistId": 36,
-      "planId": 21,
-      "trackCount": 1,
-      "id": 214
+      "artistId": 12,
+      "planId": 22,
+      "trackCount": 32,
+      "id": 229
     },
     {
-      "artistId": 39,
-      "planId": 21,
-      "trackCount": 1,
-      "id": 215
+      "artistId": 4,
+      "planId": 22,
+      "trackCount": 31,
+      "id": 230
     },
     {
-      "artistId": 37,
-      "planId": 21,
-      "trackCount": 1,
-      "id": 216
-    },
-    {
-      "artistId": 40,
-      "planId": 21,
-      "trackCount": 1,
-      "id": 217
-    },
-    {
-      "artistId": 42,
-      "planId": 21,
-      "trackCount": 1,
-      "id": 218
-    },
-    {
-      "artistId": 41,
-      "planId": 21,
-      "trackCount": 1,
-      "id": 219
-    },
-    {
-      "artistId": 38,
-      "planId": 21,
-      "trackCount": 1,
-      "id": 220
-    },
-    {
-      "artistId": 43,
-      "planId": 21,
-      "trackCount": 1,
-      "id": 221
+      "artistId": 11,
+      "planId": 22,
+      "trackCount": 30,
+      "id": 231
     }
   ],
   "users": [
@@ -1295,7 +1235,7 @@
       "lastFmAccount": "SubtleCo",
       "password": "qwerty",
       "serviceId": 3,
-      "suggestionId": 1,
+      "suggestionId": 3,
       "id": 1
     },
     {
