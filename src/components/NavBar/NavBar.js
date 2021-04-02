@@ -45,13 +45,13 @@ export const NavBar = ({ theme }) => {
                         <LibraryMusicIcon />
                     </IconButton>
                     <Typography variant="h5" color="inherit" className={classes.navItem} to="/" component={Link}>
-                        TipHat
+                        TIPHAT
                     </Typography>
                     <Typography variant="h5" color="inherit" className={classes.navItem} to="/reports/create" component={Link}>
-                        Generate A Report
+                        GENERATE A REPORT
                     </Typography>
                     <Typography variant="h5" color="inherit" className={classes.navItem} to="/reports" component={Link}>
-                        Saved Reports
+                        SAVED REPORTS
                     </Typography>
                     {/* <Typography variant="h5" color="inherit" className={classes.navItem} to="/user/edit" component={Link}>
                         Profile

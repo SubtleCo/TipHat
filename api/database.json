@@ -172,7 +172,7 @@
       "trackCount": 405,
       "periodId": 2,
       "name": "Top 20 artists for the last month, 2/26/2021",
-      "paid": false,
+      "paid": true,
       "suggestionId": 4,
       "id": 16
     },
@@ -182,7 +182,7 @@
       "trackCount": 654,
       "periodId": 2,
       "name": "Top 20 artists for the last month, 2/26/2021",
-      "paid": true,
+      "paid": false,
       "suggestionId": 2,
       "id": 18
     }
@@ -979,7 +979,7 @@
       "lastFmAccount": "SubtleCo",
       "password": "qwerty",
       "serviceId": 3,
-      "suggestionId": 2,
+      "suggestionId": 1,
       "id": 1
     },
     {
