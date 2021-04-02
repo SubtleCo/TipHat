@@ -1,4 +1,7 @@
 .main__container{
-    margin: 10px;
-    margin-bottom: 50px;
+    padding: 1% 5% 10% 5%;
+}
+
+button {
+    margin: 0 10px;
 }

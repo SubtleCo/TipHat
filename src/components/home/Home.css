@@ -13,7 +13,7 @@
     align-self: flex-end;
 }
 
-#CDChart {
-    width: 50%;
+.chartContainer {
     margin: auto;
+    width: 50%;
 }

@@ -1,8 +1,5 @@
-.reportTable {
-    width: 100%
-}
 
-th {
-    text-align: left;
-    text-decoration: underline;
+
+.reportTable {
+    margin: 20px 0px;
 }

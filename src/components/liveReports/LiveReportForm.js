@@ -7,8 +7,21 @@ import { services, getServices } from '../services/ServiceProvider'
 import { periods, getPeriods } from '../periods/PeriodProvider'
 import './LiveReportForm.css'
 import { ReportTable } from './ReportTable'
+import { makeStyles, Typography, Button, Select, MenuItem, Input } from '@material-ui/core'
 
-export const LiveReportForm = () => {
+const useStyles = makeStyles((theme) => ({
+    tableButton: {
+        backgroundColor: theme.palette.success.main,
+        margin: theme.spacing(1),
+        '&:hover': {
+            backgroundColor: theme.palette.success.dark
+        },
+        color: theme.palette.common.white,
+        fontWeight: 900
+    }
+}))
+
+export const LiveReportForm = ({ theme }) => {
     const [isLoading, setIsLoading] = useState(true)
     // Keep track of the query parameters a user will send to the API
     const [apiParams, setApiParams] = useState({
@@ -17,6 +30,7 @@ export const LiveReportForm = () => {
         periodId: 0
     })
     const { liveReport, getLiveReport, setLiveReport } = useContext(LastFmContext)
+    const classes = useStyles(theme)
 
     // Pull in necessary data to populate selects - these come in as promises
     const loadData = () => {
@@ -42,8 +56,8 @@ export const LiveReportForm = () => {
     const handleInputChange = e => {
         const newParams = { ...apiParams }
         let selectedValue = e.target.value
-        if (e.target.id.includes("Id")) selectedValue = parseInt(selectedValue)
-        newParams[e.target.id] = selectedValue
+        if (e.target.name.includes("Id")) selectedValue = parseInt(selectedValue)
+        newParams[e.target.name] = selectedValue
         setApiParams(newParams)
     }
 
@@ -64,24 +78,26 @@ export const LiveReportForm = () => {
 
     return (
         <>
-            <form className="report__api__form main__container" onSubmit={handleSubmit}>
-                <h2>Generate a listening report</h2>
-                <p>Using your last.fm username <strong>{currentUser.lastFmAccount}</strong></p>
+            <form className="report__api__form">
+                <Typography variant="h3" component="h2" >Generate A Listening Report</Typography>
+                <Typography variant="body1" component="p">
+                    Using your last.fm username <strong>{currentUser.lastFmAccount}</strong>
+                </Typography>
                 <div className="api__form__selects">
                     <p className="api__form__p">I'd like to see my top</p>
                     <fieldset>
-                        <input id="limit" type='number' min="5" max="50" value={apiParams.limit} onChange={handleInputChange}></input>
+                        <Input name="limit" id="limit" type='number' min="5" max="50" value={apiParams.limit} onChange={handleInputChange}></Input>
                     </fieldset>
                     <p className="api__form__p">artists for</p>
                     <fieldset>
-                        <select id="periodId" onChange={handleInputChange}>
-                            <option value="0">Select a period</option>
+                        <Select id="periodId" name="periodId" defaultValue={0} onChange={handleInputChange}>
+                            <MenuItem value="0">Select a period</MenuItem>
                             {
-                                periods.map(period => <option key={"period " + period.id} value={period.id} onChange={handleInputChange}>{period.name}</option>)
+                                periods.map(period => <MenuItem key={"period " + period.id} value={period.id}>{period.name}</MenuItem>)
                             }
-                        </select>
+                        </Select>
                     </fieldset>
-                    <input type="submit" className="button btn--go" id="apiSubmit" value="Please!"></input>
+                    <Button className={classes.tableButton} onClick={handleSubmit} id="apiSubmit">Please</Button>
                 </div>
             </form>
             {Object.keys(liveReport).length > 0 &&
